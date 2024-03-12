@@ -10,6 +10,7 @@ import {
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import MainPage from "./pages/MainPage/MainPage";
+import ExchangePage from "./pages/ExchangePage/ExchangePage";
 
 const App = observer(() => {
   useEffect(() => {
@@ -19,7 +20,9 @@ const App = observer(() => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/" element={<MainPage />}>
+          <Route index element={<ExchangePage />} />
+        </Route>
         <Route path="/login" element={<>login</>} />
         <Route path="/register" element={<>register</>} />
         <Route path="/*" element={<Navigate to="/" />} />
