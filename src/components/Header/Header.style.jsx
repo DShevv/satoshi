@@ -35,3 +35,123 @@ export const ControlsContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const ButtonsContainer = styled.div`
+  margin-left: 43px;
+  margin-right: 29px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const MenuButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  font-size: 13px;
+  color: ${(props) => props.theme.colors.white};
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const MenuWrapper = styled.div`
+  height: calc(100vh - 111px);
+
+  backdrop-filter: blur(18px);
+  background: rgba(182, 182, 182, 0.15);
+`;
+
+export const MenuContent = styled.div`
+  padding-top: 44px;
+  min-height: 718px;
+  background-color: ${(props) => props.theme.colors.black};
+`;
+
+export const MenuList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+`;
+
+export const ItemNumber = styled.div`
+  flex: 0 0 154px;
+  padding: 32px 27px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  max-width: 154px;
+  font-weight: 500;
+  font-size: 21px;
+  text-align: right;
+  color: ${(props) => props.theme.colors.redDark};
+  background-color: ${(props) => props.theme.colors.blackGray};
+  transition: all 0.2s ease;
+`;
+
+export const ItemName = styled.div`
+  padding: 32px;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  font-weight: 700;
+  font-size: 21px;
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.blackGray};
+  transition: all 0.2s ease;
+`;
+
+export const MenuItem = styled(NavLink)`
+  display: flex;
+  gap: 6px;
+  text-decoration: none;
+
+  &:hover ${ItemNumber} {
+    color: ${(props) => props.theme.colors.black};
+  }
+
+  &:hover ${ItemName}, &:hover ${ItemNumber} {
+    background-color: ${(props) => props.theme.colors.red};
+  }
+`;
+
+export const MenuFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 257px;
+
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+export const Copyright = styled.div`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+`;
+
+export const Socials = styled.div`
+  display: flex;
+  gap: 28px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 157%;
+`;
+
+export const SocialList = styled.ul`
+  list-style: none;
+  display: flex;
+  gap: 28px;
+`;
+
+export const SocialItem = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

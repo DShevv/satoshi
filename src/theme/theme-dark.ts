@@ -6,11 +6,13 @@ const ThemeDark: DefaultTheme = {
     primaryDark: "#c18613",
     secondary: "#474747",
     black: "#131517",
+    blackGray: "#1E1E1E",
     white: "#FFFFFF",
-    gray: "#DDE1E6",
+    gray: "#9A9A9A",
     grayLight: "rgba(236, 236, 236, 0.09)",
     grayEmpty: "#686868",
-
+    red: "#D80C15",
+    redDark: "#db1010",
     error: "#F44336",
   },
 };
