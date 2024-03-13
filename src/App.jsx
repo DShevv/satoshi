@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import MainPage from "./pages/MainPage/MainPage";
 import ExchangePage from "./pages/ExchangePage/ExchangePage";
 import BuyPage from "./pages/BuyPage/BuyPage";
+import SellPage from "./pages/SellPage/SellPage";
 
 const App = observer(() => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const App = observer(() => {
         <Route path="/" element={<MainPage />}>
           <Route index element={<ExchangePage />} />
           <Route path="/buy" element={<BuyPage />} />
+          <Route path="/sell" element={<SellPage />} />
         </Route>
         <Route path="/login" element={<>login</>} />
         <Route path="/register" element={<>register</>} />
