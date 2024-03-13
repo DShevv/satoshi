@@ -59,9 +59,11 @@ export const MenuButton = styled.button`
 
 export const MenuWrapper = styled.div`
   height: calc(100vh - 111px);
+  position: relative;
 
   backdrop-filter: blur(18px);
   background: rgba(182, 182, 182, 0.15);
+  z-index: 100;
 `;
 
 export const MenuContent = styled.div`
