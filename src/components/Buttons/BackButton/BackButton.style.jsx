@@ -12,9 +12,9 @@ export const StyledSubmit = styled(StyledButton)`
   font-size: 16px;
   transition: all 0.2s ease;
   color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors.red};
+  background-color: ${(props) => props.theme.colors.grayEmpty};
 
-  border: 2px solid ${(props) => props.theme.colors.red};
+  border: 2px solid ${(props) => props.theme.colors.grayEmpty};
   outline: none;
   cursor: pointer;
 

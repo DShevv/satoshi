@@ -7,20 +7,33 @@ import {
   Title,
 } from "./InputField.style";
 
-const InputField = ({ title, hint, min, max, info, ...other }) => {
+const InputField = ({
+  type,
+  title,
+  hint,
+  min,
+  max,
+  info,
+  placeholder,
+  ...other
+}) => {
   return (
     <Container {...other}>
       {title && <Title>{title}</Title>}
       <InputContainer>
-        <Input type="text" />
+        <Input type={type ? type : "text"} placeholder={placeholder} />
         {hint && <Hint>{hint}</Hint>}
       </InputContainer>
-      <InfoContainer>
-        <div>
-          {min && <span>Min: {min}</span>} {max && <span>Max: {max}</span>}
-        </div>
-        {info && <div>{info}</div>}
-      </InfoContainer>
+      {info || min || max ? (
+        <InfoContainer>
+          <div>
+            {min && <span>Min: {min}</span>} {max && <span>Max: {max}</span>}
+          </div>
+          {info && <div>{info}</div>}
+        </InfoContainer>
+      ) : (
+        ""
+      )}
     </Container>
   );
 };

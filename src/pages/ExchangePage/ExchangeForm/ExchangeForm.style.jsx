@@ -29,3 +29,7 @@ export const Policy = styled.div`
   text-align: center;
   color: ${(props) => props.theme.colors.gray};
 `;
+
+export const ButtonContainer = styled.div`
+  margin-top: 46px;
+`;

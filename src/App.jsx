@@ -11,6 +11,7 @@ import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import MainPage from "./pages/MainPage/MainPage";
 import ExchangePage from "./pages/ExchangePage/ExchangePage";
+import BuyPage from "./pages/BuyPage/BuyPage";
 
 const App = observer(() => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = observer(() => {
       <Route path="/">
         <Route path="/" element={<MainPage />}>
           <Route index element={<ExchangePage />} />
+          <Route path="/buy" element={<BuyPage />} />
         </Route>
         <Route path="/login" element={<>login</>} />
         <Route path="/register" element={<>register</>} />

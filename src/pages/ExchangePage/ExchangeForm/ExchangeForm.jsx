@@ -1,7 +1,12 @@
 import { SvgRefresh } from "../../../assets/icons/svgs";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
 import InputField from "../../../components/InputField/InputField";
-import { Container, ExchangeIcon, Policy } from "./ExchangeForm.style";
+import {
+  ButtonContainer,
+  Container,
+  ExchangeIcon,
+  Policy,
+} from "./ExchangeForm.style";
 
 const ExchangeForm = () => {
   return (
@@ -22,7 +27,9 @@ const ExchangeForm = () => {
         min={"5 000"}
         info={"Min:  Резервы: 38 395 426 RUB"}
       />
-      <SubmitButton>Перейти к обмену</SubmitButton>
+      <ButtonContainer>
+        <SubmitButton>Перейти к обмену</SubmitButton>
+      </ButtonContainer>
       <Policy>
         Нажимая на кнопку «Перейти к обмену», я соглашаюсь с правилами и
         пользовательским соглашением
