@@ -842,3 +842,41 @@ export const SvgOk = () => {
     </svg>
   );
 };
+
+export const SvgTimer = () => {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 26 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="13.0002"
+        cy="15.1667"
+        r="8.66667"
+        stroke="#9A9A9A"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M13 15.1667L13 11.9167"
+        stroke="#9A9A9A"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18.9585 8.125L20.5835 6.5"
+        stroke="#9A9A9A"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10.907 2.56813C11.0304 2.45295 11.3025 2.35118 11.6809 2.27859C12.0592 2.206 12.5229 2.16666 12.9998 2.16666C13.4768 2.16666 13.9404 2.206 14.3188 2.27859C14.6972 2.35118 14.9692 2.45295 15.0927 2.56813"
+        stroke="#9A9A9A"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};

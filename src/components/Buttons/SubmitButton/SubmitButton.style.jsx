@@ -13,6 +13,7 @@ export const StyledSubmit = styled(StyledButton)`
   transition: all 0.2s ease;
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.red};
+  text-decoration: none;
 
   border: 2px solid ${(props) => props.theme.colors.red};
   outline: none;
