@@ -37,6 +37,9 @@ import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import RegisterButton from "../Buttons/RegisterButton/RegisterButton";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
 import { useState } from "react";
+import LoginForm from "../LoginForm/LoginForm";
+import RegisterForm from "../RegisterForm/RegisterForm";
+import RecoveryForm from "../RecoveryForm/RecoveryForm";
 
 function Header() {
   const [isOpened, setIsOpened] = useState(false);
@@ -47,6 +50,9 @@ function Header() {
 
   return (
     <Container>
+      <LoginForm />
+      <RegisterForm className={""} />
+      <RecoveryForm className={"active"} />
       <Wrapper>
         <InnerContainer>
           <Logo to={"/"}>

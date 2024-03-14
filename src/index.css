@@ -5,3 +5,11 @@
 
   font-family: "Steppe", sans-serif;
 }
+
+body {
+  position: relative;
+}
+
+.scrollLock {
+  overflow: hidden;
+}
