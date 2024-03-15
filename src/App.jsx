@@ -15,6 +15,9 @@ import BuyPage from "./pages/BuyPage/BuyPage";
 import SellPage from "./pages/SellPage/SellPage";
 import SendPage from "./pages/SendPage/SendPage";
 import WaitingPage from "./pages/WaittingPage/WaitingPage";
+import CabinetPage from "./pages/CabinetPage/CabinetPage";
+import CabinetForm from "./components/CabinetForm/CabinetForm";
+import HistoryPage from "./pages/HistoryPage/HistoryPage";
 
 const App = observer(() => {
   useEffect(() => {
@@ -30,6 +33,10 @@ const App = observer(() => {
           <Route path="/sell" element={<SellPage />} />
           <Route path="/send" element={<SendPage />} />
           <Route path="/waiting" element={<WaitingPage />} />
+          <Route path="/cabinet" element={<CabinetPage />}>
+            <Route index element={<CabinetForm />} />
+            <Route path="/cabinet/history" element={<HistoryPage />} />
+          </Route>
         </Route>
         <Route path="/login" element={<>login</>} />
         <Route path="/register" element={<>register</>} />

@@ -1,10 +1,10 @@
-import { Container, StyledLink } from "./LoginButton.style";
+import { Container } from "./LoginButton.style";
 
-const LoginButton = ({ to, children, onClick, ...other }) => {
+const LoginButton = ({ children, onClick, ...other }) => {
   return (
-    <StyledLink to={to} {...other}>
-      <Container onClick={onClick}>{children}</Container>
-    </StyledLink>
+    <Container onClick={onClick} {...other}>
+      {children}
+    </Container>
   );
 };
 

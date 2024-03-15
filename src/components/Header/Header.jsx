@@ -40,9 +40,14 @@ import { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import RecoveryForm from "../RecoveryForm/RecoveryForm";
+import UserContainer from "../UserContainer/UserContainer";
 
 function Header() {
   const [isOpened, setIsOpened] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
+  const [isRecovery, setIsRecovery] = useState(false);
+  const [user, setUser] = useState(true);
 
   const toggleMenu = () => {
     setIsOpened(!isOpened);
@@ -50,9 +55,16 @@ function Header() {
 
   return (
     <Container>
-      <LoginForm />
-      <RegisterForm className={""} />
-      <RecoveryForm className={"active"} />
+      {isLogin && (
+        <LoginForm className="active" onClose={() => setIsLogin(false)} />
+      )}
+      {isRegister && (
+        <RegisterForm className="active" onClose={() => setIsRegister(false)} />
+      )}
+      {isRecovery && (
+        <RecoveryForm className="active" onClose={() => setIsRecovery(false)} />
+      )}
+
       <Wrapper>
         <InnerContainer>
           <Logo to={"/"}>
@@ -61,16 +73,21 @@ function Header() {
           <ControlsContainer>
             <Lang to={"#en"}>Eng</Lang>
             <ThemeSwitcher />
-            <ButtonsContainer>
-              <RegisterButton to={"/register"}>
-                <span>Создать аккаунт</span>
-                <SvgUserAdd />
-              </RegisterButton>
-              <LoginButton to={"/login"}>
-                <span>Войти</span>
-                <SvgLogIn />
-              </LoginButton>
-            </ButtonsContainer>
+            {user ? (
+              <UserContainer />
+            ) : (
+              <ButtonsContainer>
+                <RegisterButton onClick={() => setIsRegister(true)}>
+                  <span>Создать аккаунт</span>
+                  <SvgUserAdd />
+                </RegisterButton>
+                <LoginButton onClick={() => setIsLogin(true)}>
+                  <span>Войти</span>
+
+                  <SvgLogIn />
+                </LoginButton>
+              </ButtonsContainer>
+            )}
             <MenuButton onClick={toggleMenu}>
               {isOpened ? <SvgClose /> : <SvgBurger />}
               <span>Меню</span>

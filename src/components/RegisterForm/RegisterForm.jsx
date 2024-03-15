@@ -15,9 +15,14 @@ import { Formik, Form } from "formik";
 import InputIcon from "../InputIcon/InputIcon";
 import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail, SvgPassword } from "../../assets/icons/svgs";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
-const RegisterForm = ({ ...other }) => {
+const RegisterForm = ({ onClose, ...other }) => {
   const ref = useRef(null);
+  useOutsideClick(ref, () => {
+    document.body.className = "";
+    onClose();
+  });
 
   useEffect(() => {
     document.body.className = "scrollLock";
@@ -28,11 +33,11 @@ const RegisterForm = ({ ...other }) => {
   }, []);
 
   return (
-    <BackgroundWrapper ref={ref} {...other}>
-      <Modal>
+    <BackgroundWrapper {...other}>
+      <Modal ref={ref}>
         <Close
           onClick={() => {
-            ref.current.classList.remove("active");
+            onClose();
             document.body.className = "";
           }}
         >

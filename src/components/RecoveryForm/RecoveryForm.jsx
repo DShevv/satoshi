@@ -18,10 +18,15 @@ import InputIcon from "../InputIcon/InputIcon";
 import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail } from "../../assets/icons/svgs";
 import paperPlane from "../../assets/images/paper-plane 1.png";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
-const RecoveryForm = ({ ...other }) => {
+const RecoveryForm = ({ onClose, ...other }) => {
   const ref = useRef(null);
   const [isOk, setIsOk] = useState(false);
+  useOutsideClick(ref, () => {
+    document.body.className = "";
+    onClose();
+  });
 
   useEffect(() => {
     document.body.className = "scrollLock";
@@ -32,12 +37,12 @@ const RecoveryForm = ({ ...other }) => {
   }, []);
 
   return (
-    <BackgroundWrapper ref={ref} {...other}>
+    <BackgroundWrapper {...other}>
       {isOk ? (
-        <Modal>
+        <Modal ref={ref}>
           <Close
             onClick={() => {
-              ref.current.classList.remove("active");
+              onClose();
               document.body.className = "";
             }}
           >

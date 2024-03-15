@@ -3,7 +3,13 @@ import { useEffect } from "react";
 function useOutsideClick(ref, onClick) {
   useEffect(() => {
     function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (
+        ref.current &&
+        !ref.current.contains(event.target) &&
+        event.target.nodeName !== "BUTTON" &&
+        event.target.parentNode.nodeName !== "BUTTON" &&
+        event.target.parentNode.parentNode.nodeName !== "BUTTON"
+      ) {
         onClick();
       }
     }

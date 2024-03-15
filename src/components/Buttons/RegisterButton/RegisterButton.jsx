@@ -1,10 +1,10 @@
-import { Container, StyledLink } from "./RegisterButton.style";
+import { Container } from "./RegisterButton.style";
 
-const RegisterButton = ({ to, children, onClick, ...other }) => {
+const RegisterButton = ({ children, onClick, ...other }) => {
   return (
-    <StyledLink to={to} {...other}>
-      <Container onClick={onClick}>{children}</Container>
-    </StyledLink>
+    <Container {...other} onClick={onClick}>
+      {children}
+    </Container>
   );
 };
 

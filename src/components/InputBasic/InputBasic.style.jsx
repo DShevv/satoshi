@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
 export const Container = styled.label`
@@ -24,7 +25,7 @@ export const InputContainer = styled.div`
   gap: 5px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   flex: 1 1 auto;
   font-family: inherit;
   font-weight: 400;
