@@ -56,8 +56,6 @@ const ExchangePage = () => {
     } else {
       setIsSell(1);
     }
-
-    console.log(isSell);
   };
 
   useEffect(() => {
@@ -71,11 +69,11 @@ const ExchangePage = () => {
         Покупка и продажа криптовалюты максимально быстро и выгодно
       </SubTitle>
       <SwitcherContainer>
-        <SwitcherCaption active={isSell ? 0 : 1}>Купить</SwitcherCaption>
+        <SwitcherCaption $active={isSell ? 0 : 1}>Купить</SwitcherCaption>
         <Switcher active={isSell} onChange={handleChange} />
-        <SwitcherCaption active={isSell}>Продать</SwitcherCaption>
+        <SwitcherCaption $active={isSell}>Продать</SwitcherCaption>
       </SwitcherContainer>
-      <SwipersContainer active={isSell}>
+      <SwipersContainer $active={isSell}>
         <SliderContainer>
           <SliderArrowLeft onClick={() => cryptoRef.current?.slidePrev()}>
             <SvgSliderArrow />

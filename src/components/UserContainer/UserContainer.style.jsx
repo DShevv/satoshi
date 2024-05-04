@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const UserModal = styled.div`
   position: absolute;
-  display: ${(props) => (props.active ? "block" : "none")};
+  display: ${(props) => (props.$active ? "block" : "none")};
   bottom: -5px;
   left: -10px;
   transform: translateY(100%);

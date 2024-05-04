@@ -25,7 +25,7 @@ const UserContainer = () => {
     <Container ref={ref} onClick={() => setIsActive(!isActive)}>
       <SvgUser />
       <span>irina.stasi5468@gmail.com</span>
-      <UserModal active={isActive ? 1 : 0}>
+      <UserModal $active={isActive ? 1 : 0}>
         <Email>irina.stasi5468@gmail.com</Email>
         <CabLink to={"/cabinet"}>
           <Icon>

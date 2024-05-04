@@ -27,7 +27,7 @@ export const SwitcherContainer = styled.div`
 
 export const SwitcherCaption = styled.div`
   width: fit-content;
-  font-weight: ${(props) => (props.active ? 700 : 400)};
+  font-weight: ${(props) => (props.$active ? 700 : 400)};
   font-size: 18px;
   color: ${(props) => props.theme.colors.white};
 `;
@@ -95,5 +95,5 @@ export const OperationName = styled.div`
 
 export const SwipersContainer = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.active ? "column-reverse" : "column")};
+  flex-direction: ${(props) => (props.$active ? "column-reverse" : "column")};
 `;
