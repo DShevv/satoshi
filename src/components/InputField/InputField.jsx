@@ -15,13 +15,18 @@ const InputField = ({
   max,
   info,
   placeholder,
+  disabled,
   ...other
 }) => {
   return (
     <Container {...other}>
       {title && <Title>{title}</Title>}
       <InputContainer>
-        <Input type={type ? type : "text"} placeholder={placeholder} />
+        <Input
+          type={type ? type : "text"}
+          placeholder={placeholder}
+          disabled={disabled}
+        />
         {hint && <Hint>{hint}</Hint>}
       </InputContainer>
       {info || min || max ? (

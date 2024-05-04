@@ -75,6 +75,7 @@ export const SliderItem = styled.div`
   flex-direction: column;
   gap: 13px;
   padding-top: 30px;
+  cursor: pointer;
 `;
 
 export const ItemTitle = styled.div`

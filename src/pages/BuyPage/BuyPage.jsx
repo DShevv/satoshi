@@ -18,7 +18,7 @@ const BuyPage = () => {
       <ChangeInfo>
         <InfoItem>
           <SvgUsdt />
-          <ItemTitle>Отправляете</ItemTitle>
+          <ItemTitle>Получаете</ItemTitle>
           <ItemSummary>877 BEP20</ItemSummary>
         </InfoItem>
         <Icon>
@@ -26,7 +26,7 @@ const BuyPage = () => {
         </Icon>
         <InfoItem>
           <SvgSber />
-          <ItemTitle>Получаете</ItemTitle>
+          <ItemTitle>Отправляете</ItemTitle>
           <ItemSummary>14684.48 RUB</ItemSummary>
         </InfoItem>
       </ChangeInfo>

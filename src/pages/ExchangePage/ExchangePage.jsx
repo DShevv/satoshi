@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Switcher from "../../components/Switcher/Switcher";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import {
@@ -37,6 +37,18 @@ const ExchangePage = () => {
   const [isSell, setIsSell] = useState(0);
   const cryptoRef = useRef(null);
   const bankRef = useRef(null);
+  const [currencies, setCurrencies] = useState({
+    from: "Bitcoin(BTC)",
+    to: "Сбербанк(RUB)",
+  });
+
+  const setFrom = (value) => {
+    setCurrencies({ ...currencies, from: value });
+  };
+
+  const setTo = (value) => {
+    setCurrencies({ ...currencies, to: value });
+  };
 
   const handleChange = () => {
     if (isSell) {
@@ -47,6 +59,10 @@ const ExchangePage = () => {
 
     console.log(isSell);
   };
+
+  useEffect(() => {
+    setCurrencies({ from: currencies.to, to: currencies.from });
+  }, [isSell]);
 
   return (
     <Wrapper>
@@ -74,43 +90,79 @@ const ExchangePage = () => {
               onSwiper={(it) => (cryptoRef.current = it)}
             >
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setFrom("Bitcoin") : setTo("Bitcoin");
+                  }}
+                >
                   <SvgBtc />
                   <ItemTitle>Bitcoin(BTC)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setFrom("Ethereum(ETH)") : setTo("Ethereum(ETH)");
+                  }}
+                >
                   <SvgEth />
                   <ItemTitle>Ethereum(ETH)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setFrom("Ethereum(ETH)") : setTo("Ethereum(ETH)");
+                  }}
+                >
                   <SvgEth />
                   <ItemTitle>Ethereum(ETH)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setFrom("Tether(USDT) TRC20")
+                      : setTo("Tether(USDT) TRC20");
+                  }}
+                >
                   <SvgUsdt />
                   <ItemTitle>Tether(USDT) TRC20</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setFrom("Tether(USDT) ERC20")
+                      : setTo("Tether(USDT) ERC20");
+                  }}
+                >
                   <SvgUsdt />
                   <ItemTitle>Tether(USDT) ERC20</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setFrom("Tether(USDT) BEP20")
+                      : setTo("Tether(USDT) BEP20");
+                  }}
+                >
                   <SvgUsdt />
                   <ItemTitle>Tether(USDT) BEP20</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setFrom("EtherClassic (ETC)")
+                      : setTo("EtherClassic (ETC)");
+                  }}
+                >
                   <SvgEthClassic />
                   <ItemTitle>
                     EtherClassic <br /> (ETC)
@@ -118,7 +170,13 @@ const ExchangePage = () => {
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setFrom("EtherClassic (ETC)")
+                      : setTo("EtherClassic (ETC)");
+                  }}
+                >
                   <SvgEthClassic />
                   <ItemTitle>
                     EtherClassic <br />
@@ -133,7 +191,7 @@ const ExchangePage = () => {
           </SliderArrowRight>
         </SliderContainer>
 
-        <OperationName>{isSell ? "Покупаете" : "Отправляете"}</OperationName>
+        <OperationName>{isSell ? "Продаёте" : "Отправляете"}</OperationName>
 
         <SliderContainer>
           <SliderArrowLeft onClick={() => bankRef.current?.slidePrev()}>
@@ -149,49 +207,85 @@ const ExchangePage = () => {
               onSwiper={(it) => (bankRef.current = it)}
             >
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setTo("Сбербанк(RUB)") : setFrom("Сбербанк(RUB)");
+                  }}
+                >
                   <SvgSber />
                   <ItemTitle>Сбербанк(RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setTo("ЮMoney(RUB)") : setFrom("ЮMoney(RUB)");
+                  }}
+                >
                   <SvgYoumoney />
                   <ItemTitle>ЮMoney(RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setTo("MTC Банк(RUB)") : setFrom("MTC Банк(RUB)");
+                  }}
+                >
                   <SvgMts />
                   <ItemTitle>MTC Банк(RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setTo("AlfaBank(RUB)") : setFrom("AlfaBank(RUB)");
+                  }}
+                >
                   <SvgAlpha />
                   <ItemTitle>AlfaBank(RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setTo("Visa-MC-MIR(RUB)")
+                      : setFrom("Visa-MC-MIR(RUB)");
+                  }}
+                >
                   <SvgVisa />
                   <ItemTitle>Visa-MC-MIR (RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setTo("MTC Банк(RUB)") : setFrom("MTC Банк(RUB)");
+                  }}
+                >
                   <SvgMts />
                   <ItemTitle>MTC Банк(RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell ? setTo("AlfaBank(RUB)") : setFrom("AlfaBank(RUB)");
+                  }}
+                >
                   <SvgAlpha />
                   <ItemTitle>AlfaBank(RUB)</ItemTitle>
                 </SliderItem>
               </SwiperSlide>
               <SwiperSlide>
-                <SliderItem>
+                <SliderItem
+                  onClick={() => {
+                    isSell
+                      ? setTo("Visa-MC-MIR(RUB)")
+                      : setFrom("Visa-MC-MIR(RUB)");
+                  }}
+                >
                   <SvgVisa />
                   <ItemTitle>Visa-MC-MIR (RUB)</ItemTitle>
                 </SliderItem>
@@ -203,7 +297,7 @@ const ExchangePage = () => {
           </SliderArrowRight>
         </SliderContainer>
       </SwipersContainer>
-      <ExchangeForm />
+      <ExchangeForm isSell={isSell} currencies={currencies} />
     </Wrapper>
   );
 };

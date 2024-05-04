@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { SvgRefresh } from "../../../assets/icons/svgs";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
 import InputField from "../../../components/InputField/InputField";
@@ -8,27 +9,34 @@ import {
   Policy,
 } from "./ExchangeForm.style";
 
-const ExchangeForm = () => {
+const ExchangeForm = ({ isSell, currencies, ...other }) => {
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    isSell ? navigate(`/sell`) : navigate(`/buy`);
+  };
+
   return (
-    <Container>
+    <Container {...other}>
       <InputField
-        title={"Отправляете: Tether(USDT) BEEP20"}
-        hint={"USDTBEP20"}
+        title={`Отправляете: ${currencies.from}`}
+        hint={currencies.from}
         min={"118"}
         max={"4 000"}
-        info={"1 USDTBEP20 = 64 RUB"}
+        info={`1 ${currencies.from} = 64 RUB`}
       />
       <ExchangeIcon>
         <SvgRefresh />
       </ExchangeIcon>
       <InputField
-        title={"Получаете: Сбербанк (RUB)"}
+        title={`Получаете: ${currencies.to}`}
         hint={"RUB"}
         min={"5 000"}
         info={"Min:  Резервы: 38 395 426 RUB"}
+        disabled
       />
       <ButtonContainer>
-        <SubmitButton>Перейти к обмену</SubmitButton>
+        <SubmitButton onClick={onSubmit}>Перейти к обмену</SubmitButton>
       </ButtonContainer>
       <Policy>
         Нажимая на кнопку «Перейти к обмену», я соглашаюсь с правилами и
