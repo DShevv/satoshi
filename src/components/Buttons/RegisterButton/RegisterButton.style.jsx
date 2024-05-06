@@ -11,6 +11,12 @@ export const Container = styled(StyledButton)`
   &:hover {
     background-color: transparent;
   }
+
+  @media (max-width: 1080px) {
+    &.desktop {
+      display: none;
+    }
+  }
 `;
 
 export const StyledLink = styled(NavLink)`

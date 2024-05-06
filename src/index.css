@@ -13,3 +13,17 @@ body {
 .scrollLock {
   overflow: hidden;
 }
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+}

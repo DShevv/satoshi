@@ -30,4 +30,10 @@ export const Container = styled.div`
     background-color: ${(props) => props.theme.colors.white};
     transform: translateX(22px);
   }
+
+  @media (max-width: 1080px) {
+    &.desktop {
+      display: none;
+    }
+  }
 `;

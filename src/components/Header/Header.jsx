@@ -25,10 +25,12 @@ import {
   SvgInst,
   SvgLogIn,
   SvgLogo,
+  SvgLogoMobile,
   SvgReddit,
   SvgTg,
   SvgTwitter,
   SvgUserAdd,
+  SvgUserMobile,
   SvgVk,
   SvgWhats,
   SvgYouTube,
@@ -68,29 +70,36 @@ function Header() {
       <Wrapper>
         <InnerContainer>
           <Logo to={"/"}>
-            <SvgLogo />
+            <SvgLogo className="desktop" />
+            <SvgLogoMobile className="mobile" />
           </Logo>
           <ControlsContainer>
-            <Lang to={"#en"}>Eng</Lang>
-            <ThemeSwitcher />
+            <Lang className="desktop" to={"#en"}>
+              Eng
+            </Lang>
+            <ThemeSwitcher className="desktop" />
             {user ? (
               <UserContainer />
             ) : (
               <ButtonsContainer>
-                <RegisterButton onClick={() => setIsRegister(true)}>
+                <RegisterButton
+                  className="desktop"
+                  onClick={() => setIsRegister(true)}
+                >
                   <span>Создать аккаунт</span>
                   <SvgUserAdd />
                 </RegisterButton>
                 <LoginButton onClick={() => setIsLogin(true)}>
-                  <span>Войти</span>
+                  <span className="desktop">Войти</span>
 
-                  <SvgLogIn />
+                  <SvgLogIn className="desktop" />
+                  <SvgUserMobile className="mobile" />
                 </LoginButton>
               </ButtonsContainer>
             )}
             <MenuButton onClick={toggleMenu}>
               {isOpened ? <SvgClose /> : <SvgBurger />}
-              <span>Меню</span>
+              <span className="desktop">Меню</span>
             </MenuButton>
           </ControlsContainer>
         </InnerContainer>

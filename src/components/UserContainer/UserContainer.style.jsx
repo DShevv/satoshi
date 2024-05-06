@@ -27,6 +27,10 @@ export const UserModal = styled.div`
     width: 0px;
     height: 0px;
   }
+
+  @media (max-width: 1080px) {
+    display: none;
+  }
 `;
 
 export const Container = styled.div`
@@ -42,6 +46,11 @@ export const Container = styled.div`
     font-weight: 400;
     font-size: 14px;
     color: ${(props) => props.theme.colors.white};
+  }
+
+  @media (max-width: 1080px) {
+    margin-left: 0;
+    margin-right: 14px;
   }
 `;
 

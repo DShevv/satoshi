@@ -5,6 +5,10 @@ export const Container = styled.header`
   height: 111px;
 
   border-bottom: solid 1px ${(props) => props.theme.colors.grayLight};
+
+  @media (max-width: 1080px) {
+    height: 80px;
+  }
 `;
 
 export const InnerContainer = styled.div`
@@ -20,6 +24,14 @@ export const Logo = styled(NavLink)`
   width: 157px;
   height: 62px;
   text-decoration: none;
+
+  @media (max-width: 1080px) {
+    margin-left: 15px;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Lang = styled(NavLink)`
@@ -42,6 +54,10 @@ export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+
+  @media (max-width: 1080px) {
+    margin: 0 20px;
+  }
 `;
 
 export const MenuButton = styled.button`

@@ -22,8 +22,13 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 
 const RecoveryForm = ({ onClose, ...other }) => {
   const ref = useRef(null);
+  const refOk = useRef(null);
   const [isOk, setIsOk] = useState(false);
   useOutsideClick(ref, () => {
+    document.body.className = "";
+    onClose();
+  });
+  useOutsideClick(refOk, () => {
     document.body.className = "";
     onClose();
   });
@@ -63,10 +68,10 @@ const RecoveryForm = ({ onClose, ...other }) => {
           </RecoveryContainer>
         </Modal>
       ) : (
-        <Modal>
+        <Modal ref={refOk}>
           <Close
             onClick={() => {
-              ref.current.classList.remove("active");
+              onClose();
               document.body.className = "";
             }}
           >
