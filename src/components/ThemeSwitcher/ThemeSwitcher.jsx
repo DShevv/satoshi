@@ -13,6 +13,7 @@ const ThemeSwitcher = ({ className, ...other }) => {
     <Container
       className={isActive ? `${className} active` : className}
       onClick={handleClick}
+      {...other}
     >
       <Toggle />
       <SvgSun />

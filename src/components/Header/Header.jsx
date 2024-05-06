@@ -53,6 +53,7 @@ function Header() {
 
   const toggleMenu = () => {
     setIsOpened(!isOpened);
+    document.body.classList.toggle("scrollLock");
   };
 
   return (
@@ -107,7 +108,13 @@ function Header() {
       {isOpened && (
         <MenuWrapper>
           <MenuContent>
-            <Wrapper>
+            <Wrapper
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
               <MenuList>
                 <MenuItem>
                   <ItemNumber>01</ItemNumber>

@@ -80,12 +80,21 @@ export const MenuWrapper = styled.div`
   backdrop-filter: blur(18px);
   background: rgba(182, 182, 182, 0.15);
   z-index: 100;
+
+  @media (max-width: 1080px) {
+    height: 100vh;
+  }
 `;
 
 export const MenuContent = styled.div`
   padding-top: 44px;
   min-height: 718px;
   background-color: ${(props) => props.theme.colors.black};
+  height: 100%;
+
+  @media (max-width: 1080px) {
+    padding: 30px 15px 47px 15px;
+  }
 `;
 
 export const MenuList = styled.ul`
@@ -94,6 +103,10 @@ export const MenuList = styled.ul`
   flex-direction: column;
   gap: 5px;
   width: 100%;
+
+  @media (max-width: 1080px) {
+    gap: 4px;
+  }
 `;
 
 export const ItemNumber = styled.div`
@@ -109,6 +122,13 @@ export const ItemNumber = styled.div`
   color: ${(props) => props.theme.colors.redDark};
   background-color: ${(props) => props.theme.colors.blackGray};
   transition: all 0.2s ease;
+
+  @media (max-width: 1080px) {
+    flex: 0 0 46px;
+    max-width: 46px;
+    padding: 14px 10px;
+    font-size: 12px;
+  }
 `;
 
 export const ItemName = styled.div`
@@ -123,6 +143,11 @@ export const ItemName = styled.div`
   color: ${(props) => props.theme.colors.white};
   background-color: ${(props) => props.theme.colors.blackGray};
   transition: all 0.2s ease;
+
+  @media (max-width: 1080px) {
+    padding: 16px 10px;
+    font-size: 14px;
+  }
 `;
 
 export const MenuItem = styled(NavLink)`
@@ -137,6 +162,10 @@ export const MenuItem = styled(NavLink)`
   &:hover ${ItemName}, &:hover ${ItemNumber} {
     background-color: ${(props) => props.theme.colors.red};
   }
+
+  @media (max-width: 1080px) {
+    gap: 3px;
+  }
 `;
 
 export const MenuFooter = styled.div`
@@ -146,6 +175,12 @@ export const MenuFooter = styled.div`
   margin-top: 257px;
 
   color: ${(props) => props.theme.colors.gray};
+
+  @media (max-width: 1080px) {
+    margin-top: 0;
+    flex-direction: column-reverse;
+    gap: 50px;
+  }
 `;
 
 export const Copyright = styled.div`
@@ -160,6 +195,12 @@ export const Socials = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 157%;
+
+  @media (max-width: 1080px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
 `;
 
 export const SocialList = styled.ul`
