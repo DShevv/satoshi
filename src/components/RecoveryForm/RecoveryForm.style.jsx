@@ -10,7 +10,7 @@ export const BackgroundWrapper = styled.div`
   background: rgba(182, 182, 182, 0.15);
   padding-top: 200px;
   padding-bottom: 200px;
-  z-index: 100;
+  z-index: 200;
   overflow-y: auto;
 
   &.active {

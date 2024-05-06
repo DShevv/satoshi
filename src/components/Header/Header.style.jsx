@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.header`
+  position: relative;
   height: 111px;
 
   border-bottom: solid 1px ${(props) => props.theme.colors.grayLight};
@@ -17,6 +18,9 @@ export const InnerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 103;
+  background: ${(props) => props.theme.colors.black};
 `;
 
 export const Logo = styled(NavLink)`
@@ -74,15 +78,28 @@ export const MenuButton = styled.button`
 
 export const MenuWrapper = styled.div`
   height: calc(100vh - 111px);
-  position: relative;
+  width: 100%;
+  position: absolute;
+  top: -1000px;
+  left: 0;
 
   backdrop-filter: blur(18px);
   background: rgba(182, 182, 182, 0.15);
   z-index: 100;
 
+  transition: all 0.5s ease;
+
+  &.active {
+    top: 111px;
+  }
+
   @media (max-width: 1080px) {
     height: calc(100vh - 79px);
     overflow: auto;
+
+    &.active {
+      top: 80px;
+    }
   }
 `;
 
@@ -173,7 +190,7 @@ export const MenuFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 257px;
+  margin-top: 30px;
 
   color: ${(props) => props.theme.colors.gray};
 

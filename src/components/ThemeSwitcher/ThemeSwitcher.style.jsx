@@ -18,6 +18,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
+  display: none;
+
   background-color: ${(props) => props.theme.colors.white};
   cursor: pointer;
   transition: all 0.2s ease;
