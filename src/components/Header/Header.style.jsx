@@ -93,7 +93,7 @@ export const MenuContent = styled.div`
   height: 100%;
 
   @media (max-width: 1080px) {
-    padding: 30px 0 47px 0;
+    padding: 30px 0 70px 0;
     min-height: 0;
   }
 `;
