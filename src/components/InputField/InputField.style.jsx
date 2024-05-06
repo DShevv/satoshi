@@ -40,6 +40,11 @@ export const Input = styled.input`
     font-size: 14px;
     color: ${(props) => props.theme.colors.grayEmpty};
   }
+
+  @media (max-width: 1080px) {
+    font-size: 16px;
+    min-width: 0px;
+  }
 `;
 
 export const Hint = styled.div`
@@ -48,6 +53,10 @@ export const Hint = styled.div`
   font-size: 13px;
   text-align: right;
   color: ${(props) => props.theme.colors.grayEmpty};
+
+  @media (max-width: 1080px) {
+    font-size: 12px;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -57,4 +66,8 @@ export const InfoContainer = styled.div`
   font-size: 12px;
   line-height: 150%;
   color: ${(props) => props.theme.colors.gray};
+
+  @media (max-width: 1080px) {
+    font-size: 11px;
+  }
 `;

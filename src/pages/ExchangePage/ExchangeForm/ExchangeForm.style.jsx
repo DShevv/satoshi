@@ -10,6 +10,14 @@ export const Container = styled.div`
   padding: 52px 68px;
 
   background-color: ${(props) => props.theme.colors.blackGray};
+
+  @media (max-width: 1080px) {
+    margin-top: 54px;
+    margin-bottom: 70px;
+    width: 100%;
+    max-width: 518px;
+    padding: 52px 22px 41px 22px;
+  }
 `;
 
 export const ExchangeIcon = styled.div`

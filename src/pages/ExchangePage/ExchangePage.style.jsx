@@ -6,6 +6,11 @@ export const Title = styled.h1`
   font-size: 56px;
   text-align: center;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    margin-top: 40px;
+    font-size: 28px;
+  }
 `;
 
 export const SubTitle = styled.h2`
@@ -15,6 +20,14 @@ export const SubTitle = styled.h2`
   text-align: center;
 
   color: #737373;
+
+  @media (max-width: 1080px) {
+    margin-top: 8px;
+    font-size: 16px;
+    max-width: 287px;
+    text-align: center;
+    align-self: center;
+  }
 `;
 
 export const SwitcherContainer = styled.div`
@@ -23,6 +36,10 @@ export const SwitcherContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
+
+  @media (max-width: 1080px) {
+    margin-top: 32px;
+  }
 `;
 
 export const SwitcherCaption = styled.div`
@@ -96,4 +113,10 @@ export const OperationName = styled.div`
 export const SwipersContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.$active ? "column-reverse" : "column")};
+
+  @media (max-width: 1080px) {
+    &.desktop {
+      display: none;
+    }
+  }
 `;

@@ -63,7 +63,13 @@ const ExchangePage = () => {
   }, [isSell]);
 
   return (
-    <Wrapper>
+    <Wrapper
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
       <Title>Обмен криптовалюты</Title>
       <SubTitle>
         Покупка и продажа криптовалюты максимально быстро и выгодно
@@ -73,7 +79,7 @@ const ExchangePage = () => {
         <Switcher active={isSell} onChange={handleChange} />
         <SwitcherCaption $active={isSell}>Продать</SwitcherCaption>
       </SwitcherContainer>
-      <SwipersContainer $active={isSell}>
+      <SwipersContainer className="desktop" $active={isSell}>
         <SliderContainer>
           <SliderArrowLeft onClick={() => cryptoRef.current?.slidePrev()}>
             <SvgSliderArrow />

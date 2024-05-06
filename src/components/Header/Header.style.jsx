@@ -26,7 +26,6 @@ export const Logo = styled(NavLink)`
   text-decoration: none;
 
   @media (max-width: 1080px) {
-    margin-left: 15px;
     height: 100%;
     width: auto;
     display: flex;
@@ -93,7 +92,8 @@ export const MenuContent = styled.div`
   height: 100%;
 
   @media (max-width: 1080px) {
-    padding: 30px 15px 47px 15px;
+    padding: 30px 0 47px 0;
+    min-height: 0;
   }
 `;
 
