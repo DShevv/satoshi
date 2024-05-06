@@ -11,7 +11,9 @@ body {
 }
 
 .scrollLock {
-  overflow: hidden;
+  width: 100%;
+  position: fixed;
+  overflow-y: scroll;
 }
 
 .mobile {

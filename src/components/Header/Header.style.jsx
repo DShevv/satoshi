@@ -81,14 +81,14 @@ export const MenuWrapper = styled.div`
   z-index: 100;
 
   @media (max-width: 1080px) {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 79px);
     overflow: auto;
   }
 `;
 
 export const MenuContent = styled.div`
   padding-top: 44px;
-  min-height: 718px;
+  padding-bottom: 20px;
   background-color: ${(props) => props.theme.colors.black};
   height: 100%;
 
