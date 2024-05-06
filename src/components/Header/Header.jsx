@@ -135,7 +135,7 @@ function Header() {
                 </MenuItem>
               </MenuList>
               <MenuFooter>
-                <Copyright>© 2022 Satoshi Crypto Change</Copyright>
+                <Copyright>© 2024 Satoshi Crypto Change</Copyright>
                 <Socials>
                   Мы в соцсетях:
                   <SocialList>

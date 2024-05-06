@@ -81,7 +81,7 @@ export const MenuWrapper = styled.div`
   z-index: 100;
 
   @media (max-width: 1080px) {
-    height: 100vh;
+    height: calc(100vh - 80px);
     overflow: auto;
   }
 `;
@@ -93,7 +93,7 @@ export const MenuContent = styled.div`
   height: 100%;
 
   @media (max-width: 1080px) {
-    padding: 30px 0 127px 0;
+    padding: 30px 0 47px 0;
     min-height: 0;
   }
 `;
