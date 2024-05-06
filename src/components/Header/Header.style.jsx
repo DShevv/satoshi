@@ -92,7 +92,7 @@ export const MenuContent = styled.div`
   height: 100%;
 
   @media (max-width: 1080px) {
-    padding: 30px 0 47px 0;
+    padding: 30px 0 0 0;
     min-height: 0;
   }
 `;
@@ -187,6 +187,10 @@ export const Copyright = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
+
+  @media (max-width: 1080px) {
+    margin-bottom: 47px;
+  }
 `;
 
 export const Socials = styled.div`
