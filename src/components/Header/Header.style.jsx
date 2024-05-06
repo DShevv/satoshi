@@ -81,7 +81,7 @@ export const MenuWrapper = styled.div`
   z-index: 100;
 
   @media (max-width: 1080px) {
-    height: 100vh;
+    height: calc(100vh - 80px);
   }
 `;
 
