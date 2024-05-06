@@ -81,7 +81,8 @@ export const MenuWrapper = styled.div`
   z-index: 100;
 
   @media (max-width: 1080px) {
-    height: calc(100vh - 80px);
+    height: 100vh;
+    overflow: auto;
   }
 `;
 
@@ -92,7 +93,7 @@ export const MenuContent = styled.div`
   height: 100%;
 
   @media (max-width: 1080px) {
-    padding: 30px 0 0 0;
+    padding: 30px 0 127px 0;
     min-height: 0;
   }
 `;
@@ -179,7 +180,8 @@ export const MenuFooter = styled.div`
   @media (max-width: 1080px) {
     margin-top: 0;
     flex-direction: column-reverse;
-    gap: 50px;
+    margin-top: 20px;
+    height: 124px;
   }
 `;
 
@@ -189,7 +191,7 @@ export const Copyright = styled.div`
   line-height: 150%;
 
   @media (max-width: 1080px) {
-    margin-bottom: 47px;
+    margin-top: 50px;
   }
 `;
 
