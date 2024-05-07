@@ -43,12 +43,12 @@ import LoginForm from "../LoginForm/LoginForm";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import RecoveryForm from "../RecoveryForm/RecoveryForm";
 import UserContainer from "../UserContainer/UserContainer";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Header() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const formParam = searchParams.get("auth");
   const [isOpened, setIsOpened] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
-  const [isRecovery, setIsRecovery] = useState(false);
   const [user, setUser] = useState(false);
 
   const toggleMenu = () => {
@@ -58,7 +58,34 @@ function Header() {
 
   return (
     <Container>
-      {isLogin && (
+      {formParam === "login" && (
+        <LoginForm
+          className="active"
+          onClose={() => {
+            console.log("log");
+            setSearchParams({});
+          }}
+        />
+      )}
+      {formParam === "register" && (
+        <RegisterForm
+          className="active"
+          onClose={() => {
+            console.log("reg");
+            setSearchParams({});
+          }}
+        />
+      )}
+      {formParam === "recovery" && (
+        <RecoveryForm
+          className="active"
+          onClose={() => {
+            console.log("req");
+            setSearchParams({});
+          }}
+        />
+      )}
+      {/* {isLogin && (
         <LoginForm className="active" onClose={() => setIsLogin(false)} />
       )}
       {isRegister && (
@@ -66,7 +93,7 @@ function Header() {
       )}
       {isRecovery && (
         <RecoveryForm className="active" onClose={() => setIsRecovery(false)} />
-      )}
+      )} */}
 
       <Wrapper>
         <InnerContainer>
@@ -85,12 +112,12 @@ function Header() {
               <ButtonsContainer>
                 <RegisterButton
                   className="desktop"
-                  onClick={() => setIsRegister(true)}
+                  onClick={() => setSearchParams({ auth: "register" })}
                 >
                   <span>Создать аккаунт</span>
                   <SvgUserAdd />
                 </RegisterButton>
-                <LoginButton onClick={() => setIsLogin(true)}>
+                <LoginButton onClick={() => setSearchParams({ auth: "login" })}>
                   <span className="desktop">Войти</span>
 
                   <SvgLogIn className="desktop" />

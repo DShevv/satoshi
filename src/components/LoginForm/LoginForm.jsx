@@ -13,14 +13,9 @@ import { Formik, Form } from "formik";
 import InputIcon from "../InputIcon/InputIcon";
 import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail, SvgPassword } from "../../assets/icons/svgs";
-import useOutsideClick from "../../hooks/useOutsideClick";
 
 const LoginForm = ({ onClose, ...other }) => {
   const ref = useRef(null);
-  useOutsideClick(ref, () => {
-    document.body.className = "";
-    onClose();
-  });
 
   useEffect(() => {
     document.body.className = "scrollLock";
@@ -31,8 +26,8 @@ const LoginForm = ({ onClose, ...other }) => {
   }, []);
 
   return (
-    <BackgroundWrapper {...other}>
-      <Modal ref={ref}>
+    <BackgroundWrapper {...other} onClick={() => onClose()}>
+      <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
         <Close
           onClick={() => {
             document.body.className = "";
@@ -71,7 +66,7 @@ const LoginForm = ({ onClose, ...other }) => {
               </ButtonContainer>
               <UnderText>
                 Впервые на сайте?{" "}
-                <Link to={"/register"}>Зарегистрируйтесь</Link>
+                <Link to={"?auth=register"}>Зарегистрируйтесь</Link>
               </UnderText>
             </StyledForm>
           </Form>

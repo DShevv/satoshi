@@ -45,6 +45,7 @@ export const Hint = styled(NavLink)`
   text-align: right;
   color: ${(props) => props.theme.colors.grayEmpty};
   text-decoration: none;
+  cursor: pointer;
 `;
 
 export const Icon = styled.div`

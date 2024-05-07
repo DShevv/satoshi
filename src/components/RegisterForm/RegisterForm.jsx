@@ -83,7 +83,7 @@ const RegisterForm = ({ onClose, ...other }) => {
                 <SubmitButton type={"submit"}>Войти</SubmitButton>
               </ButtonContainer>
               <UnderText>
-                Уже зарегистрированы? <Link to={"/register"}>Войти</Link>
+                Уже зарегистрированы? <Link to={"?auth=login"}>Войти</Link>
               </UnderText>
             </StyledForm>
           </Form>

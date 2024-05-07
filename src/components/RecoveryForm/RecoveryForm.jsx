@@ -18,20 +18,11 @@ import InputIcon from "../InputIcon/InputIcon";
 import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail } from "../../assets/icons/svgs";
 import paperPlane from "../../assets/images/paper-plane 1.png";
-import useOutsideClick from "../../hooks/useOutsideClick";
 
 const RecoveryForm = ({ onClose, ...other }) => {
   const ref = useRef(null);
   const refOk = useRef(null);
   const [isOk, setIsOk] = useState(false);
-  useOutsideClick(ref, () => {
-    document.body.className = "";
-    onClose();
-  });
-  useOutsideClick(refOk, () => {
-    document.body.className = "";
-    onClose();
-  });
 
   useEffect(() => {
     document.body.className = "scrollLock";
@@ -42,9 +33,9 @@ const RecoveryForm = ({ onClose, ...other }) => {
   }, []);
 
   return (
-    <BackgroundWrapper {...other}>
+    <BackgroundWrapper {...other} onClick={() => onClose()}>
       {isOk ? (
-        <Modal ref={ref}>
+        <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
           <Close
             onClick={() => {
               onClose();
@@ -61,14 +52,18 @@ const RecoveryForm = ({ onClose, ...other }) => {
               электронную почту
             </RecoveryText>
             <ButtonContainer>
-              <SubmitButton style={{ maxWidth: "170px" }} type={"submit"}>
+              <SubmitButton
+                onClick={() => onClose()}
+                style={{ maxWidth: "170px" }}
+                type={"submit"}
+              >
                 Закрыть
               </SubmitButton>
             </ButtonContainer>
           </RecoveryContainer>
         </Modal>
       ) : (
-        <Modal ref={refOk}>
+        <Modal ref={refOk} onClick={(e) => e.stopPropagation()}>
           <Close
             onClick={() => {
               onClose();
@@ -88,6 +83,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
             }}
             onSubmit={(values) => {
               console.log(values);
+              setIsOk(true);
             }}
           >
             <Form>

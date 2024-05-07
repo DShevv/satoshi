@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import {
   Container,
   Hint,
@@ -7,6 +8,8 @@ import {
 } from "./InputIcon.style";
 
 const InputIcon = ({ type, hint, icon, placeholder, name, ...other }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <Container {...other}>
       <InputContainer>
@@ -16,7 +19,7 @@ const InputIcon = ({ type, hint, icon, placeholder, name, ...other }) => {
           type={type ? type : "text"}
           placeholder={placeholder}
         />
-        {hint && <Hint>{hint}</Hint>}
+        {hint && <Hint to="?auth=recovery">{hint}</Hint>}
       </InputContainer>
     </Container>
   );
