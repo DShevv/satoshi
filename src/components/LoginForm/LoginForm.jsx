@@ -6,6 +6,7 @@ import {
   Link,
   Modal,
   StyledForm,
+  StyledSubmit,
   Title,
   UnderText,
 } from "./LoginForm.style";
@@ -62,7 +63,7 @@ const LoginForm = ({ onClose, ...other }) => {
                 icon={<SvgPassword />}
               />
               <ButtonContainer>
-                <SubmitButton type={"submit"}>Войти</SubmitButton>
+                <StyledSubmit type={"submit"}>Войти</StyledSubmit>
               </ButtonContainer>
               <UnderText>
                 Впервые на сайте?{" "}

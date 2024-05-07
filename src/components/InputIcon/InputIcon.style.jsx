@@ -35,6 +35,14 @@ export const Input = styled(Field)`
     font-size: 14px;
     color: ${(props) => props.theme.colors.grayEmpty};
   }
+
+  @media (max-width: 1080px) {
+    font-size: 14px;
+
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const Hint = styled(NavLink)`
@@ -46,6 +54,11 @@ export const Hint = styled(NavLink)`
   color: ${(props) => props.theme.colors.grayEmpty};
   text-decoration: none;
   cursor: pointer;
+
+  @media (max-width: 1080px) {
+    font-size: 11px;
+    color: ${(props) => props.theme.colors.white};
+  }
 `;
 
 export const Icon = styled.div`

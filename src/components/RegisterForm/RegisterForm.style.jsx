@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 
 export const BackgroundWrapper = styled.div`
   display: none;
@@ -25,6 +26,12 @@ export const Modal = styled.div`
   width: 527px;
   background-color: ${(props) => props.theme.colors.blackGray};
   padding: 64px 46px 43px 46px;
+
+  @media (max-width: 1080px) {
+    max-width: 527px;
+    width: calc(100% - 30px);
+    padding: 57px 25px 36px 25px;
+  }
 `;
 
 export const Title = styled.div`
@@ -32,16 +39,29 @@ export const Title = styled.div`
   font-size: 26px;
   color: ${(props) => props.theme.colors.white};
   margin-bottom: 37px;
+
+  @media (max-width: 1080px) {
+    font-size: 22px;
+    max-width: 300px;
+  }
 `;
 
 export const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 27px;
+
+  @media (max-width: 1080px) {
+    gap: 25px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   margin-top: 24px;
+
+  @media (max-width: 1080px) {
+    margin-top: 5px;
+  }
 `;
 
 export const UnderText = styled.div`
@@ -51,6 +71,12 @@ export const UnderText = styled.div`
   font-weight: 500;
   font-size: 18px;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    margin-top: 23px;
+    padding-top: 27px;
+    font-size: 14px;
+  }
 `;
 
 export const Link = styled(NavLink)`
@@ -82,4 +108,11 @@ export const HintLink = styled(NavLink)`
   color: ${(props) => props.theme.colors.gray};
   text-decoration: underline;
   text-decoration-skip-ink: none;
+`;
+
+export const StyledSubmit = styled(SubmitButton)`
+  @media (max-width: 1080px) {
+    max-width: 176px;
+    font-size: 16px;
+  }
 `;

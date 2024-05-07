@@ -8,6 +8,7 @@ import {
   Link,
   Modal,
   StyledForm,
+  StyledSubmit,
   Title,
   UnderText,
 } from "./RegisterForm.style";
@@ -80,7 +81,7 @@ const RegisterForm = ({ onClose, ...other }) => {
                 <HintLink to={"/"}>персональных данных</HintLink>
               </Hint>
               <ButtonContainer>
-                <SubmitButton type={"submit"}>Войти</SubmitButton>
+                <StyledSubmit type={"submit"}>Войти</StyledSubmit>
               </ButtonContainer>
               <UnderText>
                 Уже зарегистрированы? <Link to={"?auth=login"}>Войти</Link>

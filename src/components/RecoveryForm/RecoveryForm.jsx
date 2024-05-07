@@ -10,6 +10,7 @@ import {
   RecoveryContainer,
   RecoveryText,
   StyledForm,
+  StyledSubmit,
   Title,
   UnderText,
 } from "./RecoveryForm.style";
@@ -52,13 +53,13 @@ const RecoveryForm = ({ onClose, ...other }) => {
               электронную почту
             </RecoveryText>
             <ButtonContainer>
-              <SubmitButton
+              <StyledSubmit
                 onClick={() => onClose()}
-                style={{ maxWidth: "170px" }}
+                style={{ maxWidth: "176px" }}
                 type={"submit"}
               >
                 Закрыть
-              </SubmitButton>
+              </StyledSubmit>
             </ButtonContainer>
           </RecoveryContainer>
         </Modal>
@@ -96,7 +97,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
                 />
 
                 <ButtonContainer>
-                  <SubmitButton type={"submit"}>Сбросить пароль</SubmitButton>
+                  <StyledSubmit type={"submit"}>Сбросить пароль</StyledSubmit>
                 </ButtonContainer>
                 <UnderText>
                   Уже зарегистрированы? <Link to={"/register"}>Войти</Link>
