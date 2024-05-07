@@ -12,6 +12,14 @@ export const Container = styled.div`
   flex-direction: column;
 
   background-color: ${(props) => props.theme.colors.blackGray};
+
+  @media (max-width: 1080px) {
+    margin-top: 40px;
+    margin-bottom: 70px;
+    width: 100%;
+    max-width: 518px;
+    padding: 50px 21px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -19,6 +27,10 @@ export const Title = styled.h2`
   font-weight: 700;
   font-size: 16px;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Text = styled.div`
@@ -26,6 +38,11 @@ export const Text = styled.div`
   font-weight: 700;
   font-size: 26px;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    font-size: 24px;
+    margin-bottom: 9px;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
@@ -53,12 +70,20 @@ export const Time = styled.div`
   line-height: 100%;
 
   font-size: 18px;
+
+  @media (max-width: 1080px) {
+    font-size: 16px;
+  }
 `;
 
 export const CurrencyInfo = styled.div`
   margin-top: 57px;
   display: flex;
   gap: 13px;
+
+  @media (max-width: 1080px) {
+    margin-top: 65px;
+  }
 `;
 
 export const CurrencyCaption = styled.div`
@@ -82,6 +107,10 @@ export const WalletContainer = styled.div`
   margin-top: 15px;
   color: ${(props) => props.theme.colors.white};
   margin-bottom: 60px;
+
+  @media (max-width: 1080px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export const WalletTitle = styled.div`
@@ -93,6 +122,7 @@ export const WalletTitle = styled.div`
 export const WalletValue = styled.div`
   font-weight: 400;
   font-size: 14px;
+  word-break: break-all;
 `;
 
 export const Hint = styled.div`
@@ -102,6 +132,10 @@ export const Hint = styled.div`
   line-height: 122%;
   text-align: center;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    font-size: 16px;
+  }
 `;
 
 export const ErrorText = styled.div`

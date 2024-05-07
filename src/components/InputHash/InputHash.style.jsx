@@ -42,6 +42,10 @@ export const Input = styled.div`
     font-size: 14px;
     color: ${(props) => props.theme.colors.grayEmpty};
   }
+
+  @media (max-width: 1080px) {
+    overflow: hidden;
+  }
 `;
 
 export const CopyButton = styled.button`

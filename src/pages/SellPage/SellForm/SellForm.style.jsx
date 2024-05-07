@@ -14,6 +14,14 @@ export const Container = styled(Form)`
   gap: 26px;
 
   background-color: ${(props) => props.theme.colors.blackGray};
+
+  @media (max-width: 1080px) {
+    margin-top: 40px;
+    margin-bottom: 70px;
+    width: 100%;
+    max-width: 518px;
+    padding: 50px 21px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -22,6 +30,10 @@ export const Title = styled.h2`
   font-weight: 700;
   font-size: 21px;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
@@ -29,6 +41,10 @@ export const ButtonsContainer = styled.div`
   flex-direction: column;
   gap: 12px;
   margin-top: 24px;
+
+  @media (max-width: 1080px) {
+    margin-top: 0;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -39,6 +55,13 @@ export const CardContainer = styled.div`
   padding: 26px 48px;
 
   background-color: rgba(255, 255, 255, 0.05);
+
+  @media (max-width: 1080px) {
+    margin-top: 0;
+    width: calc(100% + 28px);
+    left: -14px;
+    padding: 28px 13px 32px 13px;
+  }
 `;
 
 export const FormLine = styled.div`

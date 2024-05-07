@@ -21,4 +21,8 @@ export const StyledSubmit = styled(StyledButton)`
   &:hover {
     background-color: transparent;
   }
+
+  @media (max-width: 1080px) {
+    font-size: 14px;
+  }
 `;

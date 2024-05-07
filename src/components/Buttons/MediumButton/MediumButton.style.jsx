@@ -25,4 +25,9 @@ export const StyledSubmit = styled(StyledButton)`
   &:hover {
     background-color: transparent;
   }
+
+  @media (max-width: 1080px) {
+    padding: 15px 32px;
+    letter-spacing: -0.02em;
+  }
 `;

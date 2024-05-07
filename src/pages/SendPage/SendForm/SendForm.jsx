@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import BackButton from "../../../components/Buttons/BackButton/BackButton";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
 import {
@@ -11,9 +11,11 @@ import {
 import InputHash from "../../../components/InputHash/InputHash";
 
 const SendForm = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <Title>Заполните реквизиты</Title>
+      <Title>Заявка №878885585228</Title>
       <Text>
         Осуществляете перевод USDT TRC20 на данный кошелек, после нажатия
         продолжить
@@ -38,8 +40,14 @@ const SendForm = () => {
       </QrCode>
 
       <ButtonsContainer>
-        <SubmitButton>Продолжить</SubmitButton>
-        <NavLink to={"/"}>
+        <SubmitButton
+          onClick={() => {
+            navigate("/waiting");
+          }}
+        >
+          Продолжить
+        </SubmitButton>
+        <NavLink to={"/"} style={{ textDecoration: "none" }}>
           <BackButton>Вернуться назад</BackButton>
         </NavLink>
       </ButtonsContainer>

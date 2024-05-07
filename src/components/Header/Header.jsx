@@ -49,7 +49,7 @@ function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const formParam = searchParams.get("auth");
   const [isOpened, setIsOpened] = useState(false);
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
 
   const toggleMenu = () => {
     setIsOpened(!isOpened);

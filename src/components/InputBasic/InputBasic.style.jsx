@@ -11,6 +11,10 @@ export const Title = styled.div`
   line-height: 137%;
 
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 1080px) {
+    margin-bottom: 11px;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -23,6 +27,11 @@ export const InputContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+
+  @media (max-width: 1080px) {
+    margin-bottom: 0px;
+    padding: 15px 24px;
+  }
 `;
 
 export const Input = styled(Field)`
@@ -40,5 +49,9 @@ export const Input = styled(Field)`
     font-weight: 400;
     font-size: 14px;
     color: ${(props) => props.theme.colors.grayEmpty};
+  }
+
+  @media (max-width: 1080px) {
+    font-size: 16px;
   }
 `;

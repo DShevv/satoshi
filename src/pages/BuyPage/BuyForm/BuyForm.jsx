@@ -27,16 +27,19 @@ const BuyForm = () => {
           <Container>
             <Title>Заполните реквизиты</Title>
             <InputBasic
+              title={"E-mail отправителя"}
               type={"email"}
               placeholder={"name@gmail.com"}
               name="email"
             />
             <InputBasic
+              title={"Номер кошелька"}
               type={"text"}
               placeholder={"0x5e70GFkuf968KGecklcR462"}
               name="wallet"
             />
             <InputBasic
+              title={"Номер карты получателя"}
               type={"text"}
               placeholder={"0000 0000 0000 0000"}
               name="cardNumber"

@@ -8,6 +8,14 @@ export const Container = styled.section`
   border-radius: 25px;
   background-color: ${(props) => props.theme.colors.blackGray};
   padding: 28px 73px 64px 66px;
+
+  @media (max-width: 1080px) {
+    margin-top: 46px;
+    margin-bottom: 70px;
+    width: 100%;
+    padding: 21px 22px 43px 22px;
+    overflow: hidden;
+  }
 `;
 
 export const CabinetHeader = styled.div`
@@ -31,6 +39,18 @@ export const CabinetHeader = styled.div`
   &.active::after {
     transform: translateX(calc(100% + 64px));
   }
+
+  @media (max-width: 1080px) {
+    gap: 24px;
+
+    &::after {
+      width: 141px;
+    }
+
+    &.active::after {
+      transform: translateX(calc(100% + 24px));
+    }
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -45,5 +65,16 @@ export const StyledLink = styled(NavLink)`
 
   &.active {
     color: ${(props) => props.theme.colors.white};
+  }
+
+  @media (max-width: 1080px) {
+    margin-bottom: 4px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 1080px) {
+    font-size: 13px;
+    gap: 6px;
+    width: 141px;
   }
 `;
