@@ -12,11 +12,14 @@ import {
 } from "./LoginForm.style";
 import { Formik, Form } from "formik";
 import InputIcon from "../InputIcon/InputIcon";
-import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail, SvgPassword } from "../../assets/icons/svgs";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../stores/global-store";
 
-const LoginForm = ({ onClose, ...other }) => {
+export const LoginForm = observer(({ onClose, ...other }) => {
   const ref = useRef(null);
+  const { authStore } = globalStore;
+  const { login } = authStore;
 
   useEffect(() => {
     document.body.className = "scrollLock";
@@ -45,6 +48,8 @@ const LoginForm = ({ onClose, ...other }) => {
           }}
           onSubmit={(values) => {
             console.log(values);
+            login(values);
+            onClose();
           }}
         >
           <Form>
@@ -52,14 +57,14 @@ const LoginForm = ({ onClose, ...other }) => {
               <InputIcon
                 type={"email"}
                 placeholder={"Введите E-mail"}
-                name={"Email"}
+                name={"email"}
                 icon={<SvgEmail />}
               />
               <InputIcon
                 type={"password"}
                 hint={"Восстановить пароль"}
                 placeholder={"Пароль"}
-                name={"Password"}
+                name={"password"}
                 icon={<SvgPassword />}
               />
               <ButtonContainer>
@@ -75,6 +80,4 @@ const LoginForm = ({ onClose, ...other }) => {
       </Modal>
     </BackgroundWrapper>
   );
-};
-
-export default LoginForm;
+});

@@ -15,13 +15,18 @@ import BuyPage from "./pages/BuyPage/BuyPage";
 import SellPage from "./pages/SellPage/SellPage";
 import SendPage from "./pages/SendPage/SendPage";
 import WaitingPage from "./pages/WaittingPage/WaitingPage";
-import CabinetPage from "./pages/CabinetPage/CabinetPage";
-import CabinetForm from "./components/CabinetForm/CabinetForm";
+import { CabinetPage } from "./pages/CabinetPage/CabinetPage";
+import { CabinetForm } from "./components/CabinetForm/CabinetForm";
 import HistoryPage from "./pages/HistoryPage/HistoryPage";
 
+import globalStore from "./stores/global-store";
+
 const App = observer(() => {
+  const { stopStore } = globalStore;
   useEffect(() => {
-    //  return () => stopStore();
+    return () => {
+      stopStore();
+    };
   }, []);
 
   const router = createBrowserRouter(

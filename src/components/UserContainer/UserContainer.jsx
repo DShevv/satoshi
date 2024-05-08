@@ -14,8 +14,12 @@ import {
 } from "./UserContainer.style";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { NavLink } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../stores/global-store";
 
-const UserContainer = () => {
+const UserContainer = observer(() => {
+  const { userStore } = globalStore;
+  const { user, logout } = userStore;
   const [isActive, setIsActive] = useState(false);
   const ref = useRef(null);
   useOutsideClick(ref, () => {
@@ -29,9 +33,9 @@ const UserContainer = () => {
       </NavLink>
       <SvgUser className="desktop" />
 
-      <span className="desktop">irina.stasi5468@gmail.com</span>
+      <span className="desktop">{user.name}</span>
       <UserModal $active={isActive ? 1 : 0}>
-        <Email>irina.stasi5468@gmail.com</Email>
+        <Email>{user.name}</Email>
         <CabLink to={"/cabinet"}>
           <Icon>
             <SvgUserClear />
@@ -44,7 +48,7 @@ const UserContainer = () => {
           </Icon>
           История заявок
         </CabLink>
-        <CabLink className={"exit"} to={"/"}>
+        <CabLink className={"exit"} to={"/"} onClick={logout}>
           <Icon>
             <SvgLogIn />
           </Icon>
@@ -53,6 +57,6 @@ const UserContainer = () => {
       </UserModal>
     </Container>
   );
-};
+});
 
 export default UserContainer;

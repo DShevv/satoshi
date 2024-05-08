@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import MediumButton from "../Buttons/MediumButton/MediumButton ";
 import InputBasic from "../InputBasic/InputBasic";
 import {
@@ -8,12 +9,21 @@ import {
   Title,
 } from "./CabinetForm.style";
 import { Formik, Form } from "formik";
+import globalStore from "../../stores/global-store";
+import { useEffect } from "react";
 
-const CabinetForm = () => {
+export const CabinetForm = observer(() => {
+  const { userStore } = globalStore;
+  const { user, getInfo } = userStore;
+
+  useEffect(() => {
+    getInfo();
+  }, []);
+
   return (
     <Formik
       initialValues={{
-        email: "irina.stsi5566@gmail.com",
+        email: user.name,
         password: "",
         confirmPassword: "",
         LastName: "Рожкова",
@@ -50,6 +60,4 @@ const CabinetForm = () => {
       </Form>
     </Formik>
   );
-};
-
-export default CabinetForm;
+});

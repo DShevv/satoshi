@@ -38,23 +38,31 @@ import {
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import RegisterButton from "../Buttons/RegisterButton/RegisterButton";
 import LoginButton from "../Buttons/LoginButton/LoginButton";
-import { useState } from "react";
-import LoginForm from "../LoginForm/LoginForm";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import { useEffect, useState } from "react";
+import { LoginForm } from "../LoginForm/LoginForm";
+import { RegisterForm } from "../RegisterForm/RegisterForm";
 import RecoveryForm from "../RecoveryForm/RecoveryForm";
 import UserContainer from "../UserContainer/UserContainer";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../stores/global-store";
 
-function Header() {
+export const Header = observer(() => {
   const [searchParams, setSearchParams] = useSearchParams();
   const formParam = searchParams.get("auth");
   const [isOpened, setIsOpened] = useState(false);
-  const [user, setUser] = useState(true);
+  const { authStore, userStore } = globalStore;
 
   const toggleMenu = () => {
     setIsOpened(!isOpened);
     document.body.classList.toggle("scrollLock");
   };
+
+  useEffect(() => {
+    if (authStore.isAuthorized) {
+      userStore.getInfo();
+    }
+  }, [authStore.isAuthorized]);
 
   return (
     <Container>
@@ -85,15 +93,6 @@ function Header() {
           }}
         />
       )}
-      {/* {isLogin && (
-        <LoginForm className="active" onClose={() => setIsLogin(false)} />
-      )}
-      {isRegister && (
-        <RegisterForm className="active" onClose={() => setIsRegister(false)} />
-      )}
-      {isRecovery && (
-        <RecoveryForm className="active" onClose={() => setIsRecovery(false)} />
-      )} */}
 
       <Wrapper>
         <InnerContainer>
@@ -106,7 +105,7 @@ function Header() {
               Eng
             </Lang>
             <ThemeSwitcher className="desktop" />
-            {user ? (
+            {authStore.isAuthorized ? (
               <UserContainer />
             ) : (
               <ButtonsContainer>
@@ -195,6 +194,4 @@ function Header() {
       </MenuWrapper>
     </Container>
   );
-}
-
-export default Header;
+});

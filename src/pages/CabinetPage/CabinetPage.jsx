@@ -1,12 +1,22 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { SvgShield, SvgUserClear } from "../../assets/icons/svgs";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import { CabinetHeader, Container, StyledLink } from "./CabinetPage.style";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../stores/global-store";
+import { useEffect } from "react";
 
-const CabinetPage = () => {
+export const CabinetPage = observer(() => {
+  const { authStore } = globalStore;
+  const { isAuthorized } = authStore;
   const location = useLocation();
+  const navigate = useNavigate();
 
-  console.log(location.pathname);
+  useEffect(() => {
+    if (!isAuthorized) {
+      navigate("/");
+    }
+  }, [isAuthorized]);
 
   return (
     <Wrapper>
@@ -27,6 +37,4 @@ const CabinetPage = () => {
       </Container>
     </Wrapper>
   );
-};
-
-export default CabinetPage;
+});

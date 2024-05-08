@@ -14,11 +14,15 @@ import {
 } from "./RegisterForm.style";
 import { Formik, Form } from "formik";
 import InputIcon from "../InputIcon/InputIcon";
-import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail, SvgPassword } from "../../assets/icons/svgs";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../stores/global-store";
 
-const RegisterForm = ({ onClose, ...other }) => {
+export const RegisterForm = observer(({ onClose, ...other }) => {
+  const { authStore } = globalStore;
+  const { register } = authStore;
+
   const ref = useRef(null);
   useOutsideClick(ref, () => {
     document.body.className = "";
@@ -53,6 +57,8 @@ const RegisterForm = ({ onClose, ...other }) => {
           }}
           onSubmit={(values) => {
             console.log(values);
+            register({ email: values.email, password: values.password });
+            onClose();
           }}
         >
           <Form>
@@ -92,6 +98,4 @@ const RegisterForm = ({ onClose, ...other }) => {
       </Modal>
     </BackgroundWrapper>
   );
-};
-
-export default RegisterForm;
+});
