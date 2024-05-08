@@ -120,3 +120,10 @@ export const SwipersContainer = styled.div`
     }
   }
 `;
+
+export const SelectsContainer = styled.div`
+  display: flex;
+  flex-direction: ${(props) => (props.$isActive ? "column-reverse" : "column")};
+  align-items: center;
+  margin-top: 15px;
+`;

@@ -59,4 +59,10 @@ export const ButtonsContainer = styled.div`
     margin-top: 34px;
     flex-wrap: wrap;
   }
+
+  @media (max-width: 480px) {
+    gap: 15px;
+    margin-top: 34px;
+    flex-direction: column;
+  }
 `;

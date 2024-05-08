@@ -4,6 +4,7 @@ import Wrapper from "../../components/Wrapper/Wrapper";
 import {
   ItemTitle,
   OperationName,
+  SelectsContainer,
   SliderArrowLeft,
   SliderArrowRight,
   SliderContainer,
@@ -32,14 +33,20 @@ import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import ExchangeForm from "./ExchangeForm/ExchangeForm";
+import SelectBordered from "../../components/SelectBordered/SelectBordered";
+
+import ethc from "../../assets/icons/eth-classic.svg";
+import usdt from "../../assets/icons/usdt.svg";
+import sber from "../../assets/icons/sder.svg";
+import ymoney from "../../assets/icons/youmoney.svg";
 
 const ExchangePage = () => {
   const [isSell, setIsSell] = useState(0);
   const cryptoRef = useRef(null);
   const bankRef = useRef(null);
   const [currencies, setCurrencies] = useState({
-    from: "Bitcoin(BTC)",
-    to: "Сбербанк(RUB)",
+    from: { title: "EtherClassic (ETC)", image: ethc },
+    to: { title: "Сбербанк(RUB))", image: sber },
   });
 
   const setFrom = (value) => {
@@ -301,6 +308,33 @@ const ExchangePage = () => {
           </SliderArrowRight>
         </SliderContainer>
       </SwipersContainer>
+
+      <SelectsContainer className="mobile" $isActive={isSell}>
+        <SelectBordered
+          items={[
+            { title: "EtherClassic (ETC)", image: ethc },
+            { title: "Tether(USDT) BEP20", image: usdt },
+          ]}
+          value={isSell ? currencies.to : currencies.from}
+          onChange={(value) => {
+            isSell ? setFrom(value) : setTo(value);
+          }}
+        />
+        <OperationName style={{ margin: "30px 0 11px" }}>
+          {isSell ? "Продаёте" : "Отправляете"}
+        </OperationName>
+        <SelectBordered
+          items={[
+            { title: "Сбербанк(RUB))", image: sber },
+            { title: "ЮMoney(RUB)", image: ymoney },
+          ]}
+          value={isSell ? currencies.from : currencies.to}
+          onChange={(value) => {
+            isSell ? setTo(value) : setFrom(value);
+          }}
+        />
+      </SelectsContainer>
+
       <ExchangeForm isSell={isSell} currencies={currencies} />
     </Wrapper>
   );

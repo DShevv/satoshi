@@ -19,17 +19,17 @@ const ExchangeForm = ({ isSell, currencies, ...other }) => {
   return (
     <Container {...other}>
       <InputField
-        title={`Отправляете: ${currencies.from}`}
-        hint={currencies.from}
+        title={`Отправляете: ${currencies.from.title}`}
+        hint={currencies.from.title}
         min={"118"}
         max={"4 000"}
-        info={`1 ${currencies.from} = 64 RUB`}
+        info={`1 ${currencies.from.title} = 64 RUB`}
       />
       <ExchangeIcon>
         <SvgRefresh />
       </ExchangeIcon>
       <InputField
-        title={`Получаете: ${currencies.to}`}
+        title={`Получаете: ${currencies.to.title}`}
         hint={"RUB"}
         min={"5 000"}
         info={"Min:  Резервы: 38 395 426 RUB"}
