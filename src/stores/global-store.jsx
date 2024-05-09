@@ -59,22 +59,26 @@ class AuthStore {
   };
 
   refreshAccess = async () => {
-    const res = await AuthService.refresh();
+    try {
+      const res = await AuthService.refresh();
 
-    console.log(res);
-    if (res.status !== 200) {
-      throw new Error(res);
+      console.log(res);
+      if (res.status !== 200) {
+        return res;
+      }
+
+      localStorage.setItem("token", `Bearer ${res.data.access_token}`);
+      localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
+
+      runInAction(() => {
+        this.token = `${res.data.token_type} ${res.data.access_token}`;
+        this.refresh = `${res.data.token_type} ${res.data.refresh_token}`;
+      });
+
+      return res;
+    } catch (error) {
+      return error;
     }
-
-    localStorage.setItem("token", `Bearer ${res.data.access_token}`);
-    localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
-
-    runInAction(() => {
-      this.token = `${res.data.token_type} ${res.data.access_token}`;
-      this.refresh = `${res.data.token_type} ${res.data.refresh_token}`;
-    });
-
-    return res;
   };
 
   logout = () => {

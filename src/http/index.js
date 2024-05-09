@@ -23,6 +23,7 @@ api.interceptors.response.use(
   },
   async (error) => {
     const reqConfig = error.config;
+
     if (error.response.status === 401 && !reqConfig._retry) {
       reqConfig._retry = true;
       const refresh = await globalStore.authStore.refreshAccess();
@@ -32,6 +33,7 @@ api.interceptors.response.use(
       }
       return api(reqConfig);
     }
+
     return error;
   }
 );
