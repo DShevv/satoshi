@@ -3,31 +3,22 @@ import styled from "styled-components";
 import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 
 export const BackgroundWrapper = styled.div`
-  display: none;
   position: absolute;
+  display: block;
   width: 100%;
   height: 100vh;
   backdrop-filter: blur(18px);
   background: rgba(182, 182, 182, 0.15);
   padding-top: 200px;
   padding-bottom: 200px;
-  z-index: 200;
+  z-index: -1;
   overflow-y: auto;
+  transition: all 0.3s ease;
+  opacity: 0;
 
   &.active {
-    display: block;
-  }
-
-  animation: appear 0.3s ease;
-
-  @keyframes appear {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
+    opacity: 1;
+    z-index: 200;
   }
 `;
 
@@ -105,7 +96,6 @@ export const Close = styled.div`
 
 export const StyledSubmit = styled(SubmitButton)`
   @media (max-width: 1080px) {
-    max-width: 176px;
     font-size: 16px;
   }
 `;

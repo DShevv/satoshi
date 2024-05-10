@@ -26,21 +26,31 @@ const RecoveryForm = ({ onClose, ...other }) => {
   const [isOk, setIsOk] = useState(false);
 
   useEffect(() => {
-    document.body.className = "scrollLock-modal";
+    if (other.className === "active") {
+      document.body.className = "scrollLock-modal";
+    }
+  }, [other.className]);
 
-    return () => {
-      document.body.className = "";
-    };
+  useEffect(() => {
+    if (other.className === "active") {
+      document.body.className = "scrollLock-modal";
+    }
   }, []);
 
   return (
-    <BackgroundWrapper {...other} onClick={() => onClose()}>
+    <BackgroundWrapper
+      {...other}
+      onClick={() => {
+        onClose();
+        document.body.classList.remove("scrollLock-modal");
+      }}
+    >
       {isOk ? (
         <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
           <Close
             onClick={() => {
               onClose();
-              document.body.className = "";
+              document.body.classList.remove("scrollLock-modal");
             }}
           >
             <SvgClose />
@@ -68,7 +78,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
           <Close
             onClick={() => {
               onClose();
-              document.body.className = "";
+              document.body.classList.remove("scrollLock-modal");
             }}
           >
             <SvgClose />

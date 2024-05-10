@@ -22,19 +22,29 @@ export const LoginForm = observer(({ onClose, ...other }) => {
   const { login } = authStore;
 
   useEffect(() => {
-    document.body.className = "scrollLock-modal";
+    if (other.className === "active") {
+      document.body.className = "scrollLock-modal";
+    }
+  }, [other.className]);
 
-    return () => {
-      document.body.className = "";
-    };
+  useEffect(() => {
+    if (other.className === "active") {
+      document.body.className = "scrollLock-modal";
+    }
   }, []);
 
   return (
-    <BackgroundWrapper {...other} onClick={() => onClose()}>
+    <BackgroundWrapper
+      {...other}
+      onClick={() => {
+        onClose();
+        document.body.classList.remove("scrollLock-modal");
+      }}
+    >
       <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
         <Close
           onClick={() => {
-            document.body.className = "";
+            document.body.classList.remove("scrollLock-modal");
             onClose();
           }}
         >

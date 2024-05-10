@@ -25,16 +25,20 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
 
   const ref = useRef(null);
   useOutsideClick(ref, () => {
-    document.body.className = "";
+    document.body.classList.remove("scrollLock-modal");
     onClose();
   });
 
   useEffect(() => {
-    document.body.className = "scrollLock-modal";
+    if (other.className === "active") {
+      document.body.className = "scrollLock-modal";
+    }
+  }, [other.className]);
 
-    return () => {
-      document.body.className = "";
-    };
+  useEffect(() => {
+    if (other.className === "active") {
+      document.body.className = "scrollLock-modal";
+    }
   }, []);
 
   return (
@@ -43,7 +47,7 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
         <Close
           onClick={() => {
             onClose();
-            document.body.className = "";
+            document.body.classList.remove("scrollLock-modal");
           }}
         >
           <SvgClose />

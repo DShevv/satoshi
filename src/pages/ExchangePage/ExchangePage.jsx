@@ -96,7 +96,7 @@ const ExchangePage = () => {
         <Switcher active={isSell} onChange={handleChange} />
         <SwitcherCaption $active={isSell}>Продать</SwitcherCaption>
       </SwitcherContainer>
-      <SwipersContainer className="desktop" $active={isSell}>
+      <SwipersContainer className="desktop">
         <SliderContainer>
           <SliderArrowLeft onClick={() => cryptoRef.current?.slidePrev()}>
             <SvgSliderArrow />
@@ -131,7 +131,7 @@ const ExchangePage = () => {
           </SliderArrowRight>
         </SliderContainer>
 
-        <OperationName>{isSell ? "Продаёте" : "Отправляете"}</OperationName>
+        <OperationName>{isSell ? "Получаете" : "Отправляете"}</OperationName>
 
         <SliderContainer>
           <SliderArrowLeft onClick={() => bankRef.current?.slidePrev()}>
@@ -168,25 +168,19 @@ const ExchangePage = () => {
         </SliderContainer>
       </SwipersContainer>
 
-      <SelectsContainer className="mobile" $isActive={isSell}>
+      <SelectsContainer className="mobile">
         <SelectBordered
-          items={[
-            { title: "EtherClassic", image: ethc, hint: "ETC" },
-            { title: "Tether", image: usdt, hint: "USDT BEP20" },
-          ]}
+          items={currs}
           value={isSell ? currencies.to : currencies.from}
           onChange={(value) => {
             isSell ? setFrom(value) : setTo(value);
           }}
         />
         <OperationName style={{ margin: "30px 0 11px" }}>
-          {isSell ? "Продаёте" : "Отправляете"}
+          {isSell ? "Получаете" : "Отправляете"}
         </OperationName>
         <SelectBordered
-          items={[
-            { title: "Сбербанк", image: sber, hint: "RUB" },
-            { title: "ЮMoney", image: ymoney, hint: "RUB" },
-          ]}
+          items={banks}
           value={isSell ? currencies.from : currencies.to}
           onChange={(value) => {
             isSell ? setTo(value) : setFrom(value);

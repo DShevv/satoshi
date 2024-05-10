@@ -381,7 +381,7 @@ export const SvgLogIn = (props) => {
   );
 };
 
-export const SvgBurger = () => {
+export const SvgBurger = (props) => {
   return (
     <svg
       width="39"
@@ -389,6 +389,7 @@ export const SvgBurger = () => {
       viewBox="0 0 39 39"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M8.125 11.375H30.875"
@@ -412,7 +413,7 @@ export const SvgBurger = () => {
   );
 };
 
-export const SvgClose = () => {
+export const SvgClose = (props) => {
   return (
     <svg
       width="39"
@@ -420,6 +421,7 @@ export const SvgClose = () => {
       viewBox="0 0 39 39"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M12.457 11.4565L28.5437 27.5432"

@@ -18,6 +18,8 @@ import {
   SocialItem,
   SocialList,
   Socials,
+  StyledBurger,
+  StyledClose,
 } from "./Header.style";
 import {
   SvgBurger,
@@ -66,33 +68,24 @@ export const Header = observer(() => {
 
   return (
     <Container>
-      {formParam === "login" && (
-        <LoginForm
-          className="active"
-          onClose={() => {
-            console.log("log");
-            setSearchParams({});
-          }}
-        />
-      )}
-      {formParam === "register" && (
-        <RegisterForm
-          className="active"
-          onClose={() => {
-            console.log("reg");
-            setSearchParams({});
-          }}
-        />
-      )}
-      {formParam === "recovery" && (
-        <RecoveryForm
-          className="active"
-          onClose={() => {
-            console.log("req");
-            setSearchParams({});
-          }}
-        />
-      )}
+      <LoginForm
+        className={formParam === "login" && "active"}
+        onClose={() => {
+          setSearchParams({});
+        }}
+      />
+      <RegisterForm
+        className={formParam === "register" && "active"}
+        onClose={() => {
+          setSearchParams({});
+        }}
+      />
+      <RecoveryForm
+        className={formParam === "recovery" && "active"}
+        onClose={() => {
+          setSearchParams({});
+        }}
+      />
 
       <Wrapper>
         <InnerContainer>
@@ -125,7 +118,8 @@ export const Header = observer(() => {
               </ButtonsContainer>
             )}
             <MenuButton onClick={toggleMenu}>
-              {isOpened ? <SvgClose /> : <SvgBurger />}
+              <StyledBurger className={isOpened ? "" : "active"} />
+              <StyledClose className={isOpened ? "active" : ""} />
               <span className="desktop">Меню</span>
             </MenuButton>
           </ControlsContainer>

@@ -6,7 +6,8 @@ export const PopUp = styled.ul`
   width: calc(100% + 2px);
   max-height: ;
   padding: 12px 0;
-
+  max-height: 200px;
+  overflow: auto;
   bottom: 0;
   left: -1px;
   transform: translateY(100%);

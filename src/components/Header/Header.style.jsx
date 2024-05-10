@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { SvgBurger, SvgClose } from "../../assets/icons/svgs";
 
 export const Container = styled.header`
   position: relative;
@@ -66,6 +67,7 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const MenuButton = styled.button`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -238,4 +240,25 @@ export const SocialItem = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const StyledClose = styled(SvgClose)`
+  position: absolute;
+  transition: all 0.3s ease;
+  opacity: 0;
+
+  &.active {
+    transform: rotate(-180deg);
+    opacity: 1;
+  }
+`;
+
+export const StyledBurger = styled(SvgBurger)`
+  transition: all 0.3s ease;
+  opacity: 0;
+
+  &.active {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
 `;
