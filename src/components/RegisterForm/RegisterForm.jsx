@@ -30,7 +30,7 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
   });
 
   useEffect(() => {
-    document.body.className = "scrollLock";
+    document.body.className = "scrollLock-modal";
 
     return () => {
       document.body.className = "";
@@ -87,7 +87,7 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
                 <HintLink to={"/"}>персональных данных</HintLink>
               </Hint>
               <ButtonContainer>
-                <StyledSubmit type={"submit"}>Войти</StyledSubmit>
+                <StyledSubmit type={"submit"}>Зарегистрироваться</StyledSubmit>
               </ButtonContainer>
               <UnderText>
                 Уже зарегистрированы? <Link to={"?auth=login"}>Войти</Link>

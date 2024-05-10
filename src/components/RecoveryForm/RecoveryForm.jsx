@@ -26,7 +26,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
   const [isOk, setIsOk] = useState(false);
 
   useEffect(() => {
-    document.body.className = "scrollLock";
+    document.body.className = "scrollLock-modal";
 
     return () => {
       document.body.className = "";

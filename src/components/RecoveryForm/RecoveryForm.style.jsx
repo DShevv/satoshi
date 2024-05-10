@@ -17,6 +17,18 @@ export const BackgroundWrapper = styled.div`
   &.active {
     display: block;
   }
+
+  animation: appear 0.3s ease;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Modal = styled.div`
@@ -127,7 +139,6 @@ export const Image = styled.img`
 
 export const StyledSubmit = styled(SubmitButton)`
   @media (max-width: 1080px) {
-    max-width: 223px;
     font-size: 16px;
     padding-right: 56px;
     padding-left: 56px;

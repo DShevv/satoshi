@@ -16,6 +16,10 @@ body {
   overflow-y: scroll;
 }
 
+.scrollLock-modal {
+  overflow: hidden;
+}
+
 .mobile {
   display: none;
 }

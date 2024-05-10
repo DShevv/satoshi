@@ -121,9 +121,25 @@ export const SwipersContainer = styled.div`
   }
 `;
 
+export const CurrImage = styled.img`
+  width: 43px;
+  height: 37px;
+  object-fit: contain;
+`;
+
 export const SelectsContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.$isActive ? "column-reverse" : "column")};
   align-items: center;
   margin-top: 15px;
+
+  &.mobile {
+    display: none;
+  }
+
+  @media (max-width: 1080px) {
+    &.mobile {
+      display: flex;
+    }
+  }
 `;

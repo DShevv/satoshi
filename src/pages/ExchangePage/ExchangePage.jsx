@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Switcher from "../../components/Switcher/Switcher";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import {
+  CurrImage,
   ItemTitle,
   OperationName,
   SelectsContainer,
@@ -16,18 +17,7 @@ import {
   SwitcherContainer,
   Title,
 } from "./ExchangePage.style";
-import {
-  SvgAlpha,
-  SvgBtc,
-  SvgEth,
-  SvgEthClassic,
-  SvgMts,
-  SvgSber,
-  SvgSliderArrow,
-  SvgUsdt,
-  SvgVisa,
-  SvgYoumoney,
-} from "../../assets/icons/svgs";
+import { SvgSliderArrow } from "../../assets/icons/svgs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -40,13 +30,33 @@ import usdt from "../../assets/icons/usdt.svg";
 import sber from "../../assets/icons/sder.svg";
 import ymoney from "../../assets/icons/youmoney.svg";
 
+const currs = [
+  { title: "Bitcoin", image: ethc, hint: "BTC" },
+  { title: "Ethereum", image: ethc, hint: "ETH" },
+  { title: "Ethereum", image: ethc, hint: "BTC" },
+  { title: "Tether", image: usdt, hint: "USDT TRC20" },
+  { title: "Tether", image: usdt, hint: "USDT ERC20" },
+  { title: "Tether", image: usdt, hint: "USDT BEP20" },
+  { title: "EtherClassic", image: ethc, hint: "ETC" },
+];
+
+const banks = [
+  { title: "Сбербанк", image: sber, hint: "RUB" },
+  { title: "ЮMoney", image: ymoney, hint: "CNY" },
+  { title: "ЮMoney", image: ymoney, hint: "USD" },
+  { title: "ЮMoney", image: ymoney, hint: "RUB" },
+  { title: "Сбербанк", image: sber, hint: "RUB" },
+  { title: "Сбербанк", image: sber, hint: "BYN" },
+  { title: "Сбербанк", image: sber, hint: "USD" },
+];
+
 const ExchangePage = () => {
   const [isSell, setIsSell] = useState(0);
   const cryptoRef = useRef(null);
   const bankRef = useRef(null);
   const [currencies, setCurrencies] = useState({
-    from: { title: "EtherClassic (ETC)", image: ethc },
-    to: { title: "Сбербанк(RUB))", image: sber },
+    from: currs[0],
+    to: banks[0],
   });
 
   const setFrom = (value) => {
@@ -100,101 +110,20 @@ const ExchangePage = () => {
               className="CryptoSwiper"
               onSwiper={(it) => (cryptoRef.current = it)}
             >
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setFrom("Bitcoin") : setTo("Bitcoin");
-                  }}
-                >
-                  <SvgBtc />
-                  <ItemTitle>Bitcoin(BTC)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setFrom("Ethereum(ETH)") : setTo("Ethereum(ETH)");
-                  }}
-                >
-                  <SvgEth />
-                  <ItemTitle>Ethereum(ETH)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setFrom("Ethereum(ETH)") : setTo("Ethereum(ETH)");
-                  }}
-                >
-                  <SvgEth />
-                  <ItemTitle>Ethereum(ETH)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setFrom("Tether(USDT) TRC20")
-                      : setTo("Tether(USDT) TRC20");
-                  }}
-                >
-                  <SvgUsdt />
-                  <ItemTitle>Tether(USDT) TRC20</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setFrom("Tether(USDT) ERC20")
-                      : setTo("Tether(USDT) ERC20");
-                  }}
-                >
-                  <SvgUsdt />
-                  <ItemTitle>Tether(USDT) ERC20</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setFrom("Tether(USDT) BEP20")
-                      : setTo("Tether(USDT) BEP20");
-                  }}
-                >
-                  <SvgUsdt />
-                  <ItemTitle>Tether(USDT) BEP20</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setFrom("EtherClassic (ETC)")
-                      : setTo("EtherClassic (ETC)");
-                  }}
-                >
-                  <SvgEthClassic />
-                  <ItemTitle>
-                    EtherClassic <br /> (ETC)
-                  </ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setFrom("EtherClassic (ETC)")
-                      : setTo("EtherClassic (ETC)");
-                  }}
-                >
-                  <SvgEthClassic />
-                  <ItemTitle>
-                    EtherClassic <br />
-                    (ETC)
-                  </ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
+              {currs.map((elem, index) => (
+                <SwiperSlide key={elem.title + index}>
+                  <SliderItem
+                    onClick={() => {
+                      isSell ? setFrom(elem) : setTo(elem);
+                    }}
+                  >
+                    <CurrImage src={elem.image} alt={elem.title} />
+                    <ItemTitle>
+                      {elem.title}({elem.hint})
+                    </ItemTitle>
+                  </SliderItem>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </SliderList>
           <SliderArrowRight onClick={() => cryptoRef.current?.slideNext()}>
@@ -217,90 +146,20 @@ const ExchangePage = () => {
               className="BankSwiper"
               onSwiper={(it) => (bankRef.current = it)}
             >
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setTo("Сбербанк(RUB)") : setFrom("Сбербанк(RUB)");
-                  }}
-                >
-                  <SvgSber />
-                  <ItemTitle>Сбербанк(RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setTo("ЮMoney(RUB)") : setFrom("ЮMoney(RUB)");
-                  }}
-                >
-                  <SvgYoumoney />
-                  <ItemTitle>ЮMoney(RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setTo("MTC Банк(RUB)") : setFrom("MTC Банк(RUB)");
-                  }}
-                >
-                  <SvgMts />
-                  <ItemTitle>MTC Банк(RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setTo("AlfaBank(RUB)") : setFrom("AlfaBank(RUB)");
-                  }}
-                >
-                  <SvgAlpha />
-                  <ItemTitle>AlfaBank(RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setTo("Visa-MC-MIR(RUB)")
-                      : setFrom("Visa-MC-MIR(RUB)");
-                  }}
-                >
-                  <SvgVisa />
-                  <ItemTitle>Visa-MC-MIR (RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setTo("MTC Банк(RUB)") : setFrom("MTC Банк(RUB)");
-                  }}
-                >
-                  <SvgMts />
-                  <ItemTitle>MTC Банк(RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell ? setTo("AlfaBank(RUB)") : setFrom("AlfaBank(RUB)");
-                  }}
-                >
-                  <SvgAlpha />
-                  <ItemTitle>AlfaBank(RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
-              <SwiperSlide>
-                <SliderItem
-                  onClick={() => {
-                    isSell
-                      ? setTo("Visa-MC-MIR(RUB)")
-                      : setFrom("Visa-MC-MIR(RUB)");
-                  }}
-                >
-                  <SvgVisa />
-                  <ItemTitle>Visa-MC-MIR (RUB)</ItemTitle>
-                </SliderItem>
-              </SwiperSlide>
+              {banks.map((elem, index) => (
+                <SwiperSlide key={elem.title + index}>
+                  <SliderItem
+                    onClick={() => {
+                      isSell ? setTo(elem) : setFrom(elem);
+                    }}
+                  >
+                    <CurrImage src={elem.image} alt={elem.title} />
+                    <ItemTitle>
+                      {elem.title}({elem.hint})
+                    </ItemTitle>
+                  </SliderItem>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </SliderList>
           <SliderArrowRight onClick={() => bankRef.current?.slideNext()}>
@@ -312,8 +171,8 @@ const ExchangePage = () => {
       <SelectsContainer className="mobile" $isActive={isSell}>
         <SelectBordered
           items={[
-            { title: "EtherClassic (ETC)", image: ethc },
-            { title: "Tether(USDT) BEP20", image: usdt },
+            { title: "EtherClassic", image: ethc, hint: "ETC" },
+            { title: "Tether", image: usdt, hint: "USDT BEP20" },
           ]}
           value={isSell ? currencies.to : currencies.from}
           onChange={(value) => {
@@ -325,8 +184,8 @@ const ExchangePage = () => {
         </OperationName>
         <SelectBordered
           items={[
-            { title: "Сбербанк(RUB))", image: sber },
-            { title: "ЮMoney(RUB)", image: ymoney },
+            { title: "Сбербанк", image: sber, hint: "RUB" },
+            { title: "ЮMoney", image: ymoney, hint: "RUB" },
           ]}
           value={isSell ? currencies.from : currencies.to}
           onChange={(value) => {

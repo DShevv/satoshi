@@ -34,7 +34,7 @@ function SelectBordered({ style, items, onChange, className, value }) {
   return (
     <Container
       onClick={toggle}
-      className={`${className} ${isActive ? "active" : ""}`}
+      className={`${isActive ? "active" : ""}`}
       ref={ref}
       style={style}
     >

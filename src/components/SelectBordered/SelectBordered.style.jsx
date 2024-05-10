@@ -76,7 +76,7 @@ export const Container = styled.div`
 `;
 
 export const PopUpItem = styled.li`
-  padding: 6px 10px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   gap: 10px;

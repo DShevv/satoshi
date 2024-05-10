@@ -17,6 +17,18 @@ export const BackgroundWrapper = styled.div`
   &.active {
     display: block;
   }
+
+  animation: appear 0.3s ease;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Modal = styled.div`

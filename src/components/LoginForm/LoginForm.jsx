@@ -22,7 +22,7 @@ export const LoginForm = observer(({ onClose, ...other }) => {
   const { login } = authStore;
 
   useEffect(() => {
-    document.body.className = "scrollLock";
+    document.body.className = "scrollLock-modal";
 
     return () => {
       document.body.className = "";

@@ -38,6 +38,8 @@ export const Logo = styled(NavLink)`
 `;
 
 export const Lang = styled(NavLink)`
+  display: none;
+
   margin-right: 27px;
   font-weight: 400;
   font-size: 16px;
