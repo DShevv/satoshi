@@ -4,19 +4,18 @@ import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 
 export const BackgroundWrapper = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
   backdrop-filter: blur(18px);
   background: rgba(182, 182, 182, 0.15);
-  padding-top: 200px;
-  padding-bottom: 200px;
   z-index: -1;
-  overflow-y: auto;
   transition: all 0.3s ease;
   opacity: 0;
 
   &.active {
-    display: block;
     opacity: 1;
     z-index: 200;
   }
@@ -28,12 +27,12 @@ export const Modal = styled.div`
   border-radius: 25px;
   width: 527px;
   background-color: ${(props) => props.theme.colors.blackGray};
-  padding: 64px 46px 43px 46px;
+  padding: 46px 46px 26px 46px;
 
   @media (max-width: 1080px) {
     max-width: 527px;
     width: calc(100% - 30px);
-    padding: 57px 25px 36px 25px;
+    padding: 25px 25px 25px 25px;
   }
 `;
 
@@ -41,26 +40,26 @@ export const Title = styled.div`
   font-weight: 700;
   font-size: 26px;
   color: ${(props) => props.theme.colors.white};
-  margin-bottom: 37px;
+  margin-bottom: 30px;
 
   @media (max-width: 1080px) {
     font-size: 22px;
-    max-width: 300px;
+    max-width: 90%;
   }
 `;
 
 export const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 27px;
+  gap: 23px;
 
   @media (max-width: 1080px) {
-    gap: 25px;
+    gap: 20px;
   }
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 24px;
+  margin-top: 15px;
 
   @media (max-width: 1080px) {
     margin-top: 5px;
@@ -68,16 +67,16 @@ export const ButtonContainer = styled.div`
 `;
 
 export const UnderText = styled.div`
-  margin-top: 58px;
-  padding-top: 37px;
+  margin-top: 0px;
+  padding-top: 20px;
   border-top: solid 2px ${(props) => props.theme.colors.grayEmpty};
   font-weight: 500;
   font-size: 18px;
   color: ${(props) => props.theme.colors.white};
 
   @media (max-width: 1080px) {
-    margin-top: 23px;
-    padding-top: 27px;
+    margin-top: 10px;
+    padding-top: 20px;
     font-size: 14px;
   }
 `;

@@ -23,13 +23,13 @@ export const LoginForm = observer(({ onClose, ...other }) => {
 
   useEffect(() => {
     if (other.className === "active") {
-      document.body.className = "scrollLock-modal";
+      document.body.className = "scrollLock";
     }
   }, [other.className]);
 
   useEffect(() => {
     if (other.className === "active") {
-      document.body.className = "scrollLock-modal";
+      document.body.className = "scrollLock";
     }
   }, []);
 
@@ -38,13 +38,13 @@ export const LoginForm = observer(({ onClose, ...other }) => {
       {...other}
       onClick={() => {
         onClose();
-        document.body.classList.remove("scrollLock-modal");
+        document.body.classList.remove("scrollLock");
       }}
     >
       <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
         <Close
           onClick={() => {
-            document.body.classList.remove("scrollLock-modal");
+            document.body.classList.remove("scrollLock");
             onClose();
           }}
         >

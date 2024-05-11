@@ -16,7 +16,6 @@ import {
 } from "./RecoveryForm.style";
 import { Formik, Form } from "formik";
 import InputIcon from "../InputIcon/InputIcon";
-import SubmitButton from "../Buttons/SubmitButton/SubmitButton";
 import { SvgClose, SvgEmail } from "../../assets/icons/svgs";
 import paperPlane from "../../assets/images/paper-plane 1.png";
 
@@ -27,13 +26,13 @@ const RecoveryForm = ({ onClose, ...other }) => {
 
   useEffect(() => {
     if (other.className === "active") {
-      document.body.className = "scrollLock-modal";
+      document.body.className = "scrollLock";
     }
   }, [other.className]);
 
   useEffect(() => {
     if (other.className === "active") {
-      document.body.className = "scrollLock-modal";
+      document.body.className = "scrollLock";
     }
   }, []);
 
@@ -42,7 +41,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
       {...other}
       onClick={() => {
         onClose();
-        document.body.classList.remove("scrollLock-modal");
+        document.body.classList.remove("scrollLock");
       }}
     >
       {isOk ? (
@@ -50,7 +49,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
           <Close
             onClick={() => {
               onClose();
-              document.body.classList.remove("scrollLock-modal");
+              document.body.classList.remove("scrollLock");
             }}
           >
             <SvgClose />
@@ -78,7 +77,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
           <Close
             onClick={() => {
               onClose();
-              document.body.classList.remove("scrollLock-modal");
+              document.body.classList.remove("scrollLock");
             }}
           >
             <SvgClose />
