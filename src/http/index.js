@@ -2,7 +2,7 @@ import axios from "axios";
 import globalStore from "../stores/global-store";
 
 const api = axios.create({
-  //withCredentials: true,
+  withCredentials: true,
   headers: {
     "Access-Control-Allow-Credentials": true,
   },
@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  config.headers.Authorization = localStorage.getItem("token");
+  //config.headers.Authorization = localStorage.getItem("token");
   return config;
 });
 
