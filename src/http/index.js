@@ -2,7 +2,7 @@ import axios from "axios";
 import globalStore from "../stores/global-store";
 
 const api = axios.create({
-  withCredentials: true,
+  //withCredentials: true,
   headers: {
     "Access-Control-Allow-Credentials": true,
   },
