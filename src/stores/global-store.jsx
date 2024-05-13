@@ -25,6 +25,7 @@ class AuthStore {
     try {
       const res = await AuthService.login(data.email, data.password);
       console.log(res);
+
       if (res.status !== 200) {
         throw new Error(res);
       }
@@ -33,8 +34,8 @@ class AuthStore {
       localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
 
       runInAction(() => {
-        this.token = `${res.data.token_type} ${res.data.access_token}`;
-        this.refresh = `${res.data.token_type} ${res.data.refresh_token}`;
+        this.token = `Bearer ${res.data.access_token}`;
+        this.refresh = `Bearer ${res.data.refresh_token}`;
 
         this.isAuthorized = true;
       });
@@ -60,22 +61,20 @@ class AuthStore {
 
   refreshAccess = async () => {
     try {
-      const res = await AuthService.refresh();
+      const res = await AuthService.refresh(this.refresh);
 
       console.log(res);
       if (res.status !== 200) {
-        return res;
+        return undefined;
       }
 
       localStorage.setItem("token", `Bearer ${res.data.access_token}`);
-      localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
 
       runInAction(() => {
         this.token = `${res.data.token_type} ${res.data.access_token}`;
-        this.refresh = `${res.data.token_type} ${res.data.refresh_token}`;
       });
 
-      return res;
+      return `Bearer ${res.data.access_token}`;
     } catch (error) {
       return error;
     }

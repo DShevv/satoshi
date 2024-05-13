@@ -33,7 +33,7 @@ const UserContainer = observer(() => {
       </NavLink>
       <SvgUser className="desktop" />
 
-      <span className="desktop">{user.name}</span>
+      <span className="desktop">{user.name ? user.name : user.email}</span>
       <UserModal $active={isActive ? 1 : 0}>
         <Email>{user.name}</Email>
         <CabLink to={"/cabinet"}>

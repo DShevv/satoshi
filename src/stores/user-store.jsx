@@ -5,6 +5,8 @@ import UserService from "../services/UserService";
 class UserStore {
   user = {
     name: undefined,
+    lastName: undefined,
+    patronymic: undefined,
     email: undefined,
     id: undefined,
   };
@@ -37,9 +39,11 @@ class UserStore {
 
       runInAction(() => {
         this.user = {
-          name: res.data.username,
-          email: res.data.email,
-          id: res.data.id,
+          name: res.data.username.first_name,
+          email: res.data.username.email,
+          lastName: res.data.username.last_name,
+          patronymic: res.data.username.patronymic,
+          id: res.data.username.id,
         };
       });
     } catch (error) {

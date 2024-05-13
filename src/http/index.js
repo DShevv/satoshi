@@ -10,7 +10,9 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  config.headers.Authorization = localStorage.getItem("token");
+  if (config.headers.Authorization === undefined) {
+    config.headers.Authorization = localStorage.getItem("token");
+  }
   return config;
 });
 
@@ -21,13 +23,20 @@ api.interceptors.response.use(
   async (error) => {
     const reqConfig = error.config;
 
-    if (error.response.status === 401 && !reqConfig._retry) {
+    if (
+      error.response.status === 401 &&
+      !reqConfig._retry &&
+      reqConfig.url !== "/refresh"
+    ) {
       reqConfig._retry = true;
-      const refresh = await globalStore.authStore.refreshAccess();
-      if (refresh.status !== 200) {
+      console.log("start");
+      const newToken = await globalStore.authStore.refreshAccess();
+      console.log(newToken);
+      if (!newToken) {
         globalStore.userStore.logout();
         return error;
       }
+      reqConfig.headers.Authorization = newToken;
       return api(reqConfig);
     }
 

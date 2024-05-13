@@ -31,7 +31,12 @@ export default class AuthService {
     );
   }
 
-  static async refresh() {
-    return api.post("/refresh");
+  static async refresh(token) {
+    return api.post("/refresh", undefined, {
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
   }
 }

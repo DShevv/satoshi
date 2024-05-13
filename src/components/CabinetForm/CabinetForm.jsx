@@ -23,7 +23,7 @@ export const CabinetForm = observer(() => {
   return (
     <Formik
       initialValues={{
-        email: user.name,
+        email: user.email,
         password: "",
         confirmPassword: "",
         LastName: "Рожкова",
