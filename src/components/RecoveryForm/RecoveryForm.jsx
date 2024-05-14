@@ -18,6 +18,7 @@ import { Formik, Form } from "formik";
 import InputIcon from "../InputIcon/InputIcon";
 import { SvgClose, SvgEmail } from "../../assets/icons/svgs";
 import paperPlane from "../../assets/images/paper-plane 1.png";
+import validateRecovery from "../../utils/validateRecovery";
 
 const RecoveryForm = ({ onClose, ...other }) => {
   const ref = useRef(null);
@@ -41,6 +42,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
       {...other}
       onClick={() => {
         onClose();
+        setIsOk(false);
         document.body.classList.remove("scrollLock");
       }}
     >
@@ -49,6 +51,7 @@ const RecoveryForm = ({ onClose, ...other }) => {
           <Close
             onClick={() => {
               onClose();
+              setIsOk(false);
               document.body.classList.remove("scrollLock");
             }}
           >
@@ -63,7 +66,10 @@ const RecoveryForm = ({ onClose, ...other }) => {
             </RecoveryText>
             <ButtonContainer>
               <StyledSubmit
-                onClick={() => onClose()}
+                onClick={() => {
+                  onClose();
+                  setIsOk(false);
+                }}
                 style={{ maxWidth: "176px" }}
                 type={"submit"}
               >
@@ -91,28 +97,41 @@ const RecoveryForm = ({ onClose, ...other }) => {
             initialValues={{
               email: "",
             }}
+            validate={validateRecovery}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={(values) => {
               console.log(values);
               setIsOk(true);
             }}
           >
-            <Form>
-              <StyledForm>
-                <InputIcon
-                  type={"email"}
-                  placeholder={"Введите E-mail"}
-                  name={"email"}
-                  icon={<SvgEmail />}
-                />
+            {(formik) => {
+              const { errors } = formik;
 
-                <ButtonContainer>
-                  <StyledSubmit type={"submit"}>Сбросить пароль</StyledSubmit>
-                </ButtonContainer>
-                <UnderText>
-                  Уже зарегистрированы? <Link to={"/register"}>Войти</Link>
-                </UnderText>
-              </StyledForm>
-            </Form>
+              return (
+                <Form>
+                  <StyledForm>
+                    <InputIcon
+                      type={"email"}
+                      placeholder={"Введите E-mail"}
+                      name={"email"}
+                      icon={<SvgEmail />}
+                      isError={errors.email ? 1 : 0}
+                      errorText={errors.email ? errors.email : ""}
+                    />
+
+                    <ButtonContainer>
+                      <StyledSubmit type={"submit"}>
+                        Сбросить пароль
+                      </StyledSubmit>
+                    </ButtonContainer>
+                    <UnderText>
+                      Уже зарегистрированы? <Link to={"/register"}>Войти</Link>
+                    </UnderText>
+                  </StyledForm>
+                </Form>
+              );
+            }}
           </Formik>
         </Modal>
       )}

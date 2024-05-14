@@ -25,9 +25,9 @@ export const Modal = styled.div`
   position: relative;
   margin: 0 auto;
   border-radius: 25px;
-  width: 527px;
+  width: 515px;
   background-color: ${(props) => props.theme.colors.blackGray};
-  padding: 46px 46px 26px 46px;
+  padding: 48px 64px 48px 64px;
 
   @media (max-width: 1080px) {
     max-width: 527px;
@@ -41,6 +41,7 @@ export const Title = styled.div`
   font-size: 26px;
   color: ${(props) => props.theme.colors.white};
   margin-bottom: 30px;
+  text-align: center;
 
   @media (max-width: 1080px) {
     font-size: 22px;
@@ -51,28 +52,26 @@ export const Title = styled.div`
 export const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 23px;
+  gap: 42px;
 
   @media (max-width: 1080px) {
-    gap: 20px;
+    gap: 42px;
   }
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 15px;
-
   @media (max-width: 1080px) {
-    margin-top: 5px;
   }
 `;
 
 export const UnderText = styled.div`
-  margin-top: 0px;
-  padding-top: 20px;
+  margin-top: 2px;
+  padding-top: 36px;
   border-top: solid 2px ${(props) => props.theme.colors.grayEmpty};
   font-weight: 500;
   font-size: 18px;
   color: ${(props) => props.theme.colors.white};
+  text-align: center;
 
   @media (max-width: 1080px) {
     margin-top: 10px;
@@ -90,7 +89,7 @@ export const Link = styled(NavLink)`
 export const Close = styled.div`
   position: absolute;
   top: 14px;
-  right: 14px;
+  right: 10px;
   cursor: pointer;
 `;
 
@@ -113,8 +112,8 @@ export const RecoveryText = styled.div`
   text-align: center;
   color: ${(props) => props.theme.colors.white};
   max-width: 375px;
-  margin-top: 34px;
-  margin-bottom: 43px;
+  margin-top: 27px;
+  margin-bottom: 26px;
 `;
 
 export const RecoveryContainer = styled.div`

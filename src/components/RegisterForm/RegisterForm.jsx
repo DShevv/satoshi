@@ -18,6 +18,7 @@ import { SvgClose, SvgEmail, SvgPassword } from "../../assets/icons/svgs";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../stores/global-store";
+import validateRegister from "../../utils/validateRegister";
 
 export const RegisterForm = observer(({ onClose, ...other }) => {
   const { authStore } = globalStore;
@@ -59,45 +60,72 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
             password: "",
             passwordConfirm: "",
           }}
-          onSubmit={(values) => {
+          validate={validateRegister}
+          validateOnChange={false}
+          validateOnBlur={false}
+          onSubmit={async (values, { setErrors }) => {
             console.log(values);
-            register({ email: values.email, password: values.password });
-            onClose();
+            const res = await register({
+              email: values.email,
+              password: values.password,
+            });
+            if (res.status === "success") {
+              onClose();
+            } else {
+              console.log(res.response.data.detail);
+              setErrors({ email: "Указанный e-mail зарегистрирован" });
+            }
           }}
         >
-          <Form>
-            <StyledForm>
-              <InputIcon
-                type={"email"}
-                placeholder={"Введите E-mail"}
-                name={"email"}
-                icon={<SvgEmail />}
-              />
-              <InputIcon
-                type={"password"}
-                placeholder={"Пароль"}
-                name={"password"}
-                icon={<SvgPassword />}
-              />
-              <InputIcon
-                type={"password"}
-                placeholder={"Подтверждение пароля"}
-                name={"passwordConfirm"}
-                icon={<SvgPassword />}
-              />
-              <Hint>
-                Нажимая кнопку зарегистрироваться, я подтверждаю, что
-                ознакомился и принимаю политику обработки{" "}
-                <HintLink to={"/"}>персональных данных</HintLink>
-              </Hint>
-              <ButtonContainer>
-                <StyledSubmit type={"submit"}>Зарегистрироваться</StyledSubmit>
-              </ButtonContainer>
-              <UnderText>
-                Уже зарегистрированы? <Link to={"?auth=login"}>Войти</Link>
-              </UnderText>
-            </StyledForm>
-          </Form>
+          {(formik) => {
+            const { errors } = formik;
+
+            return (
+              <Form>
+                <StyledForm>
+                  <InputIcon
+                    type={"email"}
+                    placeholder={"Введите E-mail"}
+                    name={"email"}
+                    icon={<SvgEmail />}
+                    isError={errors.email ? 1 : 0}
+                    errorText={errors.email ? errors.email : ""}
+                  />
+                  <InputIcon
+                    style={{ marginTop: "10px" }}
+                    type={"password"}
+                    placeholder={"Пароль"}
+                    name={"password"}
+                    icon={<SvgPassword />}
+                    isError={errors.password ? 1 : 0}
+                    errorText={"Короткий пароль"}
+                  />
+                  <InputIcon
+                    style={{ marginTop: "10px" }}
+                    type={"password"}
+                    placeholder={"Подтверждение пароля"}
+                    name={"passwordConfirm"}
+                    icon={<SvgPassword />}
+                    isError={errors.passwordConfirm ? 1 : 0}
+                    errorText={"Пароли не совпадают"}
+                  />
+                  <Hint>
+                    Нажимая кнопку зарегистрироваться, я подтверждаю, что
+                    ознакомился и принимаю политику обработки{" "}
+                    <HintLink to={"/"}>персональных данных</HintLink>
+                  </Hint>
+                  <ButtonContainer>
+                    <StyledSubmit type={"submit"}>
+                      Зарегистрироваться
+                    </StyledSubmit>
+                  </ButtonContainer>
+                  <UnderText>
+                    Уже зарегистрированы? <Link to={"?auth=login"}>Войти</Link>
+                  </UnderText>
+                </StyledForm>
+              </Form>
+            );
+          }}
         </Formik>
       </Modal>
     </BackgroundWrapper>

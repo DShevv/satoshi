@@ -2,8 +2,15 @@ import { Field } from "formik";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.label`
-  width: 100%;
+export const Error = styled.div`
+  position: absolute;
+  width: fit-content;
+  bottom: -22px;
+  left: 21px;
+  font-weight: 200;
+  font-size: 12px;
+  line-height: 150%;
+  color: ${(props) => props.theme.colors.error};
 `;
 
 export const InputContainer = styled.div`
@@ -51,7 +58,7 @@ export const Hint = styled(NavLink)`
   font-weight: 500;
   font-size: 13px;
   text-align: right;
-  color: ${(props) => props.theme.colors.grayEmpty};
+  color: ${(props) => props.theme.colors.white};
   text-decoration: none;
   cursor: pointer;
 
@@ -64,4 +71,19 @@ export const Hint = styled(NavLink)`
 export const Icon = styled.div`
   flex: 0 0 24px;
   height: 24px;
+`;
+
+export const Container = styled.label`
+  width: 100%;
+  position: relative;
+
+  ${InputContainer} {
+    border-color: ${(props) =>
+      props.$isError ? props.theme.colors.error : props.theme.colors.grayEmpty};
+  }
+
+  ${Input} {
+    color: ${(props) =>
+      props.$isError ? props.theme.colors.error : props.theme.colors.white};
+  }
 `;

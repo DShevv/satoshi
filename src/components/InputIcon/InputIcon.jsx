@@ -1,17 +1,27 @@
 import { useSearchParams } from "react-router-dom";
 import {
   Container,
+  Error,
   Hint,
   Icon,
   Input,
   InputContainer,
 } from "./InputIcon.style";
 
-const InputIcon = ({ type, hint, icon, placeholder, name, ...other }) => {
+const InputIcon = ({
+  type,
+  hint,
+  icon,
+  placeholder,
+  name,
+  isError,
+  errorText,
+  ...other
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
-    <Container {...other}>
+    <Container {...other} $isError={isError}>
       <InputContainer>
         <Icon>{icon}</Icon>
         <Input
@@ -21,6 +31,7 @@ const InputIcon = ({ type, hint, icon, placeholder, name, ...other }) => {
         />
         {hint && <Hint to="?auth=recovery">{hint}</Hint>}
       </InputContainer>
+      {isError ? <Error>{errorText}</Error> : ""}
     </Container>
   );
 };

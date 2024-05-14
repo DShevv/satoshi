@@ -416,24 +416,25 @@ export const SvgBurger = (props) => {
 export const SvgClose = (props) => {
   return (
     <svg
-      width="39"
-      height="39"
-      viewBox="0 0 39 39"
+      width="31"
+      height="31"
+      viewBox="0 0 31 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
     >
       <path
-        d="M12.457 11.4565L28.5437 27.5432"
-        stroke="white"
+        d="M23.25 7.75L7.75 23.25"
+        stroke="#9A9A9A"
         strokeWidth="2"
         strokeLinecap="square"
+        strokeLinejoin="round"
       />
       <path
-        d="M12 28.0869L28.0867 12.0002"
-        stroke="white"
+        d="M7.75 7.75L23.25 23.25"
+        stroke="#9A9A9A"
         strokeWidth="2"
         strokeLinecap="square"
+        strokeLinejoin="round"
       />
     </svg>
   );

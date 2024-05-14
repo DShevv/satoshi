@@ -77,6 +77,8 @@ export const LoginForm = observer(({ onClose, ...other }) => {
                     placeholder={"Введите E-mail"}
                     name={"email"}
                     icon={<SvgEmail />}
+                    isError={errors.email ? 1 : 0}
+                    errorText={"Неверный e-mail"}
                   />
                   <InputIcon
                     type={"password"}
@@ -84,6 +86,8 @@ export const LoginForm = observer(({ onClose, ...other }) => {
                     placeholder={"Пароль"}
                     name={"password"}
                     icon={<SvgPassword />}
+                    isError={errors.password ? 1 : 0}
+                    errorText={"Неверный пароль"}
                   />
                   <ButtonContainer>
                     <StyledSubmit type={"submit"}>Войти</StyledSubmit>
