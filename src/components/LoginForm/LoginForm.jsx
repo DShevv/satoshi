@@ -60,10 +60,19 @@ export const LoginForm = observer(({ onClose, ...other }) => {
           validate={validateLogin}
           validateOnChange={false}
           validateOnBlur={false}
-          onSubmit={(values) => {
+          onSubmit={async (values, { setErrors }) => {
             console.log(values);
-            login(values);
-            onClose();
+            const res = await login(values);
+
+            if (res.status === "success") {
+              onClose();
+            } else {
+              console.log(res.response.data.detail);
+              setErrors({
+                email: "Неверный e-mail",
+                password: "Неверный пароль",
+              });
+            }
           }}
         >
           {(formik) => {

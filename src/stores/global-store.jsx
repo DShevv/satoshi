@@ -27,7 +27,7 @@ class AuthStore {
       console.log(res);
 
       if (res.status !== 200) {
-        throw new Error(res);
+        return res;
       }
 
       localStorage.setItem("token", `Bearer ${res.data.access_token}`);
