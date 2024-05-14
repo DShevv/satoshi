@@ -43,47 +43,61 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
   }, []);
 
   return (
-    <BackgroundWrapper {...other}>
-      <Modal ref={ref}>
-        <Close
-          onClick={() => {
-            onClose();
-            document.body.classList.remove("scrollLock");
-          }}
-        >
-          <SvgClose />
-        </Close>
-        <Title>Регистрация пользователя</Title>
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-            passwordConfirm: "",
-          }}
-          validate={validateRegister}
-          validateOnChange={false}
-          validateOnBlur={false}
-          onSubmit={async (values, { setErrors }) => {
-            console.log(values);
-            const res = await register({
-              email: values.email,
-              password: values.password,
-            });
-            console.log("res", res);
+    <Formik
+      initialValues={{
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      }}
+      validate={validateRegister}
+      validateOnChange={false}
+      validateOnBlur={false}
+      onSubmit={async (values, { setErrors, resetForm }) => {
+        console.log(values);
+        const res = await register({
+          email: values.email,
+          password: values.password,
+        });
+        console.log("res", res);
 
-            if (res.status === 200) {
+        if (res.status === 200) {
+          onClose();
+          resetForm();
+          document.body.classList.remove("scrollLock");
+        } else {
+          console.log(res.response.data.detail);
+          setErrors({ email: "Указанный e-mail зарегистрирован" });
+        }
+      }}
+    >
+      {(formik) => {
+        const { errors, resetForm } = formik;
+
+        return (
+          <BackgroundWrapper
+            {...other}
+            onClick={() => {
               onClose();
+              resetForm();
               document.body.classList.remove("scrollLock");
-            } else {
-              console.log(res.response.data.detail);
-              setErrors({ email: "Указанный e-mail зарегистрирован" });
-            }
-          }}
-        >
-          {(formik) => {
-            const { errors } = formik;
-
-            return (
+            }}
+          >
+            <Modal
+              ref={ref}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <Close
+                onClick={() => {
+                  onClose();
+                  resetForm();
+                  document.body.classList.remove("scrollLock");
+                }}
+              >
+                <SvgClose />
+              </Close>
+              <Title>Регистрация пользователя</Title>
               <Form>
                 <StyledForm>
                   <InputIcon
@@ -129,10 +143,10 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
                   </UnderText>
                 </StyledForm>
               </Form>
-            );
-          }}
-        </Formik>
-      </Modal>
-    </BackgroundWrapper>
+            </Modal>
+          </BackgroundWrapper>
+        );
+      }}
+    </Formik>
   );
 });

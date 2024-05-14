@@ -35,51 +35,54 @@ export const LoginForm = observer(({ onClose, ...other }) => {
   }, []);
 
   return (
-    <BackgroundWrapper
-      {...other}
-      onClick={() => {
-        onClose();
-        document.body.classList.remove("scrollLock");
+    <Formik
+      initialValues={{
+        email: "",
+        password: "",
+      }}
+      validate={validateLogin}
+      validateOnChange={false}
+      validateOnBlur={false}
+      onSubmit={async (values, { setErrors, resetForm }) => {
+        console.log(values);
+        const res = await login(values);
+
+        if (res) {
+          console.log(res.response.data.detail);
+          setErrors({
+            email: "Неверный e-mail",
+            password: "Неверный пароль",
+          });
+        } else {
+          onClose();
+          resetForm();
+          document.body.classList.remove("scrollLock");
+        }
       }}
     >
-      <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
-        <Close
-          onClick={() => {
-            document.body.classList.remove("scrollLock");
-            onClose();
-          }}
-        >
-          <SvgClose />
-        </Close>
-        <Title>Авторизация</Title>
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-          }}
-          validate={validateLogin}
-          validateOnChange={false}
-          validateOnBlur={false}
-          onSubmit={async (values, { setErrors }) => {
-            console.log(values);
-            const res = await login(values);
+      {(formik) => {
+        const { errors, resetForm } = formik;
 
-            if (res) {
-              console.log(res.response.data.detail);
-              setErrors({
-                email: "Неверный e-mail",
-                password: "Неверный пароль",
-              });
-            } else {
+        return (
+          <BackgroundWrapper
+            {...other}
+            onClick={() => {
               onClose();
+              resetForm();
               document.body.classList.remove("scrollLock");
-            }
-          }}
-        >
-          {(formik) => {
-            const { errors } = formik;
-
-            return (
+            }}
+          >
+            <Modal ref={ref} onClick={(e) => e.stopPropagation()}>
+              <Close
+                onClick={() => {
+                  document.body.classList.remove("scrollLock");
+                  onClose();
+                  resetForm();
+                }}
+              >
+                <SvgClose />
+              </Close>
+              <Title>Авторизация</Title>
               <Form>
                 <StyledForm>
                   <InputIcon
@@ -108,10 +111,10 @@ export const LoginForm = observer(({ onClose, ...other }) => {
                   </UnderText>
                 </StyledForm>
               </Form>
-            );
-          }}
-        </Formik>
-      </Modal>
-    </BackgroundWrapper>
+            </Modal>
+          </BackgroundWrapper>
+        );
+      }}
+    </Formik>
   );
 });
