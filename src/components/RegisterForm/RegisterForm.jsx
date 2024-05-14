@@ -98,7 +98,7 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
                     name={"password"}
                     icon={<SvgPassword />}
                     isError={errors.password ? 1 : 0}
-                    errorText={"Короткий пароль"}
+                    errorText={errors.password ? errors.password : ""}
                   />
                   <InputIcon
                     style={{ marginTop: "10px" }}
@@ -107,7 +107,9 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
                     name={"passwordConfirm"}
                     icon={<SvgPassword />}
                     isError={errors.passwordConfirm ? 1 : 0}
-                    errorText={"Пароли не совпадают"}
+                    errorText={
+                      errors.passwordConfirm ? errors.passwordConfirm : ""
+                    }
                   />
                   <Hint>
                     Нажимая кнопку зарегистрироваться, я подтверждаю, что
