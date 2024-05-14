@@ -2,21 +2,21 @@ const validateRegister = (values) => {
   const errors = {};
 
   if (!values.email) {
-    errors.email = "Неверный e-mail";
+    errors.email = "Введите e-mail";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Неверный e-mail";
   }
 
   if (!values.password) {
-    errors.password = "Required";
+    errors.password = "Введите пароль";
   } else if (values.password.length < 3) {
-    errors.password = "Too short password";
+    errors.password = "Неверный пароль";
   }
 
   if (!values.passwordConfirm) {
-    errors.passwordConfirm = "Required";
+    errors.passwordConfirm = "Повторите пароль";
   } else if (values.password !== values.passwordConfirm) {
-    errors.passwordConfirm = "Passwords doesn't match";
+    errors.passwordConfirm = "Пароли не совпадают";
   }
 
   return errors;

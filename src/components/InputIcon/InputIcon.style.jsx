@@ -37,6 +37,17 @@ export const Input = styled(Field)`
   border: none;
   min-width: 0;
 
+  &:-webkit-autofill {
+    -webkit-text-fill-color: ${(props) => props.theme.colors.white}!important;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px ${(props) => props.theme.colors.black} inset !important;
+  }
+
   &::placeholder {
     font-weight: 400;
     font-size: 14px;
