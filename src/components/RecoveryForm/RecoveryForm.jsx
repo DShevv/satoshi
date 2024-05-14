@@ -126,7 +126,8 @@ const RecoveryForm = ({ onClose, ...other }) => {
                       </StyledSubmit>
                     </ButtonContainer>
                     <UnderText>
-                      Уже зарегистрированы? <Link to={"/register"}>Войти</Link>
+                      Уже зарегистрированы?{" "}
+                      <Link to={"/?auth=login"}>Войти</Link>
                     </UnderText>
                   </StyledForm>
                 </Form>
