@@ -14,7 +14,7 @@ const ThemeDark: DefaultTheme = {
     red: "#D80C15",
     redDark: "#db1010",
     redLight: "#fa1a1a",
-    error: "#F44336",
+    error: "#d80c15",
   },
 };
 

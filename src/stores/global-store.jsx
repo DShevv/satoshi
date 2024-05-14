@@ -48,12 +48,12 @@ class AuthStore {
     try {
       const res = await AuthService.register(data.email, data.password);
 
-      if (res.status !== 200) {
+      /*  if (res.status !== 200) {
         throw new Error(res);
-      }
+      } */
 
       console.log(res);
-      return res.status;
+      return res;
     } catch (error) {
       console.log(error);
     }
