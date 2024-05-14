@@ -69,8 +69,11 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
               email: values.email,
               password: values.password,
             });
-            if (res.status === "success") {
+            console.log("res", res);
+
+            if (res.status === 200) {
               onClose();
+              document.body.classList.remove("scrollLock");
             } else {
               console.log(res.response.data.detail);
               setErrors({ email: "Указанный e-mail зарегистрирован" });

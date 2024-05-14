@@ -97,4 +97,11 @@ export const Container = styled.label`
     color: ${(props) =>
       props.$isError ? props.theme.colors.error : props.theme.colors.white};
   }
+
+  ${Input}:-webkit-autofill {
+    -webkit-text-fill-color: ${(props) =>
+      props.$isError
+        ? props.theme.colors.error
+        : props.theme.colors.white}!important;
+  }
 `;

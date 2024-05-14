@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 import {
   Container,
   Error,
@@ -18,8 +17,6 @@ const InputIcon = ({
   errorText,
   ...other
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   return (
     <Container {...other} $isError={isError}>
       <InputContainer>

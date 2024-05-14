@@ -421,6 +421,7 @@ export const SvgClose = (props) => {
       viewBox="0 0 31 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M23.25 7.75L7.75 23.25"

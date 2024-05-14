@@ -64,14 +64,15 @@ export const LoginForm = observer(({ onClose, ...other }) => {
             console.log(values);
             const res = await login(values);
 
-            if (res.status === "success") {
-              onClose();
-            } else {
+            if (res) {
               console.log(res.response.data.detail);
               setErrors({
                 email: "Неверный e-mail",
                 password: "Неверный пароль",
               });
+            } else {
+              onClose();
+              document.body.classList.remove("scrollLock");
             }
           }}
         >

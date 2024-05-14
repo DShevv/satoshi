@@ -10,7 +10,7 @@ const validateLogin = (values) => {
   if (!values.password) {
     errors.password = "Введите пароль";
   } else if (values.password.length < 3) {
-    errors.password = "Неверный пароль";
+    errors.password = "Короткий пароль";
   }
 
   return errors;
