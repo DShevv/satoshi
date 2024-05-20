@@ -47,7 +47,8 @@ const InputFieldCurrency = ({
         />
         {current && (
           <CurrentCurrency
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setActive(true);
 
               document.body.classList.add("scrollLock-select");

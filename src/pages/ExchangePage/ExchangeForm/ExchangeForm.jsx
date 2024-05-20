@@ -11,7 +11,6 @@ import {
   SvgRefresh,
 } from "./ExchangeForm.style";
 import InputFieldCurrency from "../../../components/InputFieldCurrency/InputFieldCurrency";
-import { SvgRefreshCur } from "../../../assets/icons/svgs";
 
 const ExchangeForm = ({
   isSell,
@@ -30,6 +29,7 @@ const ExchangeForm = ({
   return (
     <Container {...other}>
       <InputFieldCurrency
+        type={"tel"}
         title={`Отправляете: ${currencies.from.title}`}
         current={currencies.from}
         items={allItems.from}
@@ -48,6 +48,7 @@ const ExchangeForm = ({
         <RefreshLine />
       </RefreshContainer>
       <InputFieldCurrency
+        type={"tel"}
         title={`Получаете: ${currencies.to.title}`}
         current={currencies.to}
         items={allItems.to}
