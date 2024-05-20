@@ -42,7 +42,6 @@ const ExchangeForm = ({
         <RefreshLine />
       </RefreshContainer>
       <InputFieldCurrency
-        value={1234}
         title={`Получаете: ${currencies.to.title}`}
         hint={currencies.to.hint}
         current={currencies.to}
@@ -50,7 +49,6 @@ const ExchangeForm = ({
         onChange={onSelects.setTo}
         min={"5 000"}
         info={"Min:  Резервы: 38 395 426 RUB"}
-        disabled
       />
       <ButtonContainer>
         <SubmitButton onClick={onSubmit}>Перейти к обмену</SubmitButton>

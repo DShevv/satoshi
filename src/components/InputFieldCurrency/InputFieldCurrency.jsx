@@ -22,7 +22,6 @@ import { useState } from "react";
 import { SvgClose, SvgOpenArrow } from "../../assets/icons/svgs";
 
 const InputFieldCurrency = ({
-  value,
   type,
   title,
   current,
@@ -45,7 +44,6 @@ const InputFieldCurrency = ({
           type={type ? type : "text"}
           placeholder={placeholder}
           disabled={disabled}
-          value={value}
         />
         {current && (
           <CurrentCurrency

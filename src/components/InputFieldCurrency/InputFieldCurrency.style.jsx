@@ -34,6 +34,7 @@ export const Input = styled.input`
   background-color: transparent;
   outline: none;
   border: none;
+  min-width: 0;
 
   &::placeholder {
     font-weight: 400;

@@ -9,7 +9,7 @@ export const Container = styled.main`
 
 export const StyledToast = styled(ToastContainer)`
   position: fixed;
-  bottom: 5px;
+  top: 5px;
   right: 5px;
   display: flex;
   flex-direction: column;

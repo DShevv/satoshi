@@ -12,7 +12,7 @@ function MainPage() {
       <Footer />
 
       <StyledToast
-        position="bottom-right"
+        position="top-right"
         autoClose={1000}
         hideProgressBar={true}
         newestOnTop={false}
