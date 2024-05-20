@@ -1,13 +1,15 @@
 import styled from "styled-components";
+import refresh from "../../../assets/icons/refresh.svg";
+import refreshGlow from "../../../assets/icons/refresh-glow.svg";
 
 export const Container = styled.div`
-  margin: 0 auto;
-
-  margin-top: 73px;
-  margin-bottom: 104px;
   border-radius: 25px;
-  width: 518px;
-  padding: 52px 68px;
+  max-width: 520px;
+  flex: 1 1 auto;
+  padding: 34px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   background-color: ${(props) => props.theme.colors.blackGray};
 
@@ -21,11 +23,20 @@ export const Container = styled.div`
 `;
 
 export const ExchangeIcon = styled.div`
-  margin-top: 4px;
-  margin-bottom: 20px;
+  width: 65px;
+  height: 65px;
+  flex: 0 0 45px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(${refresh});
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+
+  &:hover {
+    background-image: url(${refreshGlow});
+  }
 `;
 
 export const Policy = styled.div`
@@ -36,8 +47,25 @@ export const Policy = styled.div`
   letter-spacing: -0.02em;
   text-align: center;
   color: ${(props) => props.theme.colors.gray};
+  max-width: 348px;
 `;
 
 export const ButtonContainer = styled.div`
   margin-top: 46px;
+  width: 100%;
+`;
+
+export const RefreshContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+`;
+
+export const RefreshLine = styled.div`
+  flex: 1 1 auto;
+  width: 100%;
+  height: 2px;
+  background-color: ${(props) => props.theme.colors.grayEmpty};
 `;

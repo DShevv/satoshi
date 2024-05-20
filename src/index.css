@@ -10,7 +10,8 @@ body {
   position: relative;
 }
 
-.scrollLock {
+.scrollLock,
+.scrollLock-select {
   width: 100%;
   position: fixed;
   overflow-y: scroll;

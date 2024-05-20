@@ -1154,3 +1154,18 @@ export const SvgUserMobile = (props) => {
     </svg>
   );
 };
+
+export const SvgOpenArrow = (props) => {
+  return (
+    <svg
+      width="11"
+      height="7"
+      viewBox="0 0 11 7"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path d="M10 1L5.5 5L1 1" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+};

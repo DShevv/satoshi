@@ -1,23 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { SvgRefresh } from "../../../assets/icons/svgs";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
+import InputField from "../../../components/InputField/InputField";
 import {
   ButtonContainer,
   Container,
   ExchangeIcon,
   Policy,
-  RefreshContainer,
-  RefreshLine,
 } from "./ExchangeForm.style";
-import InputFieldCurrency from "../../../components/InputFieldCurrency/InputFieldCurrency";
 
-const ExchangeForm = ({
-  isSell,
-  currencies,
-  handleChange,
-  allItems,
-  onSelects,
-  ...other
-}) => {
+const ExchangeForm = ({ isSell, currencies, ...other }) => {
   const navigate = useNavigate();
 
   const onSubmit = () => {
@@ -26,28 +18,19 @@ const ExchangeForm = ({
 
   return (
     <Container {...other}>
-      <InputFieldCurrency
+      <InputField
         title={`Отправляете: ${currencies.from.title}`}
         hint={currencies.from.hint}
-        current={currencies.from}
-        items={allItems.from}
-        onChange={onSelects.setFrom}
         min={"118"}
         max={"4 000"}
         info={`1 ${currencies.from.title} = 64 RUB`}
       />
-      <RefreshContainer>
-        <RefreshLine />
-        <ExchangeIcon onClick={handleChange} />
-        <RefreshLine />
-      </RefreshContainer>
-      <InputFieldCurrency
-        value={1234}
+      <ExchangeIcon>
+        <SvgRefresh />
+      </ExchangeIcon>
+      <InputField
         title={`Получаете: ${currencies.to.title}`}
         hint={currencies.to.hint}
-        current={currencies.to}
-        items={allItems.to}
-        onChange={onSelects.setTo}
         min={"5 000"}
         info={"Min:  Резервы: 38 395 426 RUB"}
         disabled
