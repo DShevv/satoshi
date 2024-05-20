@@ -66,7 +66,6 @@ export const RegisterForm = observer(({ onClose, ...other }) => {
           document.body.classList.remove("scrollLock");
         } else {
           console.log(res.response.data.detail);
-          setErrors({ email: "Указанный e-mail зарегистрирован" });
         }
       }}
     >

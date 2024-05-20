@@ -2,6 +2,8 @@ import UserStore from "./user-store";
 import { makeAutoObservable, runInAction } from "mobx";
 import { makePersistable, stopPersisting } from "mobx-persist-store";
 import AuthService from "../services/AuthService";
+import { toast } from "react-toastify";
+import Notification from "../components/Notification/Notification";
 
 class AuthStore {
   isAuthorized = false;
@@ -27,9 +29,11 @@ class AuthStore {
       console.log(res);
 
       if (res.status !== 200) {
+        toast(<Notification text={"Введены неверные данные"} type={"error"} />);
         return res;
       }
 
+      toast(<Notification text={"Вход прошёл успешно"} type={"success"} />);
       localStorage.setItem("token", `Bearer ${res.data.access_token}`);
       localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
 
@@ -48,10 +52,19 @@ class AuthStore {
     try {
       const res = await AuthService.register(data.email, data.password);
 
-      /*  if (res.status !== 200) {
-        throw new Error(res);
-      } */
+      if (res.status !== 200) {
+        toast(
+          <Notification
+            text={"Указанный e-mail зарегистрирован"}
+            type={"error"}
+          />
+        );
+        return res;
+      }
 
+      toast(
+        <Notification text={"Регистрация прошла успешно"} type={"success"} />
+      );
       console.log(res);
       return res;
     } catch (error) {

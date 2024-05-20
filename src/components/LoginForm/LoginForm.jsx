@@ -49,10 +49,6 @@ export const LoginForm = observer(({ onClose, ...other }) => {
 
         if (res) {
           console.log(res.response.data.detail);
-          setErrors({
-            email: "Неверный e-mail",
-            password: "Неверный пароль",
-          });
         } else {
           onClose();
           resetForm();
