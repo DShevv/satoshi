@@ -7,8 +7,11 @@ import {
   Policy,
   RefreshContainer,
   RefreshLine,
+  StyledSvgRefreshGlow,
+  SvgRefresh,
 } from "./ExchangeForm.style";
 import InputFieldCurrency from "../../../components/InputFieldCurrency/InputFieldCurrency";
+import { SvgRefreshCur } from "../../../assets/icons/svgs";
 
 const ExchangeForm = ({
   isSell,
@@ -37,7 +40,11 @@ const ExchangeForm = ({
       />
       <RefreshContainer>
         <RefreshLine />
-        <ExchangeIcon onClick={handleChange} />
+        <ExchangeIcon onClick={handleChange}>
+          <SvgRefresh />
+
+          <StyledSvgRefreshGlow />
+        </ExchangeIcon>
         <RefreshLine />
       </RefreshContainer>
       <InputFieldCurrency

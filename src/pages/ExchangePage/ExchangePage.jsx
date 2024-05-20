@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import { Caption, PageContainer, SubTitle, Title } from "./ExchangePage.style";
 
@@ -26,8 +26,6 @@ const banks = [
 
 const ExchangePage = () => {
   const [isSell, setIsSell] = useState(0);
-  const cryptoRef = useRef(null);
-  const bankRef = useRef(null);
   const [currencies, setCurrencies] = useState({
     to: currs[0],
     from: banks[0],
