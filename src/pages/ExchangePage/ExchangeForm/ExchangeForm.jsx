@@ -28,7 +28,6 @@ const ExchangeForm = ({
     <Container {...other}>
       <InputFieldCurrency
         title={`Отправляете: ${currencies.from.title}`}
-        hint={currencies.from.hint}
         current={currencies.from}
         items={allItems.from}
         onChange={onSelects.setFrom}
@@ -43,7 +42,6 @@ const ExchangeForm = ({
       </RefreshContainer>
       <InputFieldCurrency
         title={`Получаете: ${currencies.to.title}`}
-        hint={currencies.to.hint}
         current={currencies.to}
         items={allItems.to}
         onChange={onSelects.setTo}
