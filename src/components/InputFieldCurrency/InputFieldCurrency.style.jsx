@@ -15,7 +15,7 @@ export const Title = styled.div`
 export const Label = styled.label`
   height: 49px;
   min-width: 0;
-  display: "flex";
+  display: flex;
   align-items: center;
 `;
 
