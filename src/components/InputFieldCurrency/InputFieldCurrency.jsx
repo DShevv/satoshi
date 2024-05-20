@@ -10,6 +10,7 @@ import {
   Input,
   InputContainer,
   ItemCaption,
+  Label,
   List,
   ListArrow,
   ListItem,
@@ -40,13 +41,13 @@ const InputFieldCurrency = ({
     <Container {...other}>
       {title && <Title>{title}</Title>}
       <InputContainer>
-        <label style={{ height: "49px" }}>
+        <Label>
           <Input
             type={type ? type : "text"}
             placeholder={placeholder}
             disabled={disabled}
           />
-        </label>
+        </Label>
         {current && (
           <CurrentCurrency
             onClick={(e) => {

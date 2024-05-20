@@ -12,6 +12,13 @@ export const Title = styled.div`
   color: ${(props) => props.theme.colors.white};
 `;
 
+export const Label = styled.label`
+  height: 49px;
+  min-width: 0;
+  display: "flex";
+  align-items: center;
+`;
+
 export const InputContainer = styled.div`
   margin-bottom: 9px;
   padding: 20px 24px 20px 29px;
