@@ -40,11 +40,13 @@ const InputFieldCurrency = ({
     <Container {...other}>
       {title && <Title>{title}</Title>}
       <InputContainer>
-        <Input
-          type={type ? type : "text"}
-          placeholder={placeholder}
-          disabled={disabled}
-        />
+        <label style={{ height: "49px" }}>
+          <Input
+            type={type ? type : "text"}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        </label>
         {current && (
           <CurrentCurrency
             onClick={(e) => {
