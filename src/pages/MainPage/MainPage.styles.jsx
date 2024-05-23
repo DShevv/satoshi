@@ -9,8 +9,8 @@ export const Container = styled.main`
 
 export const StyledToast = styled(ToastContainer)`
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 132px;
+  right: 35px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -18,4 +18,8 @@ export const StyledToast = styled(ToastContainer)`
   width: calc(100% - 10px);
 
   max-width: 367px;
+
+  @media (max-width: 1080px) {
+    top: 84px;
+  }
 `;

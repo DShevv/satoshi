@@ -12,9 +12,11 @@ const ThemeDark: DefaultTheme = {
     grayLight: "rgba(236, 236, 236, 0.09)",
     grayEmpty: "#4A4A4A",
     red: "#D80C15",
+    redError: "#AD0008",
     redDark: "#db1010",
     redLight: "#fa1a1a",
     error: "#d80c15",
+    green: "#21A426",
   },
 };
 

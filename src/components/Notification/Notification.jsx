@@ -1,5 +1,6 @@
-import { Alert } from "@mui/material";
 import { useEffect } from "react";
+import { Close, Container } from "./Notification.style";
+import { SvgNotiError, SvgNotiOk } from "../../assets/icons/svgs";
 
 const Notification = ({ type, text, closeToast, toastProps }) => {
   useEffect(() => {
@@ -15,16 +16,16 @@ const Notification = ({ type, text, closeToast, toastProps }) => {
         toastProps.deleteToast();
       }}
     >
-      <Alert
-        onClose={() => {
-          closeToast();
-        }}
-        severity={type}
-        variant="filled"
-        sx={{ width: "calc(100%)" }}
-      >
-        {text}
-      </Alert>
+      <Container $isError={type === "error" ? 1 : 0}>
+        {type === "error" ? <SvgNotiError /> : <SvgNotiOk />}
+        <span>{text}</span>
+        <Close
+          onClick={() => {
+            closeToast();
+            toastProps.deleteToast();
+          }}
+        />
+      </Container>
     </div>
   );
 };
