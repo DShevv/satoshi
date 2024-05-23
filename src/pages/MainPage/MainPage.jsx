@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../../components/Header/Header";
 import { Container, StyledToast } from "./MainPage.styles";
 import Footer from "../../components/Footer/Footer";
-import { Slide } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 function MainPage() {
   return (
@@ -19,7 +19,7 @@ function MainPage() {
         closeOnClick
         progressStyle={{ display: "none" }}
         closeButton={false}
-        transition={Slide}
+        transition={Bounce}
       />
     </Container>
   );

@@ -10,12 +10,7 @@ import usdt from "../../assets/icons/usdt.svg";
 import sber from "../../assets/icons/sder.svg";
 import ymoney from "../../assets/icons/youmoney.svg";
 
-const currs = [
-  { title: "Bitcoin", image: ethc, hint: "BTC" },
-  { title: "Ethereum", image: ethc, hint: "ETH" },
-  { title: "Ethereum", image: ethc, hint: "BTC" },
-  { title: "Tether", image: usdt, hint: "USDT TRC20" },
-];
+const currs = [{ title: "Tether", image: usdt, hint: "USDT TRC20" }];
 
 const banks = [
   { title: "Сбербанк", image: sber, hint: "RUB" },

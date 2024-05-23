@@ -17,6 +17,8 @@ export const Container = styled.div`
   background-color: ${(props) =>
     props.$isError ? props.theme.colors.redError : props.theme.colors.green};
   cursor: pointer;
+  animation: 0.3s ease appear;
+  transition: all 0.3s ease;
 
   svg {
     width: 22px;
@@ -29,6 +31,16 @@ export const Container = styled.div`
     font-size: 14px;
     color: ${(props) => props.theme.colors.white};
     flex: 1 1 auto;
+  }
+
+  @keyframes appear {
+    0% {
+      transform: translateX(calc(100% + 35px));
+    }
+
+    100% {
+      transform: translateX(0%);
+    }
   }
 `;
 
