@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Close, Container, Wrapper } from "./Notification.style";
-import { SvgNotiError, SvgNotiOk } from "../../assets/icons/svgs";
+import { SvgNotiCross, SvgNotiError, SvgNotiOk } from "../../assets/icons/svgs";
 
 const Notification = ({ type, text, closeToast, toastProps }) => {
   useEffect(() => {
@@ -25,7 +25,9 @@ const Notification = ({ type, text, closeToast, toastProps }) => {
             closeToast();
             toastProps.deleteToast();
           }}
-        />
+        >
+          <SvgNotiCross />
+        </Close>
       </Container>
     </Wrapper>
   );

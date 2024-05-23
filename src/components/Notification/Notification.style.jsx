@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import cross from "../../assets/icons/noti-cross.svg";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -41,6 +40,10 @@ export const Close = styled.button`
   background-color: transparent;
   outline: none;
   border: none;
-  background: url(${cross});
   cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
