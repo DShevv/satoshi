@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
+  width: 100%;
   border-radius: 37px;
   padding: 13px 24px;
   color: ${(props) => props.theme.colors.white};
