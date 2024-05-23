@@ -1,13 +1,44 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.section`
+export const WrapperBorder = styled.div`
+  position: relative;
   margin-top: 87px;
   margin-bottom: 160px;
+
+  @media (max-width: 1080px) {
+    margin-top: 46px;
+    margin-bottom: 70px;
+    width: 100%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: 0;
+    border-radius: 25px;
+
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.23573179271708689) 51%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+`;
+
+export const Container = styled.section`
   width: 100%;
   border-radius: 25px;
   background-color: ${(props) => props.theme.colors.blackGray};
   padding: 28px 73px 64px 66px;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 1080px) {
     margin-top: 46px;
