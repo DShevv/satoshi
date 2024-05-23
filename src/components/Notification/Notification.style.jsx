@@ -38,9 +38,9 @@ export const Close = styled.button`
   height: 16px;
   flex: 0 0 16px;
 
-  background: transparent;
+  background-color: transparent;
   outline: none;
   border: none;
-  background-image: url(${cross});
+  background: url(${cross});
   cursor: pointer;
 `;
