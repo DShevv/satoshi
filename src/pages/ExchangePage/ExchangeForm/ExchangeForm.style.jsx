@@ -1,37 +1,5 @@
 import styled from "styled-components";
-import refresh from "../../../assets/icons/refresh.svg";
-import refreshGlow from "../../../assets/icons/refresh-glow.svg";
 import { SvgRefreshCur, SvgRefreshGlow } from "../../../assets/icons/svgs";
-
-export const Wrapper = styled.div`
-  position: relative;
-
-  @media (max-width: 1080px) {
-    width: 100%;
-    max-width: 518px;
-    margin-top: 54px;
-    margin-bottom: 70px;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    z-index: 0;
-    border-radius: 25px;
-
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      70deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.23573179271708689) 51%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
-`;
 
 export const Container = styled.div`
   border-radius: 25px;
@@ -41,9 +9,21 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  z-index: 1;
-  background-color: ${(props) => props.theme.colors.blackGray};
+
+  border: 1px solid transparent;
+
+  background: linear-gradient(
+        ${(props) => props.theme.colors.blackGray},
+        ${(props) => props.theme.colors.blackGray}
+      )
+      padding-box,
+    linear-gradient(
+        70deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.23573179271708689) 51%,
+        rgba(255, 255, 255, 0) 100%
+      )
+      border-box;
 
   @media (max-width: 1080px) {
     width: 100%;
@@ -60,14 +40,7 @@ export const ExchangeIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /*  background-image: url(${refresh});
-  background-position: center;
-  background-size: cover; */
   cursor: pointer;
-
-  /*  &:hover {
-    background-image: url(${refreshGlow});
-  } */
 `;
 
 export const Policy = styled.div`

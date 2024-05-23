@@ -146,6 +146,25 @@ export const Modal = styled.div`
     width: calc(100% - 30px);
     padding: 25px 25px 25px 25px;
   }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: -1;
+    border-radius: 25px;
+
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      70deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.23573179271708689) 51%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
 `;
 
 export const Close = styled.div`
