@@ -9,8 +9,8 @@ export const BackgroundWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  backdrop-filter: blur(18px);
-  background: rgba(182, 182, 182, 0.15);
+  backdrop-filter: blur(10px);
+  background: rgba(35, 35, 35, 0.15);
   z-index: -1;
   transition: all 0.3s ease;
   opacity: 0;

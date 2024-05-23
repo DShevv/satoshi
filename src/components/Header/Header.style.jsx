@@ -87,8 +87,8 @@ export const MenuWrapper = styled.div`
   top: -1000px;
   left: 0;
 
-  backdrop-filter: blur(18px);
-  background: rgba(182, 182, 182, 0.15);
+  backdrop-filter: blur(10px);
+  background: rgba(35, 35, 35, 0.15);
   z-index: 100;
 
   transition: all 0.5s ease;
