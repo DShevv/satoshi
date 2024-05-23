@@ -21,5 +21,7 @@ export const StyledToast = styled(ToastContainer)`
 
   @media (max-width: 1080px) {
     top: 84px;
+    right: 15px;
+    width: calc(100% - 30px);
   }
 `;

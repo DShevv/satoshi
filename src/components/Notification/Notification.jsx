@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Close, Container } from "./Notification.style";
+import { Close, Container, Wrapper } from "./Notification.style";
 import { SvgNotiError, SvgNotiOk } from "../../assets/icons/svgs";
 
 const Notification = ({ type, text, closeToast, toastProps }) => {
@@ -10,13 +10,14 @@ const Notification = ({ type, text, closeToast, toastProps }) => {
   }, []);
 
   return (
-    <div
-      onClick={(e) => {
-        e.stopPropagation();
-        toastProps.deleteToast();
-      }}
-    >
-      <Container $isError={type === "error" ? 1 : 0}>
+    <Wrapper>
+      <Container
+        $isError={type === "error" ? 1 : 0}
+        onClick={(e) => {
+          e.stopPropagation();
+          toastProps.deleteToast();
+        }}
+      >
         {type === "error" ? <SvgNotiError /> : <SvgNotiOk />}
         <span>{text}</span>
         <Close
@@ -26,7 +27,7 @@ const Notification = ({ type, text, closeToast, toastProps }) => {
           }}
         />
       </Container>
-    </div>
+    </Wrapper>
   );
 };
 

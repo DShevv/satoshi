@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import cross from "../../assets/icons/noti-cross.svg";
 
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: end;
+`;
+
 export const Container = styled.div`
   border-radius: 37px;
   padding: 13px 24px;
