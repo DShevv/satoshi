@@ -7,7 +7,7 @@ const Notification = forwardRef(({ type, text, closeToast }, ref) => {
 
   useEffect(() => {
     setTimeout(() => {
-      //setClosing(true);
+      setClosing(true);
     }, 4000);
   }, []);
 
