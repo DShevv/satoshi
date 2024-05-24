@@ -52,16 +52,18 @@ const InputFieldCurrency = ({
           <CurrentCurrency
             onClick={(e) => {
               e.stopPropagation();
-              setActive(true);
 
-              document.body.classList.add("scrollLock-select");
+              if (items.length > 1) {
+                setActive(true);
+                document.body.classList.add("scrollLock-select");
+              }
             }}
           >
             <CurrentImage src={current.image} />
             <CurrentText>
               {current.title} {current.hint}
             </CurrentText>
-            <CurrentArrow src={arrow} />
+            {items.length > 1 && <CurrentArrow src={arrow} />}
           </CurrentCurrency>
         )}
       </InputContainer>
@@ -75,49 +77,51 @@ const InputFieldCurrency = ({
       ) : (
         ""
       )}
-      <BackgroundWrapper
-        className={active ? "active" : ""}
-        onClick={() => {
-          setActive(false);
-          document.body.classList.remove("scrollLock-select");
-        }}
-      >
-        <Modal
-          onClick={(e) => {
-            e.stopPropagation();
+      {items.length > 1 && (
+        <BackgroundWrapper
+          className={active ? "active" : ""}
+          onClick={() => {
+            setActive(false);
+            document.body.classList.remove("scrollLock-select");
           }}
         >
-          <ModalTitle>Выберите валюту</ModalTitle>
-          <List>
-            {items.map((item, index) => (
-              <ListItem
-                key={`${item.text}${index}`}
-                onClick={() => {
-                  onChange(item);
-                  setActive(false);
-                  document.body.classList.remove("scrollLock-select");
-                }}
-              >
-                <CurrentImage src={item.image} />
-                <ItemCaption>
-                  {item.title} {item.hint}
-                </ItemCaption>
-                <ListArrow>
-                  <SvgOpenArrow />
-                </ListArrow>
-              </ListItem>
-            ))}
-          </List>
-          <Close
-            onClick={() => {
-              document.body.classList.remove("scrollLock-select");
-              setActive(false);
+          <Modal
+            onClick={(e) => {
+              e.stopPropagation();
             }}
           >
-            <SvgClose />
-          </Close>
-        </Modal>
-      </BackgroundWrapper>
+            <ModalTitle>Выберите валюту</ModalTitle>
+            <List>
+              {items.map((item, index) => (
+                <ListItem
+                  key={`${item.text}${index}`}
+                  onClick={() => {
+                    onChange(item);
+                    setActive(false);
+                    document.body.classList.remove("scrollLock-select");
+                  }}
+                >
+                  <CurrentImage src={item.image} />
+                  <ItemCaption>
+                    {item.title} {item.hint}
+                  </ItemCaption>
+                  <ListArrow>
+                    <SvgOpenArrow />
+                  </ListArrow>
+                </ListItem>
+              ))}
+            </List>
+            <Close
+              onClick={() => {
+                document.body.classList.remove("scrollLock-select");
+                setActive(false);
+              }}
+            >
+              <SvgClose />
+            </Close>
+          </Modal>
+        </BackgroundWrapper>
+      )}
     </Container>
   );
 };

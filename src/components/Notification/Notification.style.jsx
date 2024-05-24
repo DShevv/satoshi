@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   justify-content: end;
+  transition: all 0.2s ease;
+  position: relative;
+  width: 100%;
 `;
 
 export const Container = styled.div`
@@ -33,6 +36,11 @@ export const Container = styled.div`
     flex: 1 1 auto;
   }
 
+  &.hide {
+    animation: 0.2s ease disappear;
+    transition: all 0.1s ease;
+  }
+
   @keyframes appear {
     0% {
       transform: translateX(calc(100% + 35px));
@@ -42,6 +50,18 @@ export const Container = styled.div`
     100% {
       transform: translateX(0%);
       opacity: 1;
+    }
+  }
+
+  @keyframes disappear {
+    0% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(calc(100% + 35px));
+      opacity: 0;
     }
   }
 `;

@@ -1,13 +1,6 @@
-import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 
-export const Container = styled.main`
-  width: 100%;
-  min-height: 100vh;
-  background-color: ${(props) => props.theme.colors.black};
-`;
-
-export const StyledToast = styled(ToastContainer)`
+export const StyledContainer = styled.div`
   position: fixed;
   top: 132px;
   right: 35px;
@@ -20,10 +13,6 @@ export const StyledToast = styled(ToastContainer)`
 
   max-width: 367px;
   transition: all 0.2s ease;
-
-  div {
-    transition: all 0.2s ease;
-  }
 
   @media (max-width: 1080px) {
     top: 84px;

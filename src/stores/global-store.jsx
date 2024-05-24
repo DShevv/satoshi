@@ -4,6 +4,9 @@ import { makePersistable, stopPersisting } from "mobx-persist-store";
 import AuthService from "../services/AuthService";
 import { toast } from "react-toastify";
 import Notification from "../components/Notification/Notification";
+import NotificationStore from "./notificatoon-store";
+
+const notificationStore = new NotificationStore();
 
 class AuthStore {
   isAuthorized = false;
@@ -29,10 +32,12 @@ class AuthStore {
       console.log(res);
 
       if (res.status !== 200) {
+        notificationStore.setNotification("error", "Введены неверные данные");
         toast(<Notification text={"Введены неверные данные"} type={"error"} />);
         return res;
       }
 
+      notificationStore.setNotification("success", "Вход прошёл успешно");
       toast(<Notification text={"Вход прошёл успешно"} type={"success"} />);
       localStorage.setItem("token", `Bearer ${res.data.access_token}`);
       localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
@@ -101,10 +106,12 @@ class AuthStore {
 class GlobalStore {
   userStore;
   authStore;
+  notificationStore;
 
-  constructor(authStore, userStore) {
+  constructor(authStore, userStore, notificationStore) {
     this.authStore = authStore;
     this.userStore = userStore;
+    this.notificationStore = notificationStore;
   }
 
   stopStore() {
@@ -116,6 +123,6 @@ class GlobalStore {
 const authStore = new AuthStore();
 const userStore = new UserStore(authStore);
 
-const globalStore = new GlobalStore(authStore, userStore);
+const globalStore = new GlobalStore(authStore, userStore, notificationStore);
 
 export default globalStore;
