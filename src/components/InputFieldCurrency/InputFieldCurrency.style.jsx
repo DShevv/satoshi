@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -31,7 +32,7 @@ export const InputContainer = styled.div`
   gap: 5px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   flex: 1 1 auto;
   font-family: inherit;
   font-weight: 400;
@@ -95,15 +96,15 @@ export const CurrentCurrency = styled.div`
 export const CurrentText = styled.div`
   font-weight: 600;
   font-size: 12px;
-  line-height: 143%;
+  line-height: 134%;
   letter-spacing: -0.02em;
   color: ${(props) => props.theme.colors.white};
 `;
 
 export const CurrentImage = styled.img`
-  width: 21px;
-  height: 21px;
-  flex: 0 0 21px;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
 `;
 
 export const CurrentArrow = styled.img`
@@ -201,7 +202,7 @@ export const ListArrow = styled.div`
 export const ItemCaption = styled.div`
   font-weight: 600;
   font-size: 16px;
-  line-height: 119%;
+  line-height: 100%;
   letter-spacing: -0.02em;
   color: ${(props) => props.theme.colors.white};
 `;
@@ -225,4 +226,10 @@ export const ListItem = styled.button`
   &:hover ${ItemCaption}, &:hover ${ListArrow} {
     color: ${(props) => props.theme.colors.red};
   }
+`;
+
+export const ListItemContainer = styled.div`
+  display: flex;
+  gap: 11px;
+  align-items: center;
 `;

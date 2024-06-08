@@ -1,8 +1,12 @@
 import style from "./Success.module.css";
 
-const SuccessAnim = () => {
+const SuccessAnim = ({ ...other }) => {
   return (
-    <div className={style.successAnimation}>
+    <div
+      className={`${style.successAnimation} ${
+        other.className === "offline" ? style.offline : ""
+      }`}
+    >
       <svg
         className={style.checkmark}
         xmlns="http://www.w3.org/2000/svg"

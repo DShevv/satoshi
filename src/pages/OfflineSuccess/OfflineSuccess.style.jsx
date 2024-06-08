@@ -1,7 +1,6 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const BlockWrapper = styled.div`
   position: relative;
   margin: 0 auto;
   width: 518px;
@@ -40,10 +39,9 @@ export const Container = styled.div`
   border-radius: 25px;
   width: 518px;
   padding: 32px 68px 40px;
-
   display: flex;
   flex-direction: column;
-  gap: 24px;
+
   position: relative;
   z-index: 2;
 
@@ -56,46 +54,32 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h1`
+  margin-top: 24px;
+  margin-bottom: 8px;
+  text-align: center;
   font-weight: 700;
+  font-size: 24px;
+  color: ${(props) => props.theme.colors.white};
+`;
+
+export const Text = styled.p`
+  font-weight: 400;
   font-size: 16px;
+  text-align: center;
+  color: ${(props) => props.theme.colors.white};
+  margin-bottom: 32px;
+`;
+
+export const Number = styled.div`
+  margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
   color: ${(props) => props.theme.colors.white};
 
-  @media (max-width: 1080px) {
-    margin-bottom: 0;
-  }
-`;
-
-export const Text = styled.div`
-  font-weight: 600;
-  font-size: 21px;
-  color: ${(props) => props.theme.colors.white};
-
-  @media (max-width: 1080px) {
-    font-size: 18px;
-  }
-`;
-
-export const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  @media (max-width: 1080px) {
-    margin-top: 63px;
-  }
-`;
-
-export const QrCode = styled(NavLink)`
-  width: 95px;
-  height: 95px;
-  margin: 0 auto;
-  margin-top: -8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 1080px) {
-    display: none;
+  span {
+    display: block;
+    font-weight: 700;
   }
 `;

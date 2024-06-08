@@ -29,7 +29,14 @@ export const InfoItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
+  justify-content: start;
+`;
+
+export const InfoImage = styled.img`
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  object-position: center;
 `;
 
 export const ItemTitle = styled.div`
@@ -43,6 +50,15 @@ export const ItemTitle = styled.div`
   @media (max-width: 1080px) {
     font-size: 15px;
   }
+`;
+
+export const ItemSubtitle = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 157%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: ${(props) => props.theme.colors.white};
 `;
 
 export const ItemSummary = styled.div`
@@ -60,10 +76,13 @@ export const ItemSummary = styled.div`
 export const Icon = styled.div`
   transform: rotate(90deg);
   height: fit-content;
+  display: flex;
+  justify-content: center;
+  margin-top: -4px;
 `;
 
 export const InfoCourse = styled.div`
-  margin-top: 20px;
+  margin-top: 12px;
   font-weight: 700;
   font-size: 14px;
   line-height: 157%;
@@ -71,7 +90,7 @@ export const InfoCourse = styled.div`
   color: ${(props) => props.theme.colors.gray};
 
   @media (max-width: 1080px) {
-    margin-top: 17px;
+    margin-top: 12px;
     font-size: 13px;
   }
 `;

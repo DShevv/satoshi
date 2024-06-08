@@ -39,7 +39,8 @@ export const Container = styled.div`
   margin-bottom: 107px;
   border-radius: 25px;
   width: 518px;
-  padding: 52px 68px;
+  padding: 32px 68px 40px;
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -55,7 +56,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   font-weight: 700;
   font-size: 16px;
   color: ${(props) => props.theme.colors.white};
@@ -84,7 +85,6 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const TimeContainer = styled.div`
-  margin-bottom: 33px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -109,12 +109,11 @@ export const Time = styled.div`
 `;
 
 export const CurrencyInfo = styled.div`
-  margin-top: 57px;
   display: flex;
   gap: 13px;
 
   @media (max-width: 1080px) {
-    margin-top: 65px;
+    margin-top: 0;
   }
 `;
 
@@ -138,7 +137,7 @@ export const CurrencyValue = styled.div`
 export const WalletContainer = styled.div`
   margin-top: 15px;
   color: ${(props) => props.theme.colors.white};
-  margin-bottom: 60px;
+  margin-bottom: 32px;
 
   @media (max-width: 1080px) {
     margin-bottom: 30px;

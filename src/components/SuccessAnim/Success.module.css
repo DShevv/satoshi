@@ -2,6 +2,15 @@
   margin: 65px auto 57px auto;
 }
 
+.offline {
+  margin: 0px;
+}
+
+.offline .checkmark {
+  width: 82px;
+  height: 82px;
+}
+
 .checkmark {
   width: 100px;
   height: 100px;
@@ -14,8 +23,7 @@
   animation: fill 0.4s ease-in-out 0.4s forwards,
     scale 0.3s ease-in-out 0.9s both;
   position: relative;
-  top: 5px;
-  right: 5px;
+
   margin: 0 auto;
 }
 .checkmarkCircle {

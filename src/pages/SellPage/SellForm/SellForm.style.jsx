@@ -4,14 +4,14 @@ import styled from "styled-components";
 export const Container = styled(Form)`
   margin: 0 auto;
 
-  margin-top: 46px;
+  margin-top: 40px;
   margin-bottom: 107px;
   border-radius: 25px;
   width: 518px;
-  padding: 52px 68px;
+  padding: 32px 68px 40px;
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 24px;
 
   background-color: ${(props) => props.theme.colors.blackGray};
 
@@ -25,8 +25,6 @@ export const Container = styled(Form)`
 `;
 
 export const Title = styled.h2`
-  margin-bottom: 12px;
-
   font-weight: 700;
   font-size: 21px;
   color: ${(props) => props.theme.colors.white};
@@ -40,7 +38,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 8px;
 
   @media (max-width: 1080px) {
     margin-top: 0;
@@ -52,7 +50,7 @@ export const CardContainer = styled.div`
   width: 476px;
   left: -47px;
   border-radius: 10px;
-  padding: 26px 48px;
+  padding: 17px 48px;
 
   background-color: rgba(255, 255, 255, 0.05);
 

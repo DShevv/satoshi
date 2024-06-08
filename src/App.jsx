@@ -20,6 +20,8 @@ import { CabinetForm } from "./components/CabinetForm/CabinetForm";
 import HistoryPage from "./pages/HistoryPage/HistoryPage";
 
 import globalStore from "./stores/global-store";
+import OfflinePage from "./pages/OfflinePage/OfflinePage";
+import OfflineSuccess from "./pages/OfflineSuccess/OfflineSuccess";
 
 const App = observer(() => {
   const { stopStore } = globalStore;
@@ -35,6 +37,12 @@ const App = observer(() => {
         <Route path="/" element={<MainPage />}>
           <Route index element={<ExchangePage />} />
           <Route path="/buy" element={<BuyPage />} />
+
+          <Route path="/offline">
+            <Route index element={<OfflinePage />} />
+            <Route path="/offline/success" element={<OfflineSuccess />} />
+          </Route>
+
           <Route path="/sell" element={<SellPage />} />
           <Route path="/send" element={<SendPage />} />
           <Route path="/waiting" element={<WaitingPage />} />

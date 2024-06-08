@@ -5,8 +5,10 @@ import AuthService from "../services/AuthService";
 import { toast } from "react-toastify";
 import Notification from "../components/Notification/Notification";
 import NotificationStore from "./notificatoon-store";
+import ExchangeStore from "./exchange-store";
 
 const notificationStore = new NotificationStore();
+const exchangeStore = new ExchangeStore();
 
 class AuthStore {
   isAuthorized = false;
@@ -107,22 +109,30 @@ class GlobalStore {
   userStore;
   authStore;
   notificationStore;
+  exchangeStore;
 
-  constructor(authStore, userStore, notificationStore) {
+  constructor(authStore, userStore, notificationStore, exchangeStore) {
     this.authStore = authStore;
     this.userStore = userStore;
     this.notificationStore = notificationStore;
+    this.exchangeStore = exchangeStore;
   }
 
   stopStore() {
     this.authStore.stopStore();
     this.userStore.stopUserStore();
+    this.exchangeStore.stopExchangeStore();
   }
 }
 
 const authStore = new AuthStore();
 const userStore = new UserStore(authStore);
 
-const globalStore = new GlobalStore(authStore, userStore, notificationStore);
+const globalStore = new GlobalStore(
+  authStore,
+  userStore,
+  notificationStore,
+  exchangeStore
+);
 
 export default globalStore;

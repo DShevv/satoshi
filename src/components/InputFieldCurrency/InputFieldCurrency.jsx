@@ -14,6 +14,7 @@ import {
   List,
   ListArrow,
   ListItem,
+  ListItemContainer,
   Modal,
   ModalTitle,
   Title,
@@ -33,6 +34,7 @@ const InputFieldCurrency = ({
   placeholder,
   disabled,
   onChange,
+  name,
   ...other
 }) => {
   const [active, setActive] = useState(false);
@@ -43,6 +45,7 @@ const InputFieldCurrency = ({
       <InputContainer>
         <Label>
           <Input
+            name={name}
             type={type ? type : "text"}
             placeholder={placeholder}
             disabled={disabled}
@@ -95,16 +98,19 @@ const InputFieldCurrency = ({
               {items.map((item, index) => (
                 <ListItem
                   key={`${item.text}${index}`}
+                  type="button"
                   onClick={() => {
                     onChange(item);
                     setActive(false);
                     document.body.classList.remove("scrollLock-select");
                   }}
                 >
-                  <CurrentImage src={item.image} />
-                  <ItemCaption>
-                    {item.title} {item.hint}
-                  </ItemCaption>
+                  <ListItemContainer>
+                    <CurrentImage src={item.image} />
+                    <ItemCaption>
+                      {item.title} {item.hint}
+                    </ItemCaption>
+                  </ListItemContainer>
                   <ListArrow>
                     <SvgOpenArrow />
                   </ListArrow>
