@@ -41,7 +41,7 @@ export const Container = styled.div`
   padding: 32px 68px 40px;
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   position: relative;
   z-index: 2;
 
@@ -69,6 +69,7 @@ export const Text = styled.p`
   text-align: center;
   color: ${(props) => props.theme.colors.white};
   margin-bottom: 32px;
+  max-width: 320px;
 `;
 
 export const Number = styled.div`
