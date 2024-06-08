@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.footer`
   height: 76px;
-
+  align-self: end;
   border-top: solid 1px ${(props) => props.theme.colors.grayLight};
 
   @media (max-width: 1080px) {

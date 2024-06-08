@@ -84,7 +84,7 @@ export const MenuWrapper = styled.div`
   height: calc(100vh - 111px);
   width: 100%;
   position: absolute;
-  top: -1000px;
+  top: -100vh;
   left: 0;
 
   backdrop-filter: blur(10px);
