@@ -45,7 +45,7 @@ import { LoginForm } from "../LoginForm/LoginForm";
 import { RegisterForm } from "../RegisterForm/RegisterForm";
 import RecoveryForm from "../RecoveryForm/RecoveryForm";
 import UserContainer from "../UserContainer/UserContainer";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../stores/global-store";
 
@@ -54,6 +54,7 @@ export const Header = observer(() => {
   const formParam = searchParams.get("auth");
   const [isOpened, setIsOpened] = useState(false);
   const { authStore, userStore } = globalStore;
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpened(!isOpened);
@@ -89,7 +90,17 @@ export const Header = observer(() => {
 
       <Wrapper>
         <InnerContainer>
-          <Logo to={"/"}>
+          <Logo
+            to={"/"}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsOpened(false);
+              document.body.classList.remove("scrollLock");
+              setTimeout(() => {
+                navigate("/");
+              }, 400);
+            }}
+          >
             <SvgLogo className="desktop" />
             <SvgLogoMobile className="mobile" />
           </Logo>
