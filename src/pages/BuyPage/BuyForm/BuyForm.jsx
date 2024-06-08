@@ -4,14 +4,18 @@ import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton"
 import InputBasic from "../../../components/InputBasic/InputBasic";
 import { ButtonsContainer, Container, Title, Wrapper } from "./BuyForm.style";
 import { Formik } from "formik";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../../stores/global-store";
 
-const BuyForm = () => {
+const BuyForm = observer(() => {
   const navigate = useNavigate();
+  const { userStore } = globalStore;
+  const { user } = userStore;
 
   return (
     <Formik
       initialValues={{
-        email: "",
+        email: user.email ? user.email : "",
         wallet: "",
         cardNumber: "",
       }}
@@ -57,6 +61,6 @@ const BuyForm = () => {
       }}
     </Formik>
   );
-};
+});
 
 export default BuyForm;

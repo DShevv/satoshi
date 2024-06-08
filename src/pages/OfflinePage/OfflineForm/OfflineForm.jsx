@@ -9,14 +9,18 @@ import {
   Wrapper,
 } from "./OfflineForm.style";
 import { Formik } from "formik";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../../stores/global-store";
 
-const OfflineForm = () => {
+const OfflineForm = observer(() => {
   const navigate = useNavigate();
+  const { userStore } = globalStore;
+  const { user } = userStore;
 
   return (
     <Formik
       initialValues={{
-        email: "",
+        email: user.email ? user.email : "",
         tg: "",
         communication: "",
       }}
@@ -62,6 +66,6 @@ const OfflineForm = () => {
       }}
     </Formik>
   );
-};
+});
 
 export default OfflineForm;
