@@ -12,10 +12,12 @@ import ymoney from "../../assets/icons/youmoney.svg";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../stores/global-store";
 
-const currs = [{ title: "Tether", image: usdt, hint: "USDT TRC20" }];
+const currs = [
+  { title: "Tether", image: usdt, hint: "USDT TRC20", cur: "USDT TRC20" },
+];
 
 const banks = [
-  { title: "Сбербанк", image: sber, hint: "RUB" },
+  { title: "Сбербанк", image: sber, hint: "RUB", cur: "RUB" },
   { title: "Офлайн", image: ofline, hint: "Москва", short: "МСК", cur: "RUB" },
   {
     title: "Офлайн",
@@ -24,7 +26,7 @@ const banks = [
     short: "СПБ",
     cur: "RUB",
   },
-  { title: "ЮMoney", image: ymoney, hint: "RUB" },
+  { title: "ЮMoney", image: ymoney, hint: "RUB", cur: "RUB" },
 ];
 
 const ExchangePage = observer(() => {

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import { SvgRefresh, SvgSber, SvgUsdt } from "../../assets/icons/svgs";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import BuyForm from "./BuyForm/BuyForm";
@@ -10,30 +11,55 @@ import {
   ItemTitle,
   Title,
 } from "./BuyPage.style";
+import globalStore from "../../stores/global-store";
+import { InfoImage } from "../OfflinePage/OfflinePage.style";
+import { useEffect, useState } from "react";
+import ExchangeService from "../../services/ExchangeService";
 
-const BuyPage = () => {
+export const BuyPage = observer(() => {
+  const { exchangeStore } = globalStore;
+  const { from, to } = exchangeStore;
+  const [course, setCourse] = useState();
+
+  useEffect(() => {
+    fetchCourse();
+  }, []);
+
+  const fetchCourse = async () => {
+    try {
+      const res = await ExchangeService.getCourseUsdt();
+      setCourse(res.data.course);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Wrapper>
       <Title>Заявка №874607798678</Title>
       <ChangeInfo>
         <InfoItem>
-          <SvgUsdt />
+          <InfoImage src={from.currency.image} />
           <ItemTitle>Получаете</ItemTitle>
-          <ItemSummary>877 BEP20</ItemSummary>
+          <ItemSummary>
+            {from.amount} {from.currency.cur}
+          </ItemSummary>
         </InfoItem>
         <Icon>
           <SvgRefresh />
         </Icon>
         <InfoItem>
-          <SvgSber />
+          <InfoImage src={to.currency.image} />
           <ItemTitle>Отправляете</ItemTitle>
-          <ItemSummary>14684.48 RUB</ItemSummary>
+          <ItemSummary>
+            {to.amount} {to.currency.cur}
+          </ItemSummary>
         </InfoItem>
       </ChangeInfo>
-      <InfoCourse>1 USDTBEP20 = 63.8 RUB</InfoCourse>
+      <InfoCourse>
+        {`1 ${from.currency.hint} = ${course ? course : ""} ${to.currency.cur}`}
+      </InfoCourse>
       <BuyForm />
     </Wrapper>
   );
-};
-
-export default BuyPage;
+});

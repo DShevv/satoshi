@@ -95,11 +95,11 @@ const ExchangeForm = observer(
                   onChange={onSelects.setFrom}
                   info={
                     isSell
-                      ? `100 ${currencies.from.hint} = ${
-                          course ? course / 100 : ""
-                        } ${currencies.to.hint}`
-                      : `1 ${currencies.from.hint} = ${course ? course : ""} ${
-                          currencies.to.hint
+                      ? `100 ${currencies.from.cur} = ${
+                          course ? toFixedIfNecessary(100 / course) : ""
+                        } ${currencies.to.cur}`
+                      : `1 ${currencies.from.cur} = ${course ? course : ""} ${
+                          currencies.to.cur
                         }`
                   }
                 />
