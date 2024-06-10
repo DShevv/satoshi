@@ -71,9 +71,9 @@ const OfflinePage = observer(() => {
       </ChangeInfo>
       <InfoCourse>
         {from.currency.title === "Офлайн"
-          ? `100 ${from.currency.cur} = ${course ? course / 100 : ""} ${
-              to.currency.hint
-            }`
+          ? `100 ${from.currency.cur} = ${
+              course ? (100 / course).toFixed(2) : ""
+            } ${to.currency.hint}`
           : `1 ${from.currency.hint} = ${course ? course : ""} ${
               to.currency.cur
             }`}
