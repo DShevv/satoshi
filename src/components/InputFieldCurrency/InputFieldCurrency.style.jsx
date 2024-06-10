@@ -10,7 +10,8 @@ export const Title = styled.div`
   font-size: 16px;
   line-height: 137%;
 
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) =>
+    props.$error ? props.theme.colors.error : props.theme.colors.white};
 `;
 
 export const Label = styled.label`
@@ -23,7 +24,9 @@ export const Label = styled.label`
 export const InputContainer = styled.div`
   margin-bottom: 9px;
   padding: 20px 24px 20px 29px;
-  border: 1px solid ${(props) => props.theme.colors.grayEmpty};
+  border: 1px solid
+    ${(props) =>
+      props.$error ? props.theme.colors.error : props.theme.colors.grayEmpty};
   background-color: ${(props) => props.theme.colors.black};
   border-radius: 42px;
   display: flex;
@@ -43,6 +46,16 @@ export const Input = styled(Field)`
   outline: none;
   border: none;
   min-width: 0;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 
   &::placeholder {
     font-weight: 400;

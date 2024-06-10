@@ -11,11 +11,14 @@ import {
 import { Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../../stores/global-store";
+import validateOffline from "../../../utils/validateOffline";
+import ExchangeService from "../../../services/ExchangeService";
 
 const OfflineForm = observer(() => {
   const navigate = useNavigate();
-  const { userStore } = globalStore;
+  const { userStore, exchangeStore } = globalStore;
   const { user } = userStore;
+  const { from, to } = exchangeStore;
 
   return (
     <Formik
@@ -24,10 +27,29 @@ const OfflineForm = observer(() => {
         tg: "",
         communication: "",
       }}
-      onSubmit={(values) => {
+      onSubmit={async (values) => {
         console.log(values);
+        const res = await ExchangeService.sendOfflineInfo({
+          sell_amount: from.amount,
+          sell_currency:
+            from.currency.title === "Офлайн" ? "RUB" : from.currency.hint,
+          receive_amount: to.amount,
+          receive_currency:
+            to.currency.title === "Офлайн" ? "RUB" : to.currency.hint,
+          receive_city:
+            to.currency.title === "Офлайн"
+              ? to.currency.hint
+              : from.currency.hint,
+          email: values.email,
+          telegram: values.tg,
+          contact: values.communication,
+        });
+        console.log(res);
         navigate("/offline/success");
       }}
+      validateOnBlur={false}
+      validateOnChange={false}
+      validate={validateOffline}
     >
       {(formik) => {
         const { errors } = formik;
@@ -41,12 +63,14 @@ const OfflineForm = observer(() => {
                 type={"email"}
                 placeholder={"name@gmail.com"}
                 name="email"
+                isError={errors.email ? 1 : 0}
               />
               <InputBasic
                 title={"Ваш Telegram"}
                 type={"text"}
                 placeholder={"@telegram"}
                 name="tg"
+                isError={errors.tg ? 1 : 0}
               />
               <InputBasic
                 title={"Предпочитаемы способ связи"}

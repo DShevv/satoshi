@@ -14,10 +14,26 @@ import {
   Title,
 } from "./OfflinePage.style";
 import globalStore from "../../stores/global-store";
+import { useEffect, useState } from "react";
+import ExchangeService from "../../services/ExchangeService";
 
 const OfflinePage = observer(() => {
   const { exchangeStore } = globalStore;
   const { from, to } = exchangeStore;
+  const [course, setCourse] = useState();
+
+  useEffect(() => {
+    fetchCourse();
+  }, []);
+
+  const fetchCourse = async () => {
+    try {
+      const res = await ExchangeService.getCourseUsdt();
+      setCourse(res.data.course);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Wrapper>
@@ -26,7 +42,12 @@ const OfflinePage = observer(() => {
         <InfoItem>
           <InfoImage src={from.currency.image} />
           <ItemTitle>Получаете</ItemTitle>
-          <ItemSummary>877 BEP20</ItemSummary>
+          <ItemSummary>
+            {from.amount}{" "}
+            {from.currency.title === "Офлайн"
+              ? from.currency.cur
+              : from.currency.hint}
+          </ItemSummary>
           {from.currency.title === "Офлайн" && (
             <ItemSubtitle> (офлайн {from.currency.short}) </ItemSubtitle>
           )}
@@ -37,13 +58,26 @@ const OfflinePage = observer(() => {
         <InfoItem>
           <InfoImage src={to.currency.image} />
           <ItemTitle>Отправляете</ItemTitle>
-          <ItemSummary>14684.48 RUB</ItemSummary>
+          <ItemSummary>
+            {to.amount}{" "}
+            {to.currency.title === "Офлайн"
+              ? to.currency.cur
+              : to.currency.hint}
+          </ItemSummary>
           {to.currency.title === "Офлайн" && (
             <ItemSubtitle> (офлайн {to.currency.short}) </ItemSubtitle>
           )}
         </InfoItem>
       </ChangeInfo>
-      <InfoCourse>1 USDTBEP20 = 63.8 RUB</InfoCourse>
+      <InfoCourse>
+        {from.currency.title === "Офлайн"
+          ? `100 ${from.currency.cur} = ${course ? course / 100 : ""} ${
+              to.currency.hint
+            }`
+          : `1 ${from.currency.hint} = ${course ? course : ""} ${
+              to.currency.cur
+            }`}
+      </InfoCourse>
       <OfflineForm />
     </Wrapper>
   );

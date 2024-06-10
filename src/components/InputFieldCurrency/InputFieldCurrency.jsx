@@ -35,20 +35,33 @@ const InputFieldCurrency = ({
   disabled,
   onChange,
   name,
+  onInput,
+  isError,
   ...other
 }) => {
   const [active, setActive] = useState(false);
 
   return (
     <Container {...other}>
-      {title && <Title>{title}</Title>}
-      <InputContainer>
+      {title && <Title $error={isError}>{title}</Title>}
+      <InputContainer $error={isError}>
         <Label>
           <Input
             name={name}
             type={type ? type : "text"}
             placeholder={placeholder}
             disabled={disabled}
+            onChange={(e) => {
+              if (e.target.value < 0) {
+                e.target.value = Math.abs(e.target.value);
+              }
+
+              if (e.target.value > 0) {
+                onInput(Number(e.target.value));
+              } else {
+                onInput("");
+              }
+            }}
           />
         </Label>
         {current && (

@@ -6,12 +6,13 @@ const InputBasic = ({
   title,
   placeholder,
   className,
+  isError,
   ...other
 }) => {
   return (
     <Container className={className}>
-      {title && <Title>{title}</Title>}
-      <InputContainer>
+      {title && <Title $error={isError}>{title}</Title>}
+      <InputContainer $error={isError}>
         <Input
           {...other}
           name={name}

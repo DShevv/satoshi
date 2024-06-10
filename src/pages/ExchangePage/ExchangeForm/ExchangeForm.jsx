@@ -14,12 +14,16 @@ import InputFieldCurrency from "../../../components/InputFieldCurrency/InputFiel
 import { Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../../stores/global-store";
+import { useEffect, useState } from "react";
+import ExchangeService from "../../../services/ExchangeService";
+import validateExchange from "../../../utils/validateExchange";
 
 const ExchangeForm = observer(
   ({ isSell, currencies, handleChange, allItems, onSelects, ...other }) => {
     const navigate = useNavigate();
     const { exchangeStore } = globalStore;
     const { from, to, setFrom, setTo } = exchangeStore;
+    const [course, setCourse] = useState();
 
     const onSubmit = (values) => {
       setFrom(from.currency, values.from);
@@ -31,6 +35,23 @@ const ExchangeForm = observer(
       }
     };
 
+    useEffect(() => {
+      fetchCourse();
+    }, []);
+
+    const fetchCourse = async () => {
+      try {
+        const res = await ExchangeService.getCourseUsdt();
+        setCourse(res.data.course);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const toFixedIfNecessary = (value) => {
+      return +parseFloat(value).toFixed(2);
+    };
+
     return (
       <Formik
         initialValues={{
@@ -38,27 +59,61 @@ const ExchangeForm = observer(
           to: "",
         }}
         onSubmit={onSubmit}
+        validateOnBlur={false}
+        validateOnChange={false}
+        validate={validateExchange}
       >
         {(formik) => {
-          const { errors } = formik;
+          const { errors, values, setValues } = formik;
 
           return (
             <Form>
               <Container {...other}>
                 <InputFieldCurrency
-                  type={"tel"}
+                  isError={errors.from ? 1 : 0}
+                  placeholder={"10"}
+                  type={"number"}
                   name="from"
                   title={`Отправляете: ${currencies.from.title}`}
                   current={currencies.from}
                   items={allItems.from}
+                  onInput={(value) => {
+                    if (value === "") {
+                      setValues({ to: "", from: "" });
+                      return;
+                    }
+                    isSell
+                      ? setValues({
+                          from: value,
+                          to: toFixedIfNecessary(value / course),
+                        })
+                      : setValues({
+                          from: value,
+                          to: toFixedIfNecessary(value * course),
+                        });
+                  }}
                   onChange={onSelects.setFrom}
-                  min={"118"}
-                  max={"4 000"}
-                  info={`1 ${currencies.from.title} = 64 RUB`}
+                  info={
+                    isSell
+                      ? `100 ${currencies.from.hint} = ${
+                          course ? course / 100 : ""
+                        } ${currencies.to.hint}`
+                      : `1 ${currencies.from.hint} = ${course ? course : ""} ${
+                          currencies.to.hint
+                        }`
+                  }
                 />
                 <RefreshContainer>
                   <RefreshLine />
-                  <ExchangeIcon onClick={handleChange}>
+                  <ExchangeIcon
+                    onClick={() => {
+                      handleChange();
+                      setValues({
+                        from: values.to,
+                        to: values.from,
+                      });
+                    }}
+                  >
                     <SvgRefresh />
 
                     <StyledSvgRefreshGlow />
@@ -66,14 +121,29 @@ const ExchangeForm = observer(
                   <RefreshLine />
                 </RefreshContainer>
                 <InputFieldCurrency
-                  type={"tel"}
+                  isError={errors.to ? 1 : 0}
+                  placeholder={"950"}
+                  type={"number"}
                   name="to"
                   title={`Получаете: ${currencies.to.title}`}
                   current={currencies.to}
                   items={allItems.to}
                   onChange={onSelects.setTo}
-                  min={"5 000"}
-                  info={"Min:  Резервы: 38 395 426 RUB"}
+                  onInput={(value) => {
+                    if (value === "") {
+                      setValues({ to: "", from: "" });
+                      return;
+                    }
+                    isSell
+                      ? setValues({
+                          to: value,
+                          from: toFixedIfNecessary(value * course),
+                        })
+                      : setValues({
+                          to: value,
+                          from: toFixedIfNecessary(value / course),
+                        });
+                  }}
                 />
                 <ButtonContainer>
                   <SubmitButton type="submit">Перейти к обмену</SubmitButton>

@@ -16,8 +16,14 @@ const currs = [{ title: "Tether", image: usdt, hint: "USDT TRC20" }];
 
 const banks = [
   { title: "Сбербанк", image: sber, hint: "RUB" },
-  { title: "Офлайн", image: ofline, hint: "Москва", short: "МСК" },
-  { title: "Офлайн", image: ofline, hint: "Санкт-Петербург", short: "СПБ" },
+  { title: "Офлайн", image: ofline, hint: "Москва", short: "МСК", cur: "RUB" },
+  {
+    title: "Офлайн",
+    image: ofline,
+    hint: "Санкт-Петербург",
+    short: "СПБ",
+    cur: "RUB",
+  },
   { title: "ЮMoney", image: ymoney, hint: "RUB" },
 ];
 
