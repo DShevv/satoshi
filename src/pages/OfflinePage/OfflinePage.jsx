@@ -16,6 +16,7 @@ import {
 import globalStore from "../../stores/global-store";
 import { useEffect, useState } from "react";
 import ExchangeService from "../../services/ExchangeService";
+import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
 
 const OfflinePage = observer(() => {
   const { exchangeStore } = globalStore;
@@ -29,7 +30,7 @@ const OfflinePage = observer(() => {
   const fetchCourse = async () => {
     try {
       const res = await ExchangeService.getCourseUsdt();
-      setCourse(res.data.course);
+      setCourse(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -72,11 +73,11 @@ const OfflinePage = observer(() => {
       <InfoCourse>
         {from.currency.title === "Офлайн"
           ? `100 ${from.currency.cur} = ${
-              course ? (100 / course).toFixed(2) : ""
+              course ? toFixedIfNecessary(100 / course.in) : ""
             } ${to.currency.hint}`
-          : `1 ${from.currency.hint} = ${course ? course : ""} ${
-              to.currency.cur
-            }`}
+          : `1 ${from.currency.hint} = ${
+              course ? toFixedIfNecessary(course.in) : ""
+            } ${to.currency.cur}`}
       </InfoCourse>
       <OfflineForm />
     </Wrapper>

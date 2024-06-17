@@ -17,6 +17,7 @@ import globalStore from "../../../stores/global-store";
 import { useEffect, useState } from "react";
 import ExchangeService from "../../../services/ExchangeService";
 import validateExchange from "../../../utils/validateExchange";
+import toFixedIfNecessary from "../../../utils/toFixedIfNecessary";
 
 const ExchangeForm = observer(
   ({ isSell, currencies, handleChange, allItems, onSelects, ...other }) => {
@@ -42,14 +43,10 @@ const ExchangeForm = observer(
     const fetchCourse = async () => {
       try {
         const res = await ExchangeService.getCourseUsdt();
-        setCourse(res.data.course);
+        setCourse(res.data);
       } catch (error) {
         console.log(error);
       }
-    };
-
-    const toFixedIfNecessary = (value) => {
-      return +parseFloat(value).toFixed(2);
     };
 
     return (
@@ -85,22 +82,22 @@ const ExchangeForm = observer(
                     isSell
                       ? setValues({
                           from: value,
-                          to: toFixedIfNecessary(value / course),
+                          to: toFixedIfNecessary(value / course.out),
                         })
                       : setValues({
                           from: value,
-                          to: toFixedIfNecessary(value * course),
+                          to: toFixedIfNecessary(value * course.in),
                         });
                   }}
                   onChange={onSelects.setFrom}
                   info={
                     isSell
                       ? `100 ${currencies.from.cur} = ${
-                          course ? toFixedIfNecessary(100 / course) : ""
+                          course ? toFixedIfNecessary(100 / course.out) : ""
                         } ${currencies.to.cur}`
-                      : `1 ${currencies.from.cur} = ${course ? course : ""} ${
-                          currencies.to.cur
-                        }`
+                      : `1 ${currencies.from.cur} = ${
+                          course ? toFixedIfNecessary(course.in) : ""
+                        } ${currencies.to.cur}`
                   }
                 />
                 <RefreshContainer>
@@ -108,10 +105,15 @@ const ExchangeForm = observer(
                   <ExchangeIcon
                     onClick={() => {
                       handleChange();
-                      setValues({
-                        from: values.to,
-                        to: values.from,
-                      });
+                      isSell
+                        ? setValues({
+                            from: values.to,
+                            to: toFixedIfNecessary(values.to * course.in),
+                          })
+                        : setValues({
+                            from: toFixedIfNecessary(values.from * course.out),
+                            to: values.from,
+                          });
                     }}
                   >
                     <SvgRefresh />
@@ -137,11 +139,11 @@ const ExchangeForm = observer(
                     isSell
                       ? setValues({
                           to: value,
-                          from: toFixedIfNecessary(value * course),
+                          from: toFixedIfNecessary(value * course.out),
                         })
                       : setValues({
                           to: value,
-                          from: toFixedIfNecessary(value / course),
+                          from: toFixedIfNecessary(value / course.in),
                         });
                   }}
                 />

@@ -10,8 +10,30 @@ import {
 } from "../BuyPage/BuyPage.style";
 import { SvgUsdt, SvgRefresh, SvgSber } from "../../assets/icons/svgs";
 import SendForm from "./SendForm/SendForm";
+import { useEffect, useState } from "react";
+import ExchangeService from "../../services/ExchangeService";
+import globalStore from "../../stores/global-store";
+import { observer } from "mobx-react-lite";
+import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
 
-const SendPage = () => {
+const SendPage = observer(() => {
+  const { exchangeStore } = globalStore;
+  const { from, to } = exchangeStore;
+  const [course, setCourse] = useState();
+
+  useEffect(() => {
+    fetchCourse();
+  }, []);
+
+  const fetchCourse = async () => {
+    try {
+      const res = await ExchangeService.getCourseUsdt();
+      setCourse(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Wrapper>
       <Title>Обмен USDTBEP20 на VISA MASTERCARD TRY</Title>
@@ -30,10 +52,14 @@ const SendPage = () => {
           <ItemSummary>14684.48 RUB</ItemSummary>
         </InfoItem>
       </ChangeInfo>
-      <InfoCourse>1 USDTBEP20 = 63.8 RUB</InfoCourse>
+      <InfoCourse>
+        {`1 ${from.currency.hint} = ${
+          course ? toFixedIfNecessary(course.in) : ""
+        } ${to.currency.cur}`}
+      </InfoCourse>
       <SendForm />
     </Wrapper>
   );
-};
+});
 
 export default SendPage;

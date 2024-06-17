@@ -15,6 +15,7 @@ import ExchangeService from "../../services/ExchangeService";
 import { useEffect, useState } from "react";
 import globalStore from "../../stores/global-store";
 import { InfoImage } from "../OfflinePage/OfflinePage.style";
+import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
 
 export const SellPage = observer(() => {
   const { exchangeStore } = globalStore;
@@ -28,7 +29,7 @@ export const SellPage = observer(() => {
   const fetchCourse = async () => {
     try {
       const res = await ExchangeService.getCourseUsdt();
-      setCourse(res.data.course);
+      setCourse(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +59,7 @@ export const SellPage = observer(() => {
       </ChangeInfo>
       <InfoCourse>
         {`100 ${from.currency.cur} = ${
-          course ? (100 / course).toFixed(2) : ""
+          course ? toFixedIfNecessary((1 / course.out) * 100) : ""
         } ${to.currency.hint}`}
       </InfoCourse>
       <SellForm />
