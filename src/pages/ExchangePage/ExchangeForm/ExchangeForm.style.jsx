@@ -1,5 +1,16 @@
 import styled from "styled-components";
 import { SvgRefreshCur, SvgRefreshGlow } from "../../../assets/icons/svgs";
+import { Form } from "formik";
+
+export const StyledForm = styled(Form)`
+  max-width: 520px;
+  flex: 1 1 auto;
+  display: flex;
+
+  @media (max-width: 1080px) {
+    width: 100%;
+  }
+`;
 
 export const Container = styled.div`
   border-radius: 25px;
@@ -27,8 +38,7 @@ export const Container = styled.div`
 
   @media (max-width: 1080px) {
     width: 100%;
-    max-width: 518px;
-    padding: 52px 22px 41px 22px;
+    padding: 20px 16px 14px 16px;
   }
 `;
 
@@ -41,6 +51,11 @@ export const ExchangeIcon = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media (max-width: 1080px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 export const Policy = styled.div`
@@ -57,6 +72,10 @@ export const Policy = styled.div`
 export const ButtonContainer = styled.div`
   margin-top: 46px;
   width: 100%;
+
+  @media (max-width: 1080px) {
+    margin-top: 26px;
+  }
 `;
 
 export const RefreshContainer = styled.div`
@@ -81,6 +100,11 @@ export const StyledSvgRefreshGlow = styled(SvgRefreshGlow)`
   top: 0;
   z-index: 1;
   opacity: 0;
+
+  @media (max-width: 1080px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 export const SvgRefresh = styled(SvgRefreshCur)`
@@ -96,5 +120,10 @@ export const SvgRefresh = styled(SvgRefreshCur)`
 
   &:hover + ${StyledSvgRefreshGlow} {
     opacity: 1;
+  }
+
+  @media (max-width: 1080px) {
+    width: 50px;
+    height: 50px;
   }
 `;

@@ -7,6 +7,7 @@ import {
   Policy,
   RefreshContainer,
   RefreshLine,
+  StyledForm,
   StyledSvgRefreshGlow,
   SvgRefresh,
 } from "./ExchangeForm.style";
@@ -64,7 +65,7 @@ const ExchangeForm = observer(
           const { errors, values, setValues } = formik;
 
           return (
-            <Form>
+            <StyledForm>
               <Container {...other}>
                 <InputFieldCurrency
                   isError={errors.from ? 1 : 0}
@@ -155,7 +156,7 @@ const ExchangeForm = observer(
                   и пользовательским соглашением
                 </Policy>
               </Container>
-            </Form>
+            </StyledForm>
           );
         }}
       </Formik>

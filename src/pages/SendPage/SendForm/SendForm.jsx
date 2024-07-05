@@ -10,17 +10,21 @@ import {
   Wrapper,
 } from "./SendForm.style";
 import InputHash from "../../../components/InputHash/InputHash";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../../stores/global-store";
 
-const SendForm = () => {
+const SendForm = observer(() => {
   const navigate = useNavigate();
+  const { exchangeStore } = globalStore;
+  const { from, to } = exchangeStore;
 
   return (
     <Wrapper>
       <Container>
         <Title>Заявка №878885585228</Title>
         <Text>
-          Осуществляете перевод USDT TRC20 на данный кошелек, после нажатия
-          продолжить
+          Осуществляете перевод {from.currency.hint} указанный кошелёк. После
+          того как совершите перевод нажмите "Продолжить"
         </Text>
         <InputHash
           value={"0xbb104341956e1df223f72c2419f45f3522"}
@@ -56,6 +60,6 @@ const SendForm = () => {
       </Container>
     </Wrapper>
   );
-};
+});
 
 export default SendForm;

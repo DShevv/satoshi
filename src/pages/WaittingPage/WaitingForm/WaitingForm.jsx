@@ -25,8 +25,13 @@ import { useCountdown } from "usehooks-ts";
 import { NavLink } from "react-router-dom";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
 import SuccessAnim from "../../../components/SuccessAnim/SuccessAnim";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../../stores/global-store";
+import { InfoImage } from "../../OfflinePage/OfflinePage.style";
 
-const WaitingForm = () => {
+const WaitingForm = observer(() => {
+  const { exchangeStore } = globalStore;
+  const { from, to } = exchangeStore;
   const [count, { startCountdown, stopCountdown }] = useCountdown({
     countStart: 20 * 60,
     intervalMs: 1000,
@@ -71,10 +76,12 @@ const WaitingForm = () => {
         ) : (
           <>
             <CurrencyInfo>
-              <SvgUsdt />
+              <InfoImage src={from.currency.image} />
               <CurrencyCaption>
                 <CurrencyTitle>Сумма</CurrencyTitle>
-                <CurrencyValue>877 BEP20</CurrencyValue>
+                <CurrencyValue>
+                  {from.amount} {from.currency.hint}
+                </CurrencyValue>
               </CurrencyCaption>
             </CurrencyInfo>
             <WalletContainer>
@@ -106,6 +113,6 @@ const WaitingForm = () => {
       </Container>
     </Wrapper>
   );
-};
+});
 
 export default WaitingForm;

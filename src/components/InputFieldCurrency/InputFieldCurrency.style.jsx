@@ -19,6 +19,10 @@ export const Label = styled.label`
   min-width: 0;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1080px) {
+    height: auto;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -33,6 +37,10 @@ export const InputContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 5px;
+
+  @media (max-width: 1080px) {
+    padding: 10px 15px 10px 15px;
+  }
 `;
 
 export const Input = styled(Field)`
@@ -104,6 +112,10 @@ export const CurrentCurrency = styled.div`
 
   background-color: ${(props) => props.theme.colors.blackGray};
   cursor: pointer;
+
+  @media (max-width: 1080px) {
+    padding: 7px 10px;
+  }
 `;
 
 export const CurrentText = styled.div`
@@ -112,12 +124,22 @@ export const CurrentText = styled.div`
   line-height: 134%;
   letter-spacing: -0.02em;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 475px) {
+    font-size: 9px;
+  }
 `;
 
 export const CurrentImage = styled.img`
   width: 28px;
   height: 28px;
   flex: 0 0 28px;
+
+  @media (max-width: 1080px) {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+  }
 `;
 
 export const CurrentArrow = styled.img`
@@ -218,6 +240,11 @@ export const ItemCaption = styled.div`
   line-height: 100%;
   letter-spacing: -0.02em;
   color: ${(props) => props.theme.colors.white};
+
+  @media (max-width: 475px) {
+    text-align: left;
+    font-size: 14px;
+  }
 `;
 
 export const ListItem = styled.button`
@@ -238,6 +265,10 @@ export const ListItem = styled.button`
 
   &:hover ${ItemCaption}, &:hover ${ListArrow} {
     color: ${(props) => props.theme.colors.red};
+  }
+
+  @media (max-width: 475px) {
+    padding: 13px 22px;
   }
 `;
 

@@ -212,7 +212,7 @@ export const Copyright = styled.div`
   line-height: 150%;
 
   @media (max-width: 1080px) {
-    margin-top: 50px;
+    margin-top: 20px;
   }
 `;
 
@@ -234,6 +234,9 @@ export const SocialList = styled.ul`
   list-style: none;
   display: flex;
   gap: 28px;
+
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const SocialItem = styled(NavLink)`

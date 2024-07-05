@@ -7,6 +7,7 @@ export const StyledWrapper = styled.div`
   margin: 0 auto;
 
   @media (max-width: 1080px) {
-    padding: 0 15px;
+    width: calc(100% - 30px);
+    margin: 0 15px;
   }
 `;

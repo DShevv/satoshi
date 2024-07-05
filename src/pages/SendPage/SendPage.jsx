@@ -15,6 +15,7 @@ import ExchangeService from "../../services/ExchangeService";
 import globalStore from "../../stores/global-store";
 import { observer } from "mobx-react-lite";
 import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
+import { InfoImage } from "../OfflinePage/OfflinePage.style";
 
 const SendPage = observer(() => {
   const { exchangeStore } = globalStore;
@@ -36,20 +37,27 @@ const SendPage = observer(() => {
 
   return (
     <Wrapper>
-      <Title>Обмен USDTBEP20 на VISA MASTERCARD TRY</Title>
+      <Title>
+        Обмен {from.currency.title} {from.currency.hint} на {to.currency.title}{" "}
+        {to.currency.hint}
+      </Title>
       <ChangeInfo>
         <InfoItem>
-          <SvgUsdt />
-          <ItemTitle>Отправляете</ItemTitle>
-          <ItemSummary>877 BEP20</ItemSummary>
+          <InfoImage src={from.currency.image} />
+          <ItemTitle>Получаете</ItemTitle>
+          <ItemSummary>
+            {from.amount} {from.currency.cur}
+          </ItemSummary>
         </InfoItem>
         <Icon>
           <SvgRefresh />
         </Icon>
         <InfoItem>
-          <SvgSber />
-          <ItemTitle>Получаете</ItemTitle>
-          <ItemSummary>14684.48 RUB</ItemSummary>
+          <InfoImage src={to.currency.image} />
+          <ItemTitle>Отправляете</ItemTitle>
+          <ItemSummary>
+            {to.amount} {to.currency.cur}
+          </ItemSummary>
         </InfoItem>
       </ChangeInfo>
       <InfoCourse>

@@ -82,7 +82,7 @@ export const ButtonsContainer = styled.div`
   gap: 12px;
 
   @media (max-width: 1080px) {
-    margin-top: 63px;
+    margin-top: 23px;
   }
 `;
 
