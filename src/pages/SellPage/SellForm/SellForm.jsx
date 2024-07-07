@@ -12,6 +12,7 @@ import {
 import InputTerm from "../../../components/InputTerm/InputTerm";
 import InputCvv from "../../../components/InputCvv/InputCvv";
 import { Formik } from "formik";
+import validateSell from "../../../utils/validateSell";
 
 const SellForm = () => {
   return (
@@ -26,18 +27,24 @@ const SellForm = () => {
       onSubmit={(values) => {
         console.log(values);
       }}
+      validate={validateSell}
+      validateOnBlur={false}
+      validateOnMount={false}
+      validateOnChange={false}
     >
       {(formik) => {
-        const { errors } = formik;
+        const { errors, handleChange, values } = formik;
 
         return (
           <Container>
             <Title>Заполните реквизиты</Title>
             <InputBasic
-              title={"Номер кошелька USDTBEP20"}
+              title={"Номер кошелька USDT TRC20"}
               type={"text"}
               placeholder={"0x5e70GFkuf968KGecklcR462"}
               name="wallet"
+              isError={errors.wallet ? 1 : 0}
+              errorText={errors.wallet ? errors.wallet : ""}
             />
             <CardContainer>
               <InputBasic
@@ -45,10 +52,27 @@ const SellForm = () => {
                 type={"text"}
                 placeholder={"0000 0000 0000 0000"}
                 name="cardNumber"
+                value={values.cardNumber
+                  .replace(/\s/g, "")
+                  .replace(/[^0-9^ ]/, "")
+                  .replace(/(\d{4})/g, "$1 ")
+                  .trim()}
+                maxLength={19}
+                onChange={handleChange}
+                isError={errors.cardNumber ? 1 : 0}
+                errorText={errors.cardNumber ? errors.cardNumber : ""}
               />
               <FormLine>
-                <InputTerm title={"Срок действия"} name="term" />
-                <InputCvv title={"CVC/CVV"} name="cvc" />
+                <InputTerm
+                  title={"Срок действия"}
+                  name="term"
+                  isError={errors.termYear || errors.termMonth ? 1 : 0}
+                />
+                <InputCvv
+                  title={"CVC/CVV"}
+                  name="cvc"
+                  isError={errors.cvc ? 1 : 0}
+                />
               </FormLine>
             </CardContainer>
             <ButtonsContainer>

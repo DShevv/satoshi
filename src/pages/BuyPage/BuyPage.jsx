@@ -19,21 +19,7 @@ import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
 
 export const BuyPage = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to } = exchangeStore;
-  const [course, setCourse] = useState();
-
-  useEffect(() => {
-    fetchCourse();
-  }, []);
-
-  const fetchCourse = async () => {
-    try {
-      const res = await ExchangeService.getCourseUsdt();
-      setCourse(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { from, to, course } = exchangeStore;
 
   return (
     <Wrapper>
@@ -41,7 +27,7 @@ export const BuyPage = observer(() => {
       <ChangeInfo>
         <InfoItem>
           <InfoImage src={from.currency.image} />
-          <ItemTitle>Получаете</ItemTitle>
+          <ItemTitle>Отправляете</ItemTitle>
           <ItemSummary>
             {from.amount} {from.currency.cur}
           </ItemSummary>
@@ -51,7 +37,7 @@ export const BuyPage = observer(() => {
         </Icon>
         <InfoItem>
           <InfoImage src={to.currency.image} />
-          <ItemTitle>Отправляете</ItemTitle>
+          <ItemTitle>Получаете</ItemTitle>
           <ItemSummary>
             {to.amount} {to.currency.cur}
           </ItemSummary>

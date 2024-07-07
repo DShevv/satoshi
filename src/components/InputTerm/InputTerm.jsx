@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Container, Input, InputContainer, Title } from "./InputTerm.style";
 
-const InputTerm = ({ type, title, className, name, ...other }) => {
+const InputTerm = ({ type, title, className, name, isError, ...other }) => {
   const refYear = useRef(null);
   const refMonth = useRef(null);
 
@@ -51,8 +51,8 @@ const InputTerm = ({ type, title, className, name, ...other }) => {
 
   return (
     <Container className={className}>
-      {title && <Title>{title}</Title>}
-      <InputContainer>
+      {title && <Title $error={isError}>{title}</Title>}
+      <InputContainer $error={isError}>
         <Input
           innerRef={refMonth}
           {...other}

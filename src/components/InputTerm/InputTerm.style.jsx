@@ -11,14 +11,17 @@ export const Title = styled.div`
   font-size: 16px;
   line-height: 137%;
 
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) =>
+    props.$error ? props.theme.colors.error : props.theme.colors.white};
 `;
 
 export const InputContainer = styled.div`
   width: 134px;
   margin-bottom: 9px;
   padding: 15px 27px;
-  border: 1px solid ${(props) => props.theme.colors.grayEmpty};
+  border: 1px solid
+    ${(props) =>
+      props.$error ? props.theme.colors.error : props.theme.colors.grayEmpty};
   background-color: ${(props) => props.theme.colors.black};
   border-radius: 42px;
   display: flex;

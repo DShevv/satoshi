@@ -1,4 +1,10 @@
-import { Container, Input, InputContainer, Title } from "./InputBasic.style";
+import {
+  Container,
+  Input,
+  InputContainer,
+  Title,
+  Error,
+} from "./InputBasic.style";
 
 const InputBasic = ({
   type,
@@ -7,6 +13,7 @@ const InputBasic = ({
   placeholder,
   className,
   isError,
+  errorText,
   ...other
 }) => {
   return (
@@ -20,6 +27,7 @@ const InputBasic = ({
           placeholder={placeholder}
         />
       </InputContainer>
+      {isError ? <Error>{errorText}</Error> : ""}
     </Container>
   );
 };

@@ -1,10 +1,10 @@
 import { Container, Input, InputContainer, Title } from "./InputCvv.style";
 
-const InputCvv = ({ type, title, className, name, ...other }) => {
+const InputCvv = ({ type, title, className, name, isError, ...other }) => {
   return (
     <Container className={className}>
-      {title && <Title>{title}</Title>}
-      <InputContainer>
+      {title && <Title $error={isError}>{title}</Title>}
+      <InputContainer $error={isError}>
         <Input
           {...other}
           name={name}

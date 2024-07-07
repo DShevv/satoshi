@@ -37,7 +37,7 @@ const ExchangePage = observer(() => {
   });
   const [allItems, setAllItems] = useState({ to: currs, from: banks });
   const { exchangeStore } = globalStore;
-  const { from, to, setFrom, setTo } = exchangeStore;
+  const { from, to, setFrom, setTo, setSell } = exchangeStore;
 
   const setCurFrom = (value) => {
     setCurrencies({ ...currencies, from: value });
@@ -55,8 +55,10 @@ const ExchangePage = observer(() => {
   const handleChange = () => {
     if (isSell) {
       setIsSell(0);
+      setSell(1);
     } else {
       setIsSell(1);
+      setSell(0);
     }
   };
 

@@ -20,21 +20,7 @@ import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
 
 const OfflinePage = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to } = exchangeStore;
-  const [course, setCourse] = useState();
-
-  useEffect(() => {
-    fetchCourse();
-  }, []);
-
-  const fetchCourse = async () => {
-    try {
-      const res = await ExchangeService.getCourseUsdt();
-      setCourse(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { from, to, course } = exchangeStore;
 
   return (
     <Wrapper>

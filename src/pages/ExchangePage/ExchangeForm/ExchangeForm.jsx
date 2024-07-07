@@ -24,8 +24,7 @@ const ExchangeForm = observer(
   ({ isSell, currencies, handleChange, allItems, onSelects, ...other }) => {
     const navigate = useNavigate();
     const { exchangeStore } = globalStore;
-    const { from, to, setFrom, setTo } = exchangeStore;
-    const [course, setCourse] = useState();
+    const { from, to, setFrom, setTo, course } = exchangeStore;
 
     const onSubmit = (values) => {
       setFrom(from.currency, values.from);
@@ -34,19 +33,6 @@ const ExchangeForm = observer(
         navigate("/offline");
       } else {
         isSell ? navigate(`/sell`) : navigate(`/buy`);
-      }
-    };
-
-    useEffect(() => {
-      fetchCourse();
-    }, []);
-
-    const fetchCourse = async () => {
-      try {
-        const res = await ExchangeService.getCourseUsdt();
-        setCourse(res.data);
-      } catch (error) {
-        console.log(error);
       }
     };
 
