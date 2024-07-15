@@ -48,7 +48,7 @@ const BuyForm = observer(() => {
               <InputBasic
                 title={"Номер кошелька"}
                 type={"text"}
-                placeholder={"0x5e70GFkuf968KGecklcR462"}
+                placeholder={"TR7NHkorMAxGTCi8q93Y4pL8otPzgjLj6t"}
                 name="wallet"
                 isError={errors.wallet ? 1 : 0}
                 errorText={errors.wallet ? errors.wallet : ""}
