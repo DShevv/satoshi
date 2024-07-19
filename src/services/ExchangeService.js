@@ -9,9 +9,9 @@ export default class ExchangeService {
     });
   }
 
-  static async sendOfflineInfo(info) {
+  static async sendInfo(info) {
     return api.post(
-      "/offline",
+      "/exchange",
       {
         ...info,
       },

@@ -13,24 +13,19 @@ const validateSell = (values) => {
     errors.cardNumber = "Слишком короткий номер карты";
   }
 
-  if (!values.cardNumber) {
-    errors.cardNumber = "Введите номер карты";
-  } else if (values.cardNumber.length < 16) {
-    errors.cardNumber = "Слишком короткий номер карты";
+  if (values.isSbp) {
+    if (!values.phone) {
+      errors.phone = "Введите номер телефона";
+    } else if (values.phone.length < 11) {
+      errors.phone = "Слишком короткий номер телефона";
+    }
+  } else {
+    if (!values.cardNumber) {
+      errors.cardNumber = "Введите номер карты";
+    } else if (values.cardNumber.length < 16) {
+      errors.cardNumber = "Слишком короткий номер карты";
+    }
   }
-
-  if (!values.termYear) {
-    errors.termYear = "Введите срок действия";
-  }
-  if (!values.termMonth) {
-    errors.termMonth = "Введите номер карты";
-  }
-  if (!values.cvc) {
-    errors.cvc = "Введите код безопасности";
-  } else if (values.cvc.length < 3) {
-    errors.cvc = "Неверный CVV/CVC";
-  }
-
   return errors;
 };
 

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import BackButton from "../../../components/Buttons/BackButton/BackButton";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
 import InputBasic from "../../../components/InputBasic/InputBasic";
@@ -13,16 +13,22 @@ import InputTerm from "../../../components/InputTerm/InputTerm";
 import InputCvv from "../../../components/InputCvv/InputCvv";
 import { Formik } from "formik";
 import validateSell from "../../../utils/validateSell";
+import { observer } from "mobx-react-lite";
+import globalStore from "../../../stores/global-store";
 
-const SellForm = () => {
+const SellForm = observer(() => {
+  const navigate = useNavigate();
+  const { exchangeStore } = globalStore;
+
+  const { from, setCanPass } = exchangeStore;
+
   return (
     <Formik
       initialValues={{
         wallet: "",
         cardNumber: "",
-        termYear: "",
-        termMonth: "",
-        cvc: "",
+        phone: "",
+        isSbp: from.currency.title === "СБП",
       }}
       onSubmit={(values) => {
         console.log(values);
@@ -47,37 +53,52 @@ const SellForm = () => {
               errorText={errors.wallet ? errors.wallet : ""}
             />
             <CardContainer>
-              <InputBasic
-                title={"Номер карты получателя"}
-                type={"text"}
-                placeholder={"0000 0000 0000 0000"}
-                name="cardNumber"
-                value={values.cardNumber
-                  .replace(/\s/g, "")
-                  .replace(/[^0-9^ ]/, "")
-                  .replace(/(\d{4})/g, "$1 ")
-                  .trim()}
-                maxLength={19}
-                onChange={handleChange}
-                isError={errors.cardNumber ? 1 : 0}
-                errorText={errors.cardNumber ? errors.cardNumber : ""}
-              />
-              <FormLine>
-                <InputTerm
-                  title={"Срок действия"}
-                  name="term"
-                  isError={errors.termYear || errors.termMonth ? 1 : 0}
+              {from.currency.title === "СБП" ? (
+                <InputBasic
+                  title={"Номер телефона получателя"}
+                  type={"tel"}
+                  placeholder={"7 999 000 00 00"}
+                  maxLength={15}
+                  name="phone"
+                  isError={errors.phone ? 1 : 0}
+                  errorText={errors.phone ? errors.phone : ""}
+                  value={values.phone
+                    .replace(/\s/g, "")
+                    .replace(/[^0-9^ ]/, "")
+                    .replace(
+                      /(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/g,
+                      "$1 $2 $3 $4 $5"
+                    )
+                    .trim()}
+                  onChange={handleChange}
                 />
-                <InputCvv
-                  title={"CVC/CVV"}
-                  name="cvc"
-                  isError={errors.cvc ? 1 : 0}
+              ) : (
+                <InputBasic
+                  title={"Номер карты получателя"}
+                  type={"text"}
+                  placeholder={"0000 0000 0000 0000"}
+                  name="cardNumber"
+                  value={values.cardNumber
+                    .replace(/\s/g, "")
+                    .replace(/[^0-9^ ]/, "")
+                    .replace(/(\d{4})/g, "$1 ")
+                    .trim()}
+                  maxLength={19}
+                  onChange={handleChange}
+                  isError={errors.cardNumber ? 1 : 0}
+                  errorText={errors.cardNumber ? errors.cardNumber : ""}
                 />
-              </FormLine>
+              )}
             </CardContainer>
             <ButtonsContainer>
               <SubmitButton type="submit">Продолжить</SubmitButton>
-              <NavLink to={"/"} style={{ textDecoration: "none" }}>
+              <NavLink
+                to={"/"}
+                onClick={() => {
+                  setCanPass(false);
+                }}
+                style={{ textDecoration: "none" }}
+              >
                 <BackButton>Вернуться назад</BackButton>
               </NavLink>
             </ButtonsContainer>
@@ -86,6 +107,6 @@ const SellForm = () => {
       }}
     </Formik>
   );
-};
+});
 
 export default SellForm;

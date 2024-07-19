@@ -7,11 +7,13 @@ import { Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../../stores/global-store";
 import validateBuy from "../../../utils/validateBuy";
+import ExchangeService from "../../../services/ExchangeService";
 
 const BuyForm = observer(() => {
   const navigate = useNavigate();
-  const { userStore } = globalStore;
+  const { userStore, exchangeStore } = globalStore;
   const { user } = userStore;
+  const { from, to, setCanPass } = exchangeStore;
 
   return (
     <Formik
@@ -19,10 +21,22 @@ const BuyForm = observer(() => {
         email: user.email ? user.email : "",
         wallet: "",
         cardNumber: "",
+        phone: "",
+        isSbp: to.currency.title === "СБП",
       }}
-      onSubmit={(values) => {
+      onSubmit={async (values) => {
         console.log(values);
-
+        const res = await ExchangeService.sendInfo({
+          sell_amount: from.amount,
+          sell_currency: from.currency.hint,
+          receive_amount: to.amount,
+          receive_currency: to.currency.hint,
+          receive_city: "Онлайн",
+          email: values.email,
+          telegram: "",
+          contact: "",
+        });
+        console.log(res);
         navigate("/send");
       }}
       validate={validateBuy}
@@ -53,24 +67,51 @@ const BuyForm = observer(() => {
                 isError={errors.wallet ? 1 : 0}
                 errorText={errors.wallet ? errors.wallet : ""}
               />
-              <InputBasic
-                title={"Номер карты получателя"}
-                type={"text"}
-                placeholder={"0000 0000 0000 0000"}
-                maxLength={19}
-                name="cardNumber"
-                isError={errors.cardNumber ? 1 : 0}
-                errorText={errors.cardNumber ? errors.cardNumber : ""}
-                value={values.cardNumber
-                  .replace(/\s/g, "")
-                  .replace(/[^0-9^ ]/, "")
-                  .replace(/(\d{4})/g, "$1 ")
-                  .trim()}
-                onChange={handleChange}
-              />
+              {to.currency.title === "СБП" ? (
+                <InputBasic
+                  title={"Номер телефона получателя"}
+                  type={"tel"}
+                  placeholder={"7 999 000 00 00"}
+                  maxLength={15}
+                  name="phone"
+                  isError={errors.phone ? 1 : 0}
+                  errorText={errors.phone ? errors.phone : ""}
+                  value={values.phone
+                    .replace(/\s/g, "")
+                    .replace(/[^0-9^ ]/, "")
+                    .replace(
+                      /(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/g,
+                      "$1 $2 $3 $4 $5"
+                    )
+                    .trim()}
+                  onChange={handleChange}
+                />
+              ) : (
+                <InputBasic
+                  title={"Номер карты получателя"}
+                  type={"text"}
+                  placeholder={"0000 0000 0000 0000"}
+                  maxLength={19}
+                  name="cardNumber"
+                  isError={errors.cardNumber ? 1 : 0}
+                  errorText={errors.cardNumber ? errors.cardNumber : ""}
+                  value={values.cardNumber
+                    .replace(/\s/g, "")
+                    .replace(/[^0-9^ ]/, "")
+                    .replace(/(\d{4})/g, "$1 ")
+                    .trim()}
+                  onChange={handleChange}
+                />
+              )}
               <ButtonsContainer>
                 <SubmitButton type="submit">Продолжить</SubmitButton>
-                <NavLink to={"/"} style={{ textDecoration: "none" }}>
+                <NavLink
+                  to={"/"}
+                  onClick={() => {
+                    setCanPass(false);
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
                   <BackButton>Вернуться назад</BackButton>
                 </NavLink>
               </ButtonsContainer>

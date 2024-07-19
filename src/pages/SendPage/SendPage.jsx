@@ -16,10 +16,18 @@ import globalStore from "../../stores/global-store";
 import { observer } from "mobx-react-lite";
 import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
 import { InfoImage } from "../OfflinePage/OfflinePage.style";
+import { useNavigate } from "react-router-dom";
 
 const SendPage = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to, course } = exchangeStore;
+  const { from, to, course, canPass, isSell } = exchangeStore;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!canPass || isSell !== 1) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Wrapper>

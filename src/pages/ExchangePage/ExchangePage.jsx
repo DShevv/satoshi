@@ -9,6 +9,7 @@ import ofline from "../../assets/icons/ofline.svg";
 import usdt from "../../assets/icons/usdt.svg";
 import sber from "../../assets/icons/sder.svg";
 import ymoney from "../../assets/icons/youmoney.svg";
+import sbp from "../../assets/icons/sbp.svg";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../stores/global-store";
 
@@ -18,6 +19,7 @@ const currs = [
 
 const banks = [
   { title: "Сбербанк", image: sber, hint: "RUB", cur: "RUB" },
+  { title: "СБП", image: sbp, hint: "RUB", cur: "RUB" },
   { title: "Офлайн", image: ofline, hint: "Москва", short: "МСК", cur: "RUB" },
   {
     title: "Офлайн",
@@ -38,6 +40,10 @@ const ExchangePage = observer(() => {
   const [allItems, setAllItems] = useState({ to: currs, from: banks });
   const { exchangeStore } = globalStore;
   const { from, to, setFrom, setTo, setSell } = exchangeStore;
+
+  useEffect(() => {
+    setSell(1);
+  }, []);
 
   const setCurFrom = (value) => {
     setCurrencies({ ...currencies, from: value });

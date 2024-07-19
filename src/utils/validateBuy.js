@@ -13,10 +13,18 @@ const validateBuy = (values) => {
     errors.wallet = "Неверный номер кошелька";
   }
 
-  if (!values.cardNumber) {
-    errors.cardNumber = "Введите номер карты";
-  } else if (values.cardNumber.length < 16) {
-    errors.cardNumber = "Слишком короткий номер карты";
+  if (values.isSbp) {
+    if (!values.phone) {
+      errors.phone = "Введите номер телефона";
+    } else if (values.phone.length < 11) {
+      errors.phone = "Слишком короткий номер телефона";
+    }
+  } else {
+    if (!values.cardNumber) {
+      errors.cardNumber = "Введите номер карты";
+    } else if (values.cardNumber.length < 16) {
+      errors.cardNumber = "Слишком короткий номер карты";
+    }
   }
 
   return errors;

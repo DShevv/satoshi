@@ -17,10 +17,21 @@ import globalStore from "../../stores/global-store";
 import { useEffect, useState } from "react";
 import ExchangeService from "../../services/ExchangeService";
 import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
+import { useNavigate } from "react-router-dom";
 
 const OfflinePage = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to, course } = exchangeStore;
+  const { from, to, course, canPass } = exchangeStore;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      !canPass ||
+      (from.currency.title !== "Офлайн" && to.currency.title !== "Офлайн")
+    ) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Wrapper>

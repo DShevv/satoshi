@@ -9,9 +9,22 @@ import {
   Text,
   Title,
 } from "./OfflineSuccess.style";
+import globalStore from "../../stores/global-store";
+import { useEffect } from "react";
 
 const OfflineSuccess = () => {
   const navigate = useNavigate();
+  const { exchangeStore } = globalStore;
+  const { setCanPass, canPass, from, to } = exchangeStore;
+
+  useEffect(() => {
+    if (
+      !canPass ||
+      (from.currency.title !== "Офлайн" && to.currency.title !== "Офлайн")
+    ) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Wrapper>
@@ -30,6 +43,7 @@ const OfflineSuccess = () => {
           <SubmitButton
             onClick={() => {
               navigate("/");
+              setCanPass(false);
             }}
           >
             Готово

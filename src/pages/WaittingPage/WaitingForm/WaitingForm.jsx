@@ -22,7 +22,7 @@ import {
 } from "./WaitingForm.style";
 
 import { useCountdown } from "usehooks-ts";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SubmitButton from "../../../components/Buttons/SubmitButton/SubmitButton";
 import SuccessAnim from "../../../components/SuccessAnim/SuccessAnim";
 import { observer } from "mobx-react-lite";
@@ -31,15 +31,19 @@ import { InfoImage } from "../../OfflinePage/OfflinePage.style";
 
 const WaitingForm = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to } = exchangeStore;
+  const { from, to, setCanPass, canPass, isSell } = exchangeStore;
   const [count, { startCountdown, stopCountdown }] = useCountdown({
     countStart: 20 * 60,
     intervalMs: 1000,
   });
   const [isOk, setIsOk] = useState(false);
   const [isCancelled, setIsCancelled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!canPass || isSell !== 1) {
+      navigate("/");
+    }
     startCountdown();
   }, []);
 
@@ -47,6 +51,7 @@ const WaitingForm = observer(() => {
     if (count === 0) {
       setIsCancelled(true);
       stopCountdown();
+      setIsOk(true);
     }
   }, [count]);
 
@@ -94,7 +99,13 @@ const WaitingForm = observer(() => {
         )}
         {isOk || isCancelled ? (
           <ButtonsContainer>
-            <NavLink to="/" style={{ display: "flex", textDecoration: "none" }}>
+            <NavLink
+              onClick={() => {
+                setCanPass(false);
+              }}
+              to="/"
+              style={{ display: "flex", textDecoration: "none" }}
+            >
               <SubmitButton>
                 {isCancelled
                   ? "Создать новую операцию"
@@ -106,7 +117,14 @@ const WaitingForm = observer(() => {
           <>
             <Hint>Обмен произойдет автоматически!</Hint>
             <ButtonsContainer>
-              <BackButton>Отменить обмен</BackButton>
+              <BackButton
+                onClick={() => {
+                  setCanPass(false);
+                  navigate("/");
+                }}
+              >
+                Отменить обмен
+              </BackButton>
             </ButtonsContainer>
           </>
         )}

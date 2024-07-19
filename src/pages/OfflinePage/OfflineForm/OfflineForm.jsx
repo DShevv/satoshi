@@ -29,7 +29,7 @@ const OfflineForm = observer(() => {
       }}
       onSubmit={async (values) => {
         console.log(values);
-        const res = await ExchangeService.sendOfflineInfo({
+        const res = await ExchangeService.sendInfo({
           sell_amount: from.amount,
           sell_currency:
             from.currency.title === "Офлайн" ? "RUB" : from.currency.hint,

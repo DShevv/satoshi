@@ -16,10 +16,18 @@ import { InfoImage } from "../OfflinePage/OfflinePage.style";
 import { useEffect, useState } from "react";
 import ExchangeService from "../../services/ExchangeService";
 import toFixedIfNecessary from "../../utils/toFixedIfNecessary";
+import { useNavigate } from "react-router-dom";
 
 export const BuyPage = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to, course } = exchangeStore;
+  const { from, to, course, canPass, isSell } = exchangeStore;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!canPass || isSell !== 1) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Wrapper>

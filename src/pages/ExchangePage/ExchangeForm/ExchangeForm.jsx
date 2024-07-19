@@ -24,11 +24,17 @@ const ExchangeForm = observer(
   ({ isSell, currencies, handleChange, allItems, onSelects, ...other }) => {
     const navigate = useNavigate();
     const { exchangeStore } = globalStore;
-    const { from, to, setFrom, setTo, course } = exchangeStore;
+    const { from, to, setFrom, setTo, course, setCanPass } = exchangeStore;
+
+    useEffect(() => {
+      setCanPass(false);
+    }, []);
 
     const onSubmit = (values) => {
       setFrom(from.currency, values.from);
       setTo(to.currency, values.to);
+      setCanPass(true);
+
       if (to.currency.title === "Офлайн" || from.currency.title === "Офлайн") {
         navigate("/offline");
       } else {

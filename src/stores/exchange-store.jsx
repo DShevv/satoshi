@@ -13,13 +13,14 @@ class ExchangeStore {
     amount: 0,
   };
   course = { in: 1, out: 1 };
-  isSell = true;
+  isSell = 1;
+  canPass = false;
 
   constructor() {
     makeAutoObservable(this);
     makePersistable(this, {
       name: "ExchangeStore",
-      properties: ["from", "to", "course"],
+      properties: ["from", "to", "course", "canPass", "isSell"],
       storage: window.localStorage,
     });
   }
@@ -48,12 +49,27 @@ class ExchangeStore {
     this.isSell = value;
   };
 
+  setCanPass = (value) => {
+    this.canPass = value;
+    if (!value) {
+      this.from = {
+        currency: undefined,
+        amount: 0,
+      };
+      this.to = {
+        currency: undefined,
+        amount: 0,
+      };
+    }
+  };
+
   updateCourse = async () => {
     try {
       const res = await ExchangeService.getCourseUsdt();
 
       runInAction(() => {
         this.course = res.data;
+
         if (this.isSell) {
           this.to = {
             ...this.to,

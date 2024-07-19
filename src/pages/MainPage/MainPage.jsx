@@ -12,6 +12,7 @@ const MainPage = observer(() => {
   const { course, updateCourse } = exchangeStore;
 
   useEffect(() => {
+    updateCourse();
     const interval = setInterval(() => {
       updateCourse();
     }, 5000);

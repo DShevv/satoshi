@@ -53,8 +53,9 @@ export const Header = observer(() => {
   const [searchParams, setSearchParams] = useSearchParams();
   const formParam = searchParams.get("auth");
   const [isOpened, setIsOpened] = useState(false);
-  const { authStore, userStore } = globalStore;
+  const { authStore, userStore, exchangeStore } = globalStore;
   const navigate = useNavigate();
+  const { setCanPass } = exchangeStore;
 
   const toggleMenu = () => {
     setIsOpened(!isOpened);
