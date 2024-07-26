@@ -43,6 +43,7 @@ const OfflineForm = observer(() => {
           email: values.email,
           telegram: values.tg,
           contact: values.communication,
+          is_offline: true,
         });
         console.log(res);
         navigate("/offline/success");

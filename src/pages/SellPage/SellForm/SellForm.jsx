@@ -18,13 +18,14 @@ import globalStore from "../../../stores/global-store";
 
 const SellForm = observer(() => {
   const navigate = useNavigate();
-  const { exchangeStore } = globalStore;
-
+  const { exchangeStore, userStore } = globalStore;
+  const { user } = userStore;
   const { from, setCanPass } = exchangeStore;
 
   return (
     <Formik
       initialValues={{
+        email: user.email ? user.email : "",
         wallet: "",
         cardNumber: "",
         phone: "",
@@ -44,6 +45,14 @@ const SellForm = observer(() => {
         return (
           <Container>
             <Title>Заполните реквизиты</Title>
+            <InputBasic
+              title={"E-mail отправителя"}
+              type={"email"}
+              placeholder={"name@gmail.com"}
+              name="email"
+              isError={errors.email ? 1 : 0}
+              errorText={errors.email ? errors.email : ""}
+            />
             <InputBasic
               title={"Номер кошелька USDT TRC20"}
               type={"text"}
