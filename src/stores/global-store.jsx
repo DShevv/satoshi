@@ -60,18 +60,21 @@ class AuthStore {
       const res = await AuthService.register(data.email, data.password);
 
       if (res.status !== 200) {
+        notificationStore.setNotification("error", "Email уже зарегистрирован");
         toast(
-          <Notification
-            text={"Указанный e-mail зарегистрирован"}
-            type={"error"}
-          />
+          <Notification text={"Email уже зарегистрирован"} type={"error"} />
         );
         return res;
       }
 
+      notificationStore.setNotification(
+        "success",
+        "Регистрация прошла успешно"
+      );
       toast(
         <Notification text={"Регистрация прошла успешно"} type={"success"} />
       );
+
       console.log(res);
       return res;
     } catch (error) {
