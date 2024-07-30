@@ -13,7 +13,7 @@ const BuyForm = observer(() => {
   const navigate = useNavigate();
   const { userStore, exchangeStore } = globalStore;
   const { user } = userStore;
-  const { from, to, setCanPass } = exchangeStore;
+  const { from, to, setCanPass, setId } = exchangeStore;
 
   return (
     <Formik
@@ -25,19 +25,26 @@ const BuyForm = observer(() => {
         isSbp: to.currency.title === "СБП",
       }}
       onSubmit={async (values) => {
-        console.log(values);
-        const res = await ExchangeService.sendInfo({
-          sell_amount: from.amount,
-          sell_currency: from.currency.hint,
-          receive_amount: to.amount,
-          receive_currency: to.currency.hint,
-          receive_city: "Онлайн",
-          email: values.email,
-          telegram: "",
-          contact: "",
-        });
-        console.log(res);
-        navigate("/send");
+        try {
+          console.log(values);
+          const res = await ExchangeService.sendOnlineInfo({
+            user_send_amount: from.amount,
+            user_send_currency: from.currency.hint,
+            user_receive_amount: to.amount,
+            user_receive_currency: to.currency.hint,
+            email: values.email,
+            user_card: values.isSbp ? values.phone : values.cardNumber,
+            user_wallet: values.wallet,
+          });
+
+          if (res.data.success) {
+            setId(res.data.uuid);
+          }
+
+          navigate("/send");
+        } catch (e) {
+          console.log(e);
+        }
       }}
       validate={validateBuy}
       validateOnBlur={false}

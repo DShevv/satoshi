@@ -15,6 +15,7 @@ class ExchangeStore {
   course = { in: 1, out: 1 };
   isSell = 1;
   canPass = false;
+  id;
 
   constructor() {
     makeAutoObservable(this);
@@ -45,6 +46,14 @@ class ExchangeStore {
     }
   };
 
+  setId = (id) => {
+    try {
+      this.id = id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   setSell = (value) => {
     this.isSell = value;
   };
@@ -63,25 +72,21 @@ class ExchangeStore {
     }
   };
 
-  updateCourse = async () => {
+  updateCourse = (value) => {
     try {
-      const res = await ExchangeService.getCourseUsdt();
+      this.course = value;
 
-      runInAction(() => {
-        this.course = res.data;
-
-        if (this.isSell) {
-          this.to = {
-            ...this.to,
-            amount: toFixedIfNecessary(res.data.in * this.from.amount),
-          };
-        } else {
-          this.from = {
-            ...this.from,
-            amount: toFixedIfNecessary(res.data.out * this.to.amount),
-          };
-        }
-      });
+      if (this.isSell) {
+        this.to = {
+          ...this.to,
+          amount: toFixedIfNecessary(value.in * this.from.amount),
+        };
+      } else {
+        this.from = {
+          ...this.from,
+          amount: toFixedIfNecessary(value.out * this.to.amount),
+        };
+      }
     } catch (error) {
       console.log(error);
     }

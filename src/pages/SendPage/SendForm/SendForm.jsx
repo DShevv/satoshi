@@ -16,12 +16,12 @@ import globalStore from "../../../stores/global-store";
 const SendForm = observer(() => {
   const navigate = useNavigate();
   const { exchangeStore } = globalStore;
-  const { from, to } = exchangeStore;
+  const { from, to, id } = exchangeStore;
 
   return (
     <Wrapper>
       <Container>
-        <Title>Заявка №878885585228</Title>
+        <Title>Заявка № {id}</Title>
         <Text>
           Осуществляете перевод {from.currency.hint} указанный кошелёк. После
           того как совершите перевод нажмите "Продолжить"

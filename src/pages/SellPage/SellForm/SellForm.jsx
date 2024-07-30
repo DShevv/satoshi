@@ -15,12 +15,13 @@ import { Formik } from "formik";
 import validateSell from "../../../utils/validateSell";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../../stores/global-store";
+import ExchangeService from "../../../services/ExchangeService";
 
 const SellForm = observer(() => {
   const navigate = useNavigate();
   const { exchangeStore, userStore } = globalStore;
   const { user } = userStore;
-  const { from, setCanPass } = exchangeStore;
+  const { from, setCanPass, to, setId } = exchangeStore;
 
   return (
     <Formik
@@ -31,8 +32,27 @@ const SellForm = observer(() => {
         phone: "",
         isSbp: from.currency.title === "СБП",
       }}
-      onSubmit={(values) => {
-        console.log(values);
+      onSubmit={async (values) => {
+        try {
+          console.log(values);
+          const res = await ExchangeService.sendOnlineInfo({
+            user_send_amount: from.amount,
+            user_send_currency: from.currency.hint,
+            user_receive_amount: to.amount,
+            user_receive_currency: to.currency.hint,
+            email: values.email,
+            user_card: values.isSbp ? values.phone : values.cardNumber,
+            user_wallet: values.wallet,
+          });
+
+          if (res.data.success) {
+            setId(res.data.uuid);
+          }
+
+          // navigate("/send");
+        } catch (e) {
+          console.log(e);
+        }
       }}
       validate={validateSell}
       validateOnBlur={false}

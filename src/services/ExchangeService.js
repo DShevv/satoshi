@@ -22,4 +22,18 @@ export default class ExchangeService {
       }
     );
   }
+
+  static async sendOnlineInfo(info) {
+    return api.post(
+      "/exchange/online",
+      {
+        ...info,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
 }

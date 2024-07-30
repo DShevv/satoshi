@@ -28,10 +28,11 @@ import SuccessAnim from "../../../components/SuccessAnim/SuccessAnim";
 import { observer } from "mobx-react-lite";
 import globalStore from "../../../stores/global-store";
 import { InfoImage } from "../../OfflinePage/OfflinePage.style";
+import useWebSocket from "react-use-websocket";
 
 const WaitingForm = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to, setCanPass, canPass, isSell } = exchangeStore;
+  const { from, to, setCanPass, canPass, isSell, id } = exchangeStore;
   const [count, { startCountdown, stopCountdown }] = useCountdown({
     countStart: 20 * 60,
     intervalMs: 1000,
@@ -39,6 +40,8 @@ const WaitingForm = observer(() => {
   const [isOk, setIsOk] = useState(false);
   const [isCancelled, setIsCancelled] = useState(false);
   const navigate = useNavigate();
+  const { sendMessage, lastMessage, readyState, lastJsonMessage } =
+    useWebSocket(`${import.meta.env.VITE_WSS_URL}/status/${id}/ws`);
 
   useEffect(() => {
     if (!canPass || isSell !== 1) {
@@ -46,6 +49,13 @@ const WaitingForm = observer(() => {
     }
     startCountdown();
   }, []);
+
+  useEffect(() => {
+    if (lastJsonMessage?.completed) {
+      setIsOk(true);
+      stopCountdown();
+    }
+  }, [lastJsonMessage]);
 
   useEffect(() => {
     if (count === 0) {
@@ -58,7 +68,7 @@ const WaitingForm = observer(() => {
   return (
     <Wrapper>
       <Container>
-        <Title>Заявка №874607798678</Title>
+        <Title>Заявка № {id}</Title>
         {isCancelled ? (
           <ErrorText>Время ожидания истекло</ErrorText>
         ) : (
