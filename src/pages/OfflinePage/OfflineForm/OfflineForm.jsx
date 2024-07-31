@@ -18,7 +18,7 @@ const OfflineForm = observer(() => {
   const navigate = useNavigate();
   const { userStore, exchangeStore } = globalStore;
   const { user } = userStore;
-  const { from, to } = exchangeStore;
+  const { from, to, setId } = exchangeStore;
 
   return (
     <Formik
@@ -28,25 +28,33 @@ const OfflineForm = observer(() => {
         communication: "",
       }}
       onSubmit={async (values) => {
-        console.log(values);
-        const res = await ExchangeService.sendInfo({
-          sell_amount: from.amount,
-          sell_currency:
-            from.currency.title === "Офлайн" ? "RUB" : from.currency.hint,
-          receive_amount: to.amount,
-          receive_currency:
-            to.currency.title === "Офлайн" ? "RUB" : to.currency.hint,
-          receive_city:
-            to.currency.title === "Офлайн"
-              ? to.currency.hint
-              : from.currency.hint,
-          email: values.email,
-          telegram: values.tg,
-          contact: values.communication,
-          is_offline: true,
-        });
-        console.log(res);
-        navigate("/offline/success");
+        try {
+          console.log(values);
+          const res = await ExchangeService.sendInfo({
+            sell_amount: from.amount,
+            sell_currency:
+              from.currency.title === "Офлайн" ? "RUB" : from.currency.hint,
+            receive_amount: to.amount,
+            receive_currency:
+              to.currency.title === "Офлайн" ? "RUB" : to.currency.hint,
+            receive_city:
+              to.currency.title === "Офлайн"
+                ? to.currency.hint
+                : from.currency.hint,
+            email: values.email,
+            telegram: values.tg,
+            contact: values.communication,
+            is_offline: true,
+          });
+
+          if (res.data.success) {
+            setId(res.data.uuid);
+          }
+
+          navigate("/offline/success");
+        } catch (e) {
+          console.log(e);
+        }
       }}
       validateOnBlur={false}
       validateOnChange={false}

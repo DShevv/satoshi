@@ -21,7 +21,7 @@ class ExchangeStore {
     makeAutoObservable(this);
     makePersistable(this, {
       name: "ExchangeStore",
-      properties: ["from", "to", "course", "canPass", "isSell"],
+      properties: ["from", "to", "course", "canPass", "isSell", "id"],
       storage: window.localStorage,
     });
   }
