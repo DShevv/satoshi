@@ -27,7 +27,7 @@ const SendForm = observer(() => {
           того как совершите перевод нажмите "Продолжить"
         </Text>
         <InputHash
-          value={"0xbb104341956e1df223f72c2419f45f3522"}
+          value={"TR7NHkorMAxGTCi8q93Y4pL8otPzgjLj6t"}
           title={"Адрес кошелька"}
         />
         <QrCode to={"/qr"}>

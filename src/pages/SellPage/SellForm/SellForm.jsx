@@ -49,7 +49,7 @@ const SellForm = observer(() => {
             setId(res.data.uuid);
           }
 
-          // navigate("/send");
+          navigate("/send-card");
         } catch (e) {
           console.log(e);
         }
@@ -81,44 +81,44 @@ const SellForm = observer(() => {
               isError={errors.wallet ? 1 : 0}
               errorText={errors.wallet ? errors.wallet : ""}
             />
-            <CardContainer>
-              {from.currency.title === "СБП" ? (
-                <InputBasic
-                  title={"Номер телефона получателя"}
-                  type={"tel"}
-                  placeholder={"7 999 000 00 00"}
-                  maxLength={15}
-                  name="phone"
-                  isError={errors.phone ? 1 : 0}
-                  errorText={errors.phone ? errors.phone : ""}
-                  value={values.phone
-                    .replace(/\s/g, "")
-                    .replace(/[^0-9^ ]/, "")
-                    .replace(
-                      /(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/g,
-                      "$1 $2 $3 $4 $5"
-                    )
-                    .trim()}
-                  onChange={handleChange}
-                />
-              ) : (
-                <InputBasic
-                  title={"Номер карты получателя"}
-                  type={"text"}
-                  placeholder={"0000 0000 0000 0000"}
-                  name="cardNumber"
-                  value={values.cardNumber
-                    .replace(/\s/g, "")
-                    .replace(/[^0-9^ ]/, "")
-                    .replace(/(\d{4})/g, "$1 ")
-                    .trim()}
-                  maxLength={19}
-                  onChange={handleChange}
-                  isError={errors.cardNumber ? 1 : 0}
-                  errorText={errors.cardNumber ? errors.cardNumber : ""}
-                />
-              )}
-            </CardContainer>
+
+            {from.currency.title === "СБП" ? (
+              <InputBasic
+                title={"Номер телефона получателя"}
+                type={"tel"}
+                placeholder={"7 999 000 00 00"}
+                maxLength={15}
+                name="phone"
+                isError={errors.phone ? 1 : 0}
+                errorText={errors.phone ? errors.phone : ""}
+                value={values.phone
+                  .replace(/\s/g, "")
+                  .replace(/[^0-9^ ]/, "")
+                  .replace(
+                    /(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/g,
+                    "$1 $2 $3 $4 $5"
+                  )
+                  .trim()}
+                onChange={handleChange}
+              />
+            ) : (
+              <InputBasic
+                title={"Номер карты получателя"}
+                type={"text"}
+                placeholder={"0000 0000 0000 0000"}
+                name="cardNumber"
+                value={values.cardNumber
+                  .replace(/\s/g, "")
+                  .replace(/[^0-9^ ]/, "")
+                  .replace(/(\d{4})/g, "$1 ")
+                  .trim()}
+                maxLength={19}
+                onChange={handleChange}
+                isError={errors.cardNumber ? 1 : 0}
+                errorText={errors.cardNumber ? errors.cardNumber : ""}
+              />
+            )}
+
             <ButtonsContainer>
               <SubmitButton type="submit">Продолжить</SubmitButton>
               <NavLink

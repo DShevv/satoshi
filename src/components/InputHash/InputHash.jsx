@@ -8,11 +8,11 @@ import {
   Title,
 } from "./InputHash.style";
 
-const InputHash = ({ value, title, className, ...other }) => {
+const InputHash = ({ value, title, className, waiting, ...other }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleClick = () => {
-    navigator.clipboard.writeText(value);
+    navigator.clipboard.writeText(value.replaceAll(" ", ""));
     setIsCopied(true);
 
     setTimeout(() => {
@@ -24,10 +24,12 @@ const InputHash = ({ value, title, className, ...other }) => {
     <Container className={className}>
       {title && <Title>{title}</Title>}
       <InputContainer>
-        <Input {...other}>{value}</Input>
         <CopyButton onClick={handleClick}>
           {isCopied ? <SvgOk /> : <SvgCopy />}
         </CopyButton>
+        <Input {...other} $waiting={waiting}>
+          {value}
+        </Input>
       </InputContainer>
     </Container>
   );

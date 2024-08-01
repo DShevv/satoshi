@@ -108,6 +108,17 @@ export const Time = styled.div`
   }
 `;
 
+export const CurrencyContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export const CurrencyInfo = styled.div`
   display: flex;
   gap: 13px;
@@ -135,7 +146,7 @@ export const CurrencyValue = styled.div`
 `;
 
 export const WalletContainer = styled.div`
-  margin-top: 15px;
+  margin-top: 24px;
   color: ${(props) => props.theme.colors.white};
   margin-bottom: 32px;
 

@@ -6,6 +6,7 @@ import {
   ButtonsContainer,
   Container,
   CurrencyCaption,
+  CurrencyContainer,
   CurrencyInfo,
   CurrencyTitle,
   CurrencyValue,
@@ -29,6 +30,7 @@ import { observer } from "mobx-react-lite";
 import globalStore from "../../../stores/global-store";
 import { InfoImage } from "../../OfflinePage/OfflinePage.style";
 import useWebSocket from "react-use-websocket";
+import InputHash from "../../../components/InputHash/InputHash";
 
 const WaitingForm = observer(() => {
   const { exchangeStore } = globalStore;
@@ -44,7 +46,7 @@ const WaitingForm = observer(() => {
     useWebSocket(`${import.meta.env.VITE_WSS_URL}/status/${id}/ws`);
 
   useEffect(() => {
-    if (!canPass || isSell !== 1) {
+    if (!canPass) {
       navigate("/");
     }
     startCountdown();
@@ -90,20 +92,48 @@ const WaitingForm = observer(() => {
           <CurrencyInfo></CurrencyInfo>
         ) : (
           <>
-            <CurrencyInfo>
-              <InfoImage src={from.currency.image} />
-              <CurrencyCaption>
-                <CurrencyTitle>Сумма</CurrencyTitle>
-                <CurrencyValue>
-                  {from.amount} {from.currency.hint}
-                </CurrencyValue>
-              </CurrencyCaption>
-            </CurrencyInfo>
+            <CurrencyContainer>
+              <CurrencyInfo>
+                <InfoImage src={from.currency.image} />
+                <CurrencyCaption>
+                  <CurrencyTitle>Отправляете</CurrencyTitle>
+                  <CurrencyValue>
+                    {from.amount} {from.currency.hint}
+                  </CurrencyValue>
+                </CurrencyCaption>
+              </CurrencyInfo>
+              <CurrencyInfo>
+                <InfoImage src={to.currency.image} />
+                <CurrencyCaption>
+                  <CurrencyTitle>Получаете</CurrencyTitle>
+                  <CurrencyValue>
+                    {to.amount} {to.currency.hint}
+                  </CurrencyValue>
+                </CurrencyCaption>
+              </CurrencyInfo>
+            </CurrencyContainer>
             <WalletContainer>
-              <WalletTitle>Адрес кошелька:</WalletTitle>
-              <WalletValue>
-                0xbb104341956e1df223f72c2419f45f35227054e9
-              </WalletValue>
+              {isSell ? (
+                <InputHash
+                  waiting={1}
+                  value={"TR7NHkorMAxGTCi8q93Y4pL8otPzgjLj6t"}
+                  title={"Адрес кошелька"}
+                />
+              ) : (
+                <InputHash
+                  waiting={1}
+                  value={
+                    from.currency.title === "СБП"
+                      ? "8-999-999-99-99"
+                      : "0000 0000 0000 0000"
+                  }
+                  title={
+                    from.currency.title === "СБП"
+                      ? "Номер телефона СБП"
+                      : `Номер карты ${from.currency.title}`
+                  }
+                />
+              )}
             </WalletContainer>
           </>
         )}

@@ -15,27 +15,24 @@ export const Title = styled.div`
 
 export const InputContainer = styled.div`
   margin-bottom: 9px;
-  padding: 15px 27px;
-  border: 1px solid ${(props) => props.theme.colors.grayEmpty};
-  background-color: ${(props) => props.theme.colors.black};
-  border-radius: 42px;
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 `;
 
 export const Input = styled.div`
   flex: 1 1 auto;
-  max-width: 301px;
   font-family: inherit;
-  font-weight: 400;
+  font-weight: ${(props) => (props.$waiting ? "300" : "700")};
   font-size: 14px;
   text-align: left;
   color: ${(props) => props.theme.colors.white};
   background-color: transparent;
   outline: none;
   border: none;
+  position: relative;
+  top: 2px;
 
   &::placeholder {
     font-weight: 400;
