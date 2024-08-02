@@ -39,10 +39,10 @@ export const CabinetForm = observer(() => {
     >
       <Form>
         <Container>
-          <Title>Личные данные</Title>
+          {/*  <Title>Личные данные</Title>
           <InputBasic type={"text"} name={"LastName"} title={"Фамилия"} />
           <InputBasic type={"text"} name={"FirstName"} title={"Имя"} />
-          <InputBasic type={"text"} name={"FatherName"} title={"Отчество"} />
+          <InputBasic type={"text"} name={"FatherName"} title={"Отчество"} /> */}
           <HiTitle>Защита данных</HiTitle>
           <InputBasic type={"email"} name={"email"} title={"E-mail"} />
           <SubTitle>Изменение пароля</SubTitle>
