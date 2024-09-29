@@ -19,11 +19,19 @@ export const StyledSubmit = styled(StyledButton)`
   cursor: pointer;
 
   &.back {
-    border: 2px solid ${(props) => props.theme.colors.grayEmpty};
-    background-color: ${(props) => props.theme.colors.grayEmpty};
   }
+
+  &.logout {
+    border: 2px solid ${(props) => props.theme.colors.grayEmpty};
+    background-color: transparent;
+  }
+
   &:hover {
     background-color: transparent;
+  }
+
+  &.logout:hover {
+    background-color: ${(props) => props.theme.colors.grayEmpty};
   }
 
   @media (max-width: 1080px) {

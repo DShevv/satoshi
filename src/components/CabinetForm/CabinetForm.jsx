@@ -130,6 +130,17 @@ export const CabinetForm = observer(() => {
                   Отмена
                 </MediumButton>
               </ButtonsContainer>
+              <ButtonsContainer>
+                <MediumButton
+                  type="button"
+                  className="logout"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Выйти
+                </MediumButton>
+              </ButtonsContainer>
             </Container>
           </Form>
         );
