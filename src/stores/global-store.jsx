@@ -42,11 +42,11 @@ class AuthStore {
       notificationStore.setNotification("success", "Вход прошёл успешно");
       toast(<Notification text={"Вход прошёл успешно"} type={"success"} />);
       localStorage.setItem("token", `Bearer ${res.data.access_token}`);
-      localStorage.setItem("refresh", `Bearer ${res.data.refresh_token}`);
+      localStorage.setItem("refresh", `${res.data.refresh_token}`);
 
       runInAction(() => {
         this.token = `Bearer ${res.data.access_token}`;
-        this.refresh = `Bearer ${res.data.refresh_token}`;
+        this.refresh = `${res.data.refresh_token}`;
 
         this.isAuthorized = true;
       });
@@ -129,7 +129,7 @@ class GlobalStore {
 }
 
 const authStore = new AuthStore();
-const userStore = new UserStore(authStore);
+const userStore = new UserStore(authStore, notificationStore);
 
 const globalStore = new GlobalStore(
   authStore,

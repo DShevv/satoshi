@@ -26,7 +26,8 @@ api.interceptors.response.use(
     if (
       error.response.status === 401 &&
       !reqConfig._retry &&
-      reqConfig.url !== "/refresh"
+      !reqConfig.url.includes("/refresh") &&
+      !reqConfig.url.includes("/users")
     ) {
       reqConfig._retry = true;
       console.log("start");
@@ -38,6 +39,12 @@ api.interceptors.response.use(
       }
       reqConfig.headers.Authorization = newToken;
       return api(reqConfig);
+    } else if (
+      error.response.status === 401 &&
+      reqConfig.url.includes("/refresh")
+    ) {
+      globalStore.userStore.logout();
+      return error;
     }
 
     return error;

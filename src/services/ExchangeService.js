@@ -11,21 +11,7 @@ export default class ExchangeService {
 
   static async sendInfo(info) {
     return api.post(
-      "/exchange",
-      {
-        ...info,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  }
-
-  static async sendOnlineInfo(info) {
-    return api.post(
-      "/exchange/online",
+      "/orders",
       {
         ...info,
       },

@@ -1,19 +1,23 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { makePersistable, stopPersisting } from "mobx-persist-store";
 import UserService from "../services/UserService";
+import Notification from "../components/Notification/Notification";
 
 class UserStore {
   user = {
-    name: undefined,
-    lastName: undefined,
-    patronymic: undefined,
-    email: undefined,
+    name: "",
+    lastName: "",
+    patronymic: "",
+    email: "",
     id: undefined,
+    orders: undefined,
   };
   authStore;
+  notificationStore;
 
-  constructor(authStore) {
+  constructor(authStore, notificationStore) {
     this.authStore = authStore;
+    this.notificationStore = notificationStore;
 
     makeAutoObservable(this);
     makePersistable(this, {
@@ -39,11 +43,13 @@ class UserStore {
 
       runInAction(() => {
         this.user = {
-          name: res.data.username.first_name,
-          email: res.data.username.email,
-          lastName: res.data.username.last_name,
-          patronymic: res.data.username.patronymic,
-          id: res.data.username.id,
+          name: res.data.first_name,
+          email: res.data.email,
+          lastName: res.data.last_name,
+          patronymic: res.data.patronymic,
+          id: res.data.id,
+          is_active: res.data.is_active,
+          orders: res.data.orders,
         };
       });
     } catch (error) {
@@ -54,11 +60,45 @@ class UserStore {
   logout = () => {
     console.log("logout");
     this.user = {
-      name: undefined,
-      email: undefined,
+      name: "",
+      lastName: "",
+      patronymic: "",
+      email: "",
       id: undefined,
     };
     this.authStore.logout();
+  };
+
+  update = async (data) => {
+    try {
+      const res = await UserService.updateInfo(data);
+      console.log(res);
+
+      if (res.status !== 200 && res.response?.status !== 200) {
+        this.notificationStore.setNotification(
+          "error",
+          "Не удалось сохранить изменения"
+        );
+
+        return res;
+      }
+
+      this.notificationStore.setNotification("success", "Изменения применены");
+
+      runInAction(() => {
+        this.user = {
+          name: res.data.first_name,
+          email: res.data.email,
+          lastName: res.data.last_name,
+          patronymic: res.data.patronymic,
+          id: res.data.id,
+          is_active: res.data.is_active,
+          orders: res.data.orders,
+        };
+      });
+    } catch (error) {
+      console.log(error.data);
+    }
   };
 }
 

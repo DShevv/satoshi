@@ -12,7 +12,7 @@ const MainPage = observer(() => {
   const { exchangeStore } = globalStore;
   const { course, updateCourse } = exchangeStore;
   const { sendMessage, lastMessage, readyState, lastJsonMessage } =
-    useWebSocket(`${import.meta.env.VITE_WSS_URL}/usdt/ws`);
+    useWebSocket(`${import.meta.env.VITE_WSS_URL}/courses/ws/usdt`);
 
   useEffect(() => {
     if (lastJsonMessage) {

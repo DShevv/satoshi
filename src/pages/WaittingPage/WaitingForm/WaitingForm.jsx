@@ -43,7 +43,7 @@ const WaitingForm = observer(() => {
   const [isCancelled, setIsCancelled] = useState(false);
   const navigate = useNavigate();
   const { sendMessage, lastMessage, readyState, lastJsonMessage } =
-    useWebSocket(`${import.meta.env.VITE_WSS_URL}/status/${id}/ws`);
+    useWebSocket(`${import.meta.env.VITE_WSS_URL}/orders/ws/status/${id}`);
 
   useEffect(() => {
     if (!canPass) {

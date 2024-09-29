@@ -45,9 +45,11 @@ const OfflineForm = observer(() => {
             telegram: values.tg,
             contact: values.communication,
             is_offline: true,
+            user_card: "",
+            user_wallet: "",
           });
 
-          if (res.data.success) {
+          if (res.status === 200) {
             setId(res.data.uuid);
           }
 

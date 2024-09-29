@@ -3,7 +3,7 @@ import api from "../http";
 export default class AuthService {
   static async login(email, password) {
     return api.post(
-      "/token",
+      "/users/token",
       {
         username: email,
         password: password,
@@ -18,7 +18,7 @@ export default class AuthService {
 
   static async register(email, password) {
     return api.post(
-      "/register",
+      "/users/register",
       {
         email,
         password,
@@ -32,7 +32,7 @@ export default class AuthService {
   }
 
   static async refresh(token) {
-    return api.post("/refresh", undefined, {
+    return api.post(`/users/refresh?refresh_token=${token}`, undefined, {
       headers: {
         Authorization: token,
         "Content-Type": "application/json",

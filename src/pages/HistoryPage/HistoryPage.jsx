@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import { SvgSber, SvgUsdt } from "../../assets/icons/svgs";
 import {
   HeaderCell,
@@ -11,8 +12,12 @@ import {
   ChangeIcon,
   TableContainer,
 } from "./HistoryPage.style";
+import globalStore from "../../stores/global-store";
 
-const HistoryPage = () => {
+const HistoryPage = observer(() => {
+  const { userStore } = globalStore;
+  const { user } = userStore;
+
   return (
     <>
       <Title>История заявок</Title>
@@ -24,66 +29,37 @@ const HistoryPage = () => {
           <HeaderCell>К обмену</HeaderCell>
           <HeaderCell>К получению</HeaderCell>
         </TableHeader>
-        <TableRow>
-          <Number>594780377474</Number>
-          <DateTime>
-            12.08.2022 <div>14:09</div>
-          </DateTime>
-          <Status>Закрыто</Status>
-          <ChangeContainer>
-            <ChangeIcon>
-              <SvgUsdt />
-            </ChangeIcon>
-            190 USDTTRC
-          </ChangeContainer>
-          <ChangeContainer>
-            <ChangeIcon>
-              <SvgSber />
-            </ChangeIcon>
-            20 000 RUB
-          </ChangeContainer>
-        </TableRow>
-        <TableRow>
-          <Number>594780377474</Number>
-          <DateTime>
-            12.08.2022 <div>14:09</div>
-          </DateTime>
-          <Status>Закрыто</Status>
-          <ChangeContainer>
-            <ChangeIcon>
-              <SvgUsdt />
-            </ChangeIcon>
-            190 USDTTRC
-          </ChangeContainer>
-          <ChangeContainer>
-            <ChangeIcon>
-              <SvgSber />
-            </ChangeIcon>
-            20 000 RUB
-          </ChangeContainer>
-        </TableRow>
-        <TableRow>
-          <Number>594780377474</Number>
-          <DateTime>
-            12.08.2022 <div>14:09</div>
-          </DateTime>
-          <Status>Закрыто</Status>
-          <ChangeContainer>
-            <ChangeIcon>
-              <SvgUsdt />
-            </ChangeIcon>
-            190 USDTTRC
-          </ChangeContainer>
-          <ChangeContainer>
-            <ChangeIcon>
-              <SvgSber />
-            </ChangeIcon>
-            20 000 RUB
-          </ChangeContainer>
-        </TableRow>
+        {user?.orders
+          .slice()
+          .reverse()
+          .map((order) => {
+            const orderDate = new Date(order.created_at);
+            return (
+              <TableRow key={order.id}>
+                <Number>{order.uuid}</Number>
+                <DateTime>
+                  {`${orderDate.getDate()}.${orderDate.getMonth()}.${orderDate.getFullYear()}`}
+                  <div>{`${orderDate.getHours()}:${orderDate.getMinutes()}`}</div>
+                </DateTime>
+                <Status>{order.completed ? "Закрыто" : "Ожидание"}</Status>
+                <ChangeContainer>
+                  {/*    <ChangeIcon>
+                <SvgUsdt />
+              </ChangeIcon> */}
+                  {order.sell_amount} {order.sell_currency}
+                </ChangeContainer>
+                <ChangeContainer>
+                  {/*  <ChangeIcon>
+                <SvgSber />
+              </ChangeIcon> */}
+                  {order.receive_amount} {order.receive_currency}
+                </ChangeContainer>
+              </TableRow>
+            );
+          })}
       </TableContainer>
     </>
   );
-};
+});
 
 export default HistoryPage;

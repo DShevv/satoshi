@@ -15,7 +15,7 @@ import { useEffect } from "react";
 const OfflineSuccess = () => {
   const navigate = useNavigate();
   const { exchangeStore } = globalStore;
-  const { setCanPass, canPass, from, to } = exchangeStore;
+  const { setCanPass, canPass, from, to, id } = exchangeStore;
 
   useEffect(() => {
     if (
@@ -38,7 +38,7 @@ const OfflineSuccess = () => {
           </Text>
           <Number>
             Ваш заказ:
-            <span>№874607798678</span>
+            <span>{id}</span>
           </Number>
           <SubmitButton
             onClick={() => {

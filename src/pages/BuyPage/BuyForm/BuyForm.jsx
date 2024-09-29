@@ -26,18 +26,21 @@ const BuyForm = observer(() => {
       }}
       onSubmit={async (values) => {
         try {
-          console.log(values);
-          const res = await ExchangeService.sendOnlineInfo({
-            user_send_amount: from.amount,
-            user_send_currency: from.currency.hint,
-            user_receive_amount: to.amount,
-            user_receive_currency: to.currency.hint,
+          const res = await ExchangeService.sendInfo({
+            sell_amount: from.amount,
+            sell_currency: from.currency.hint,
+            receive_amount: to.amount,
+            receive_currency: to.currency.hint,
             email: values.email,
             user_card: values.isSbp ? values.phone : values.cardNumber,
             user_wallet: values.wallet,
+            is_offline: false,
+            receive_city: "",
+            telegram: "",
+            contact: "",
           });
 
-          if (res.data.success) {
+          if (res.status === 200) {
             setId(res.data.uuid);
           }
 
