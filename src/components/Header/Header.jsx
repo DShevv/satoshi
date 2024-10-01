@@ -129,11 +129,11 @@ export const Header = observer(() => {
                 </LoginButton>
               </ButtonsContainer>
             )}
-            <MenuButton onClick={toggleMenu}>
+            {/*  <MenuButton onClick={toggleMenu}>
               <StyledBurger className={isOpened ? "" : "active"} />
               <StyledClose className={isOpened ? "active" : ""} />
               <span className="desktop">Меню</span>
-            </MenuButton>
+            </MenuButton> */}
           </ControlsContainer>
         </InnerContainer>
       </Wrapper>

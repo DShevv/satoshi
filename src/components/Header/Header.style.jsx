@@ -56,7 +56,7 @@ export const ControlsContainer = styled.div`
 
 export const ButtonsContainer = styled.div`
   margin-left: 43px;
-  margin-right: 29px;
+  //margin-right: 29px;
   display: flex;
   align-items: center;
   gap: 12px;
