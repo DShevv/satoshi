@@ -26,8 +26,7 @@ api.interceptors.response.use(
     if (
       error.response.status === 401 &&
       !reqConfig._retry &&
-      !reqConfig.url.includes("/refresh") &&
-      !reqConfig.url.includes("/users")
+      !reqConfig.url.includes("/refresh")
     ) {
       reqConfig._retry = true;
       console.log("start");

@@ -102,8 +102,7 @@ export const LoginForm = observer(({ onClose, ...other }) => {
                     <StyledSubmit type={"submit"}>Войти</StyledSubmit>
                   </ButtonContainer>
                   <UnderText>
-                    Впервые на сайте?{" "}
-                    <Link to={"?auth=register"}>Зарегистрируйтесь</Link>
+                    <Link to={"?auth=register"}>Регистрация</Link>
                   </UnderText>
                 </StyledForm>
               </Form>

@@ -13,7 +13,7 @@ const BuyForm = observer(() => {
   const navigate = useNavigate();
   const { userStore, exchangeStore } = globalStore;
   const { user } = userStore;
-  const { from, to, setCanPass, setId } = exchangeStore;
+  const { from, to, setCanPass, setUuid, setId, setStartTime } = exchangeStore;
 
   return (
     <Formik
@@ -41,7 +41,9 @@ const BuyForm = observer(() => {
           });
 
           if (res.status === 200) {
-            setId(res.data.uuid);
+            setUuid(res.data.uuid);
+            setId(res.data.id);
+            setStartTime(res.data.created_at);
           }
 
           navigate("/send");

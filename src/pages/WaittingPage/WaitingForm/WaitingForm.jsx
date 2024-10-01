@@ -31,19 +31,22 @@ import globalStore from "../../../stores/global-store";
 import { InfoImage } from "../../OfflinePage/OfflinePage.style";
 import useWebSocket from "react-use-websocket";
 import InputHash from "../../../components/InputHash/InputHash";
+import calculateTime from "../../../utils/calculateTime";
 
 const WaitingForm = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to, setCanPass, canPass, isSell, id } = exchangeStore;
+  const { from, to, setCanPass, canPass, isSell, uuid, id, startTime } =
+    exchangeStore;
+
   const [count, { startCountdown, stopCountdown }] = useCountdown({
-    countStart: 20 * 60,
+    countStart: 20 * 60 - calculateTime(startTime).toFixed(0),
     intervalMs: 1000,
   });
   const [isOk, setIsOk] = useState(false);
   const [isCancelled, setIsCancelled] = useState(false);
   const navigate = useNavigate();
   const { sendMessage, lastMessage, readyState, lastJsonMessage } =
-    useWebSocket(`${import.meta.env.VITE_WSS_URL}/orders/ws/status/${id}`);
+    useWebSocket(`${import.meta.env.VITE_WSS_URL}/orders/ws/status/${uuid}`);
 
   useEffect(() => {
     if (!canPass) {
@@ -53,6 +56,7 @@ const WaitingForm = observer(() => {
   }, []);
 
   useEffect(() => {
+    console.log(lastJsonMessage);
     if (lastJsonMessage?.completed) {
       setIsOk(true);
       stopCountdown();

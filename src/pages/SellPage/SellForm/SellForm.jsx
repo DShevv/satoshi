@@ -21,7 +21,7 @@ const SellForm = observer(() => {
   const navigate = useNavigate();
   const { exchangeStore, userStore } = globalStore;
   const { user } = userStore;
-  const { from, setCanPass, to, setId } = exchangeStore;
+  const { from, setCanPass, to, setUuid, setId, setStartTime } = exchangeStore;
 
   return (
     <Formik
@@ -50,7 +50,9 @@ const SellForm = observer(() => {
           });
 
           if (res.status === 200) {
-            setId(res.data.uuid);
+            setUuid(res.data.uuid);
+            setId(res.data.id);
+            setStartTime(res.data.created_at);
           }
 
           navigate("/send-card");

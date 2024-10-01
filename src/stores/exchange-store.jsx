@@ -15,13 +15,24 @@ class ExchangeStore {
   course = { in: 1, out: 1 };
   isSell = 1;
   canPass = false;
+  uuid;
   id;
+  startTime;
 
   constructor() {
     makeAutoObservable(this);
     makePersistable(this, {
       name: "ExchangeStore",
-      properties: ["from", "to", "course", "canPass", "isSell", "id"],
+      properties: [
+        "from",
+        "to",
+        "course",
+        "canPass",
+        "isSell",
+        "uuid",
+        "startTime",
+        "id",
+      ],
       storage: window.localStorage,
     });
   }
@@ -46,9 +57,25 @@ class ExchangeStore {
     }
   };
 
+  setUuid = (uuid) => {
+    try {
+      this.uuid = uuid;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   setId = (id) => {
     try {
       this.id = id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  setStartTime = (time) => {
+    try {
+      this.startTime = time;
     } catch (error) {
       console.log(error);
     }

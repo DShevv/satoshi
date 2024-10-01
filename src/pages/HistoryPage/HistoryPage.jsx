@@ -13,6 +13,7 @@ import {
   TableContainer,
 } from "./HistoryPage.style";
 import globalStore from "../../stores/global-store";
+import formatDate from "../../utils/formatDate";
 
 const HistoryPage = observer(() => {
   const { userStore } = globalStore;
@@ -34,12 +35,15 @@ const HistoryPage = observer(() => {
           .reverse()
           .map((order) => {
             const orderDate = new Date(order.created_at);
+            const localDate = new Date(
+              orderDate.getTime() - orderDate.getTimezoneOffset() * 60000
+            );
             return (
               <TableRow key={order.id}>
-                <Number>{order.uuid}</Number>
+                <Number>{order.id}</Number>
                 <DateTime>
-                  {`${orderDate.getDate()}.${orderDate.getMonth()}.${orderDate.getFullYear()}`}
-                  <div>{`${orderDate.getHours()}:${orderDate.getMinutes()}`}</div>
+                  {formatDate(localDate)}
+                  <div>{localDate.toLocaleTimeString().slice(0, -3)}</div>
                 </DateTime>
                 <Status>{order.completed ? "Закрыто" : "Ожидание"}</Status>
                 <ChangeContainer>

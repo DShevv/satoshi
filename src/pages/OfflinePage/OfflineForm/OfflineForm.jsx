@@ -18,7 +18,7 @@ const OfflineForm = observer(() => {
   const navigate = useNavigate();
   const { userStore, exchangeStore } = globalStore;
   const { user } = userStore;
-  const { from, to, setId } = exchangeStore;
+  const { from, to, setUuid, setId, setStartTime } = exchangeStore;
 
   return (
     <Formik
@@ -50,7 +50,9 @@ const OfflineForm = observer(() => {
           });
 
           if (res.status === 200) {
-            setId(res.data.uuid);
+            setUuid(res.data.uuid);
+            setId(res.data.id);
+            setStartTime(res.data.created_at);
           }
 
           navigate("/offline/success");
