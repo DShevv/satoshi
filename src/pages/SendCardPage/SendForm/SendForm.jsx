@@ -43,6 +43,7 @@ const SendForm = observer(() => {
         <ButtonsContainer>
           <SubmitButton
             onClick={() => {
+              setStartTime(new Date().toISOString());
               navigate("/waiting");
             }}
           >
