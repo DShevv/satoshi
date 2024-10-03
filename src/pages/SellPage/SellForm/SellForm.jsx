@@ -20,15 +20,15 @@ import ExchangeService from "../../../services/ExchangeService";
 const SellForm = observer(() => {
   const navigate = useNavigate();
   const { exchangeStore, userStore } = globalStore;
-  const { user } = userStore;
+  const { user, setWallet, setCard } = userStore;
   const { from, setCanPass, to, setUuid, setId, setStartTime } = exchangeStore;
 
   return (
     <Formik
       initialValues={{
         email: user.email ? user.email : "",
-        wallet: "",
-        cardNumber: "",
+        wallet: user.wallet ? user.wallet : "",
+        cardNumber: user.card ? user.card : "",
         phone: "",
         isSbp: from.currency.title === "СБП",
       }}
@@ -49,11 +49,16 @@ const SellForm = observer(() => {
             contact: "",
           });
 
-          if (res.status === 200) {
-            setUuid(res.data.uuid);
-            setId(res.data.id);
-            setStartTime(res.data.created_at);
+          if (res.status !== 200) {
+            return;
           }
+
+          setUuid(res.data.uuid);
+          setId(res.data.id);
+
+          setWallet(values.wallet);
+
+          setCard(values.cardNumber);
 
           navigate("/send-card");
         } catch (e) {
@@ -131,6 +136,7 @@ const SellForm = observer(() => {
                 to={"/"}
                 onClick={() => {
                   setCanPass(false);
+                  setStartTime(undefined);
                 }}
                 style={{ textDecoration: "none" }}
               >

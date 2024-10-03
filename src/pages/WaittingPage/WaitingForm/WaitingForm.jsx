@@ -35,8 +35,17 @@ import calculateTime from "../../../utils/calculateTime";
 
 const WaitingForm = observer(() => {
   const { exchangeStore } = globalStore;
-  const { from, to, setCanPass, canPass, isSell, uuid, id, startTime } =
-    exchangeStore;
+  const {
+    from,
+    to,
+    setCanPass,
+    canPass,
+    isSell,
+    uuid,
+    id,
+    startTime,
+    setStartTime,
+  } = exchangeStore;
 
   const [count, { startCountdown, stopCountdown }] = useCountdown({
     countStart: 20 * 60 - calculateTime(startTime).toFixed(0),
@@ -49,6 +58,7 @@ const WaitingForm = observer(() => {
     useWebSocket(`${import.meta.env.VITE_WSS_URL}/orders/ws/status/${uuid}`);
 
   useEffect(() => {
+    console.log(calculateTime(startTime).toFixed(0));
     if (!canPass) {
       navigate("/");
     }
@@ -164,6 +174,7 @@ const WaitingForm = observer(() => {
               <BackButton
                 onClick={() => {
                   setCanPass(false);
+                  setStartTime(undefined);
                   navigate("/");
                 }}
               >

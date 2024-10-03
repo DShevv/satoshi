@@ -16,7 +16,7 @@ import globalStore from "../../../stores/global-store";
 const SendForm = observer(() => {
   const navigate = useNavigate();
   const { exchangeStore } = globalStore;
-  const { from, to, id } = exchangeStore;
+  const { from, to, id, setStartTime } = exchangeStore;
 
   return (
     <Wrapper>
@@ -48,6 +48,8 @@ const SendForm = observer(() => {
         <ButtonsContainer>
           <SubmitButton
             onClick={() => {
+              setStartTime(new Date().toISOString());
+
               navigate("/waiting");
             }}
           >

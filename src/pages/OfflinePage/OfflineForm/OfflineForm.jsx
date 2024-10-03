@@ -52,7 +52,6 @@ const OfflineForm = observer(() => {
           if (res.status === 200) {
             setUuid(res.data.uuid);
             setId(res.data.id);
-            setStartTime(res.data.created_at);
           }
 
           navigate("/offline/success");

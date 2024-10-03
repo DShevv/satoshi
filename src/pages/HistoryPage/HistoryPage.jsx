@@ -45,7 +45,7 @@ const HistoryPage = observer(() => {
                   {formatDate(localDate)}
                   <div>{localDate.toLocaleTimeString().slice(0, -3)}</div>
                 </DateTime>
-                <Status>{order.completed ? "Закрыто" : "Ожидание"}</Status>
+                <Status>{order.completed ? "Выполнено" : "Ожидание"}</Status>
                 <ChangeContainer>
                   {/*    <ChangeIcon>
                 <SvgUsdt />

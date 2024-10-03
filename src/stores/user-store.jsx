@@ -11,6 +11,8 @@ class UserStore {
     email: "",
     id: undefined,
     orders: undefined,
+    wallet: undefined,
+    card: undefined,
   };
   authStore;
   notificationStore;
@@ -99,6 +101,14 @@ class UserStore {
     } catch (error) {
       console.log(error.data);
     }
+  };
+
+  setWallet = (wallet) => {
+    this.user.wallet = wallet;
+  };
+
+  setCard = (card) => {
+    this.user.card = card;
   };
 }
 

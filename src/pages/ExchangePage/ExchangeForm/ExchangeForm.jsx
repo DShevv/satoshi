@@ -24,10 +24,12 @@ const ExchangeForm = observer(
   ({ isSell, currencies, handleChange, allItems, onSelects, ...other }) => {
     const navigate = useNavigate();
     const { exchangeStore } = globalStore;
-    const { from, to, setFrom, setTo, course, setCanPass } = exchangeStore;
+    const { from, to, setFrom, setTo, course, setCanPass, setStartTime } =
+      exchangeStore;
 
     useEffect(() => {
       setCanPass(false);
+      setStartTime(undefined);
     }, []);
 
     const onSubmit = (values) => {
