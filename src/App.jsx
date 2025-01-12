@@ -24,6 +24,7 @@ import OfflinePage from "./pages/OfflinePage/OfflinePage";
 import OfflineSuccess from "./pages/OfflineSuccess/OfflineSuccess";
 import SendCardPage from "./pages/SendCardPage/SendCardPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import { PolicyPage } from "./pages/PolicyPage/PolicyPage";
 
 const App = observer(() => {
   const { stopStore } = globalStore;
@@ -49,6 +50,7 @@ const App = observer(() => {
           <Route path="/send" element={<SendPage />} />
           <Route path="/send-card" element={<SendCardPage />} />
           <Route path="/waiting" element={<WaitingPage />} />
+          <Route path="/policy" element={<PolicyPage />} />
           <Route path="/cabinet" element={<CabinetPage />}>
             <Route index element={<CabinetForm />} />
             <Route path="/cabinet/history" element={<HistoryPage />} />

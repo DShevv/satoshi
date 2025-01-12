@@ -7,14 +7,14 @@ export const Container = styled.footer`
   border-top: solid 1px ${(props) => props.theme.colors.grayLight};
 
   @media (max-width: 1080px) {
-    height: 76px;
+    height: 114px;
     padding: 31px 0 19px 0;
   }
 `;
 
 export const InnerContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
 

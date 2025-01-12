@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { SvgBurger, SvgClose } from "../../assets/icons/svgs";
+import { SvgBurger, SvgClose, SvgTgButton } from "../../assets/icons/svgs";
 
 export const Container = styled.header`
   position: relative;
@@ -263,5 +263,23 @@ export const StyledBurger = styled(SvgBurger)`
   &.active {
     transform: rotate(180deg);
     opacity: 1;
+  }
+`;
+
+export const TgButton = styled(Link)`
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  color: ${(props) => props.theme.colors.red};
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: ${(props) => props.theme.colors.redLight};
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
   }
 `;

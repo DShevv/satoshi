@@ -12,10 +12,11 @@ const Footer = () => {
     <Container>
       <Wrapper>
         <InnerContainer>
-          {/* <LinksContainer>
-            <Link to="/rules">Правила сервиса</Link>
-            <Link to="/policy">Политика конфиденциальности</Link>
-          </LinksContainer> */}
+          <LinksContainer>
+            <Link to="/policy">Правила сервиса</Link>
+            {/*             <Link to="/policy">Политика конфиденциальности</Link>
+             */}
+          </LinksContainer>
           <Copyright>© 2025 Все права защищены</Copyright>
         </InnerContainer>
       </Wrapper>

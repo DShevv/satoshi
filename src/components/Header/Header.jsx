@@ -20,6 +20,7 @@ import {
   Socials,
   StyledBurger,
   StyledClose,
+  TgButton,
 } from "./Header.style";
 import {
   SvgBurger,
@@ -30,6 +31,7 @@ import {
   SvgLogoMobile,
   SvgReddit,
   SvgTg,
+  SvgTgButton,
   SvgTwitter,
   SvgUserAdd,
   SvgUserMobile,
@@ -114,6 +116,9 @@ export const Header = observer(() => {
               <UserContainer />
             ) : (
               <ButtonsContainer>
+                <TgButton to={"https://t.me"} target="_blank">
+                  <SvgTgButton />
+                </TgButton>
                 <RegisterButton
                   className="desktop"
                   onClick={() => setSearchParams({ auth: "register" })}
